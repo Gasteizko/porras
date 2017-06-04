@@ -1,12 +1,7 @@
 -- -----------------------------------------------------
--- Schema porrasdb
+-- Table `user`
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `porrasdb`;
-
--- -----------------------------------------------------
--- Table `porrasdb`.`user`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `porrasdb`.`user` (
+CREATE TABLE IF NOT EXISTS `user` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `login` VARCHAR(100) NOT NULL UNIQUE,
   `first_name` VARCHAR(50) NOT NULL,
@@ -17,11 +12,9 @@ CREATE TABLE IF NOT EXISTS `porrasdb`.`user` (
   `activated` TINYINT NOT NULL,
   `created_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `last_login_time` TIMESTAMP NULL,
-  `lang_key` VARCHAR(10) NOT NULL,
   `activation_key` VARCHAR(20) NULL,
   `reset_key` VARCHAR(20) NULL,
   `reset_date` TIMESTAMP NULL,
-  `created_by` VARCHAR(50) NOT NULL,
   `last_modified_by` VARCHAR(50) NULL,
   `last_modified_date` TIMESTAMP NULL,
   PRIMARY KEY (`id`));
@@ -29,9 +22,9 @@ CREATE TABLE IF NOT EXISTS `porrasdb`.`user` (
 
 
 -- -----------------------------------------------------
--- Table `porrasdb`.`porra`
+-- Table `porra`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `porrasdb`.`porra` (
+CREATE TABLE IF NOT EXISTS `porra` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `external_id` VARCHAR(255) NOT NULL UNIQUE,
   `name` VARCHAR(50) NOT NULL,
@@ -47,16 +40,16 @@ CREATE TABLE IF NOT EXISTS `porrasdb`.`porra` (
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_porra_creator_id`
     FOREIGN KEY (`creator_id`)
-    REFERENCES `porrasdb`.`user` (`id`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
 
 
 -- -----------------------------------------------------
--- Table `porrasdb`.`user_porra`
+-- Table `user_porra`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `porrasdb`.`user_porra` (
+CREATE TABLE IF NOT EXISTS `user_porra` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `id_user` BIGINT NOT NULL,
   `id_porra` BIGINT NOT NULL,
@@ -68,21 +61,21 @@ CREATE TABLE IF NOT EXISTS `porrasdb`.`user_porra` (
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_user_porra_id_user`
     FOREIGN KEY (`id_user`)
-    REFERENCES `porrasdb`.`user` (`id`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_user_porra_id_porra`
     FOREIGN KEY (`id_porra`)
-    REFERENCES `porrasdb`.`porra` (`id`)
+    REFERENCES `porra` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
 
 
 -- -----------------------------------------------------
--- Table `porrasdb`.`user_friend`
+-- Table `user_friend`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `porrasdb`.`user_friend` (
+CREATE TABLE IF NOT EXISTS `user_friend` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `id_user` BIGINT NOT NULL,
   `id_friend` BIGINT NOT NULL,
@@ -92,56 +85,56 @@ CREATE TABLE IF NOT EXISTS `porrasdb`.`user_friend` (
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_user_friend_id_user`
     FOREIGN KEY (`id_user`)
-    REFERENCES `porrasdb`.`user` (`id`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_user_friend_id_friend`
     FOREIGN KEY (`id_friend`)
-    REFERENCES `porrasdb`.`user` (`id`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
 
 
 -- -----------------------------------------------------
--- Table `porrasdb`.`role`
+-- Table `role`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `porrasdb`.`role` (
+CREATE TABLE IF NOT EXISTS `role` (
   `name` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`name`));
 
 
 
 -- -----------------------------------------------------
--- Table `porrasdb`.`user_role`
+-- Table `user_role`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `porrasdb`.`user_role` (
+CREATE TABLE IF NOT EXISTS `user_role` (
   `id_user` BIGINT NOT NULL,
   `role_name` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`role_name`, `id_user`),
   CONSTRAINT `fk_user_role_role_name`
     FOREIGN KEY (`role_name`)
-    REFERENCES `porrasdb`.`role` (`name`)
+    REFERENCES `role` (`name`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_user_role_id_user`
     FOREIGN KEY (`id_user`)
-    REFERENCES `porrasdb`.`user` (`id`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
 
 
 -- -----------------------------------------------------
--- Table `porrasdb`.`possible_bet`
+-- Table `possible_bet`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `porrasdb`.`possible_bet` (
+CREATE TABLE IF NOT EXISTS `possible_bet` (
   `id` BIGINT NOT NULL,
   `id_porra` BIGINT NOT NULL,
   `bet` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_possible_bet_id_porra`
     FOREIGN KEY (`id_porra`)
-    REFERENCES `porrasdb`.`porra` (`id`)
+    REFERENCES `porra` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);

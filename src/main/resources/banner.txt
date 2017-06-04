@@ -8,5 +8,5 @@ ${AnsiColor.BLUE}██║      ${AnsiColor.BRIGHT_GREEN}╚██████�
 ${AnsiColor.BLUE}╚═╝      ${AnsiColor.BRIGHT_GREEN} ╚═════╝  ${AnsiColor.BRIGHT_YELLOW}╚═╝  ╚═╝ ${AnsiColor.GREEN}╚═╝  ╚═╝ ${AnsiColor.RED}╚═╝  ╚═╝ ${AnsiColor.CYAN}╚══════╝
 
 ${AnsiColor.WHITE}███████████████████████████████████████████████████████
-${AnsiColor.BRIGHT_BLUE}:: JHipster 🤓  :: Running Spring Boot ${spring-boot.version} ::
+${AnsiColor.BRIGHT_BLUE}:: Running Spring Boot ${spring-boot.version} ::
 ${AnsiColor.DEFAULT}

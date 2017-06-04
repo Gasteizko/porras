@@ -72,7 +72,7 @@ public class UserService {
     }*/
 
     public User createUser(String login, String password, String firstName, String lastName, String email,
-        String imageUrl, String langKey) {
+        String imageUrl) {
 
         User newUser = new User();
         Role role = rolesRepository.findOne(RolesConstants.USER);
@@ -85,7 +85,6 @@ public class UserService {
         newUser.setLastName(lastName);
         newUser.setEmail(email);
         newUser.setImageUrl(imageUrl);
-        newUser.setLangKey(langKey);
         // new user is not active
         newUser.setActivated(false);
         // new user gets registration key

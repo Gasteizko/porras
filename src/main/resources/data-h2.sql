@@ -1,0 +1,1 @@
+INSERT INTO USER (id, login, first_name, email, password_hash, activated) VALUES (1, 'pep', 'pepe', 'pep@porras.es', '123', 1);

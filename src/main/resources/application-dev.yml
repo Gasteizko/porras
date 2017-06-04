@@ -13,16 +13,16 @@ spring:
             hibernate.dialect: org.hibernate.dialect.HSQLDialect
         hibernate:
             naming.strategy: org.hibernate.cfg.ImprovedNamingStrategy
-            ddl-auto: none
+            ddl-auto: none # Disable hibernate trying to initialize db
     datasource:
         driver-class-name: org.h2.Driver
         platform: h2
         url: jdbc:h2:mem:porrasdb;create=true
         username: sa
         password:
-        initialize: true
+        initialize: true # tells spring-boot to initialize the database with scripts (schema-{platform}.sql and data-{platform}.sql)
     h2:
         console:
-            enabled: true
+            enabled: true # Enables h2 in memory database at localhost:8080/h2-console
 server:
     port: 8080
