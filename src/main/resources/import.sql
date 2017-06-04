@@ -1,0 +1,3 @@
+-- insert into user () values (0, '95ff31602486cecd7db623d4598a84b7aac60a5f', 'admin', 'admin')
+-- insert into Usuario values (1, '95ff31602486cecd7db623d4598a84b7aac60a5f', 'user', 'user')
+-- insert into Usuario values (2, '95ff31602486cecd7db623d4598a84b7aac60a5f', 'test', 'user')

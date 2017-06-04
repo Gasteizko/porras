@@ -1,0 +1,22 @@
+spring:
+    application:
+        name: porras
+    profiles:
+        # The commented value for `active` can be replaced with valid spring profiles to load.
+        # Otherwise, it will be filled in by maven when building the WAR file
+        # Either way, it can be overridden by `--spring.profiles.active` value passed in the commandline or `-Dspring.profiles.active` set in `JAVA_OPTS`
+        active: dev
+    mvc:
+        view:
+            prefix: /WEB-INF/jsp/
+            suffix: .jsp
+        static-path-pattern: /static/**
+security:
+    basic:
+        # Disables basic HTTP Authentication
+        enabled: false
+server:
+    session:
+        cookie:
+            http-only: true
+es.ucm.fdi.base-path: /tmp/porras

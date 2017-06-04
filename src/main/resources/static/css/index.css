@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css?family=Calligraffitti');
+
+#jumboIndex{
+  background-color: #161e45;
+  color: #fff;
+  background: rgb(200, 54, 54); /* This is for ie8 and below */
+  background: rgba(200, 54, 54, 0.0);
+  max-height:150px;
+  min-height: 100px;
+  padding-top: 0;
+  display: block;
+  }
+#panelLogin{
+  display: block;
+}
+#panelPorras{
+  margin-top: 50px;
+}
+.bodyLogin{
+  background: url("../img/dice.jpg") no-repeat center fixed;
+  background-size: cover;
+}
+#lista > li > a{
+  color:#42413e;
+  font-weight: bold;
+}
+#panelPorras > .panel-heading, #panelLogin > .panel-heading {
+  background-color:  #2e2d2b;
+}
+#panelPorras, #panelLogin {
+  box-shadow: 1px 1px 8px #888888;
+  border-color:  #2e2d2b;
+}
+#flash{
+  color:#ff0000;
+}
+.btn-index{
+  color: #fff;
+  background-color:  #2e2d2b;
+  border-color: #2e2d2b;
+}
+.btn-index:hover{
+  color: #fff;
+  background-color:  #000;
+  border-color: #2e2d2b;
+}
+#navSup{
+  background-color: #2e2d2b;
+  border-color: #2e2d2b;
+  color: #fff;
+  border-radius: 0px !important;
+}
+
+#navSup .navbar-nav>li>a {
+  color: #fff;
+}
+#navSup .navbar-nav>li>a:hover {
+  color: #2e2d2b;
+}
+#navSup .navbar-nav>li:hover{
+  background-color: #fff;
+}
+#navSup .navbar-brand{
+  color: #fff;
+}
+#navSup .navbar-brand:hover {
+  color: #d6d6d6;
+  background-color: transparent;
+}
+
+.navbar-brand {
+  font-family: 'Calligraffitti', bold;
+  font-size: 30px;
+}
