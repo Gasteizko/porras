@@ -32,7 +32,8 @@
           <ul class="dropdown-menu">
             <li><a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Ajustes</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Cerrar sesión</a></li>
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+            <li><a onclick="logout()"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Cerrar sesión</a></li>
           </ul>
         </li>
       </ul>
