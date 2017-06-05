@@ -49,5 +49,99 @@ public class Porra implements Serializable{
     @OneToMany(mappedBy = "id", fetch = FetchType.EAGER)
     private List<PossibleBet> possibleBets;
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getExternalId() {
+        return externalId;
+    }
+
+    public void setExternalId(String externalId) {
+        this.externalId = externalId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public Boolean getValid() {
+        return valid;
+    }
+
+    public void setValid(Boolean valid) {
+        this.valid = valid;
+    }
+
+    public String getWinerBet() {
+        return winerBet;
+    }
+
+    public void setWinerBet(String winerBet) {
+        this.winerBet = winerBet;
+    }
+
+    public Integer getWinnerPosisibleBet() {
+        return winnerPosisibleBet;
+    }
+
+    public void setWinnerPosisibleBet(Integer winnerPosisibleBet) {
+        this.winnerPosisibleBet = winnerPosisibleBet;
+    }
+
+    public Integer getMaxParticipantes() {
+        return maxParticipantes;
+    }
+
+    public void setMaxParticipantes(Integer maxParticipantes) {
+        this.maxParticipantes = maxParticipantes;
+    }
+
+    public Date getFinishTime() {
+        return finishTime;
+    }
+
+    public void setFinishTime(Date finishTime) {
+        this.finishTime = finishTime;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public List<PossibleBet> getPossibleBets() {
+        return possibleBets;
+    }
+
+    public void setPossibleBets(List<PossibleBet> possibleBets) {
+        this.possibleBets = possibleBets;
+    }
 }

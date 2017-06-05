@@ -1,8 +1,12 @@
 package es.ucm.fdi.porras.controller;
 
 import java.security.Principal;
+import java.util.List;
 
+import es.ucm.fdi.porras.model.Porra;
+import es.ucm.fdi.porras.repository.PorraRepository;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +14,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller	
 public class RootController {
+
+	@Autowired
+	PorraRepository porraRepository;
 
 	private static Logger log = Logger.getLogger(RootController.class);
 	
@@ -20,8 +27,8 @@ public class RootController {
 
 	@GetMapping({"/"})
 	public String root(Model model, Principal principal) {
-		//log.info(principal.getName() + " de tipo " + principal.getClass());
-		// org.springframework.security.core.userdetails.User
+		List<Porra> porrasIndex = porraRepository.findAll();
+		model.addAttribute("porrasIndex", porrasIndex);
 		return "index";
 	}
 /*
