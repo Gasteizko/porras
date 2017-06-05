@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
       </button>
       <img class="pull-left" id="brand-icon" alt="Porras" th:src="@{/static/img/beer-icon.png}"/>
-      <a class="navbar-brand" href="/dashboard">porras</a>
+      <a class="navbar-brand" href="/dash">porras</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -19,7 +19,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Vistas <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="/">Index</a></li>
-            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/dash">Dashboard</a></li>
             <li><a href="/listaporras">Lista porras</a></li>
             <li><a href="/porra">Porra</a></li>
           </ul>
@@ -33,7 +33,7 @@
             <li><a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Ajustes</a></li>
             <li role="separator" class="divider"></li>
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-            <li><a onclick="logout()"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Cerrar sesión</a></li>
+            <li><a href="#" onclick="logout()"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Cerrar sesión</a></li>
           </ul>
         </li>
       </ul>
