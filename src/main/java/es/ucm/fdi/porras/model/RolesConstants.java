@@ -1,4 +1,4 @@
-package es.ucm.fdi.porras.security;
+package es.ucm.fdi.porras.model;
 
 /**
  * Constants for Spring Security authorities.

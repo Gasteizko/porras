@@ -7,10 +7,18 @@ spring:
         # Either way, it can be overridden by `--spring.profiles.active` value passed in the commandline or `-Dspring.profiles.active` set in `JAVA_OPTS`
         active: dev
     mvc:
-        view:
-            prefix: /WEB-INF/jsp/
-            suffix: .jsp
+        #view:
+            #prefix: /WEB-INF/jsp/
+            #suffix: .jsp
         static-path-pattern: /static/**
+    resources:
+      static-locations: /WEB-INF/static/
+    thymeleaf:
+        enabled: true
+        cache: false
+        mode: HTML5
+        prefix: /WEB-INF/templates/
+        suffix: .html
 security:
     basic:
         # Disables basic HTTP Authentication

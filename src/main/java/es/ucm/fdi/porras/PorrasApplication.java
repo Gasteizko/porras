@@ -1,22 +1,14 @@
 package es.ucm.fdi.porras;
 
-import es.ucm.fdi.porras.model.Porra;
-import es.ucm.fdi.porras.model.User;
-import es.ucm.fdi.porras.repository.PorraRepository;
-import es.ucm.fdi.porras.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 
 
-import java.time.Instant;
 import java.util.Arrays;
-import java.util.Date;
 
 
 @SpringBootApplication
