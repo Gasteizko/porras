@@ -27,11 +27,11 @@ import java.time.Instant;
  */
 @Entity
 @Table(name = "user")
-@Data
-@Accessors(chain = true)
-@Access(AccessType.FIELD)
-@Getter
-@Setter
+//@Data
+//@Accessors(chain = true)
+//@Access(AccessType.FIELD)
+//@Getter
+//@Setter
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -89,10 +89,10 @@ public class User implements Serializable {
     @Column(name = "reset_date")
     private Instant resetDate = null;
 
-    @CreatedDate
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_date", nullable = false)
     @JsonIgnore
-    private Instant createdDate = Instant.now();
+    private Date createdDate;
 
     @LastModifiedBy
     @Column(name = "last_modified_by", length = 50)
@@ -105,7 +105,7 @@ public class User implements Serializable {
     private Instant lastModifiedDate = Instant.now();
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "user_role",
         joinColumns = {@JoinColumn(name = "id_user", referencedColumnName = "id")},
@@ -220,11 +220,11 @@ public class User implements Serializable {
         this.role = role;
     }
 
-    public Instant getCreatedDate() {
+    public Date getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Instant createdDate) {
+    public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
 
