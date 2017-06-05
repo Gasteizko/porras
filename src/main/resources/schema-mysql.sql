@@ -60,6 +60,7 @@ CREATE TABLE IF NOT EXISTS `porrasdb`.`porra` (
   `winner_possible_bet` BIGINT NULL,
   `max_participants` INT NOT NULL,
   `finish_time` TIMESTAMP NOT NULL,
+  `visits` BIGINT,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `unique_porra_external_id` (`external_id` ASC),
   INDEX `fk_porra_creator_id_idx` (`creator_id` ASC),

@@ -46,7 +46,10 @@ public class Porra implements Serializable{
     @Column(name = "type")
     private String type;
 
-    @OneToMany(mappedBy = "id", fetch = FetchType.EAGER)
+    @Column(name = "visits")
+    private Long visits;
+
+    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
     private List<PossibleBet> possibleBets;
 
     public Long getId() {
@@ -135,6 +138,14 @@ public class Porra implements Serializable{
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Long getVisits() {
+        return visits;
+    }
+
+    public void setVisits(Long visits) {
+        this.visits = visits;
     }
 
     public List<PossibleBet> getPossibleBets() {

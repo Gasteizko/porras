@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS `porra` (
   `winner_possible_bet` BIGINT NULL,
   `max_participants` INT NOT NULL,
   `finish_time` TIMESTAMP NOT NULL,
+  `visits` BIGINT,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_porra_creator_id`
     FOREIGN KEY (`creator_id`)
