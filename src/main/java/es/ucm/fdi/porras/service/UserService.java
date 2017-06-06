@@ -6,6 +6,7 @@ import es.ucm.fdi.porras.repository.RoleRepository;
 import es.ucm.fdi.porras.repository.UserRepository;
 import es.ucm.fdi.porras.model.RolesConstants;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,20 @@ public class UserService {
         this.userRepository = userRepository;
         this.rolesRepository = rolesRepository;
         this.passwordEncoder = passwordEncoder;
+    }
+
+    public User findByLogin(String login) {
+        return userRepository.findOneByLogin(login);
+    }
+
+    public void saveUser(User user) {
+        user.setPassword( passwordEncoder.encode(user.getPassword()));
+        Set<Role> roles = new HashSet<>();
+        user.getRoles().forEach(
+                role -> roles.add(new Role(RolesConstants.USER))
+        );
+        user.setRoles(roles);
+        userRepository.save(user);
     }
 
 /*    public Optional<User> activateRegistration(String key) {
@@ -70,6 +85,7 @@ public class UserService {
                 return user;
             });
     }*/
+
 
     public User createUser(String login, String password, String firstName, String lastName, String email,
         String imageUrl) {

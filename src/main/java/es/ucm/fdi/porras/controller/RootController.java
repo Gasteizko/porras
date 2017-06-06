@@ -44,7 +44,7 @@ public class RootController {
 	public String logout() {
 		return "logout";
 	}
-	
+
 	@GetMapping("/upload")
 	public String upload() {
 		return "upload";
