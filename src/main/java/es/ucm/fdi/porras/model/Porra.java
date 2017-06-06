@@ -1,7 +1,9 @@
 package es.ucm.fdi.porras.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.Accessors;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -68,5 +70,10 @@ public class Porra implements Serializable{
 
     @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
     private List<PossibleBet> possibleBets;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "creator_id", nullable = false, updatable = false)
+    @NonNull
+    private User creator;
 
 }
