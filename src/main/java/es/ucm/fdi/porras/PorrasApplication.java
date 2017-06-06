@@ -21,12 +21,12 @@ public class PorrasApplication {
 		SpringApplication app = new SpringApplication(PorrasApplication.class);
 		Environment env = app.run(args).getEnvironment();
 		log.info("\n----------------------------------------------------------\n\t" +
-						"Application '{}' is running! Access URLs:\n\t" +
-						"Local: \t\thttp://127.0.0.1:{}\n\t" +
+						"Application '{}' is running!\n\tAccess URLs:\n\t" +
+						"\tLocal:     http://127.0.0.1:{}\n\t" + "\tDatabase:  http://127.0.0.1:{}/h2-console\n\t" +
+						"Running with Spring profile(s) : {}" +
 						"\n----------------------------------------------------------",
 				env.getProperty("spring.application.name"),
-				env.getProperty("server.port"));
-		log.info("Running with Spring profile(s) : {}", Arrays.toString(env.getActiveProfiles()));
+				env.getProperty("server.port"), env.getProperty("server.port"), Arrays.toString(env.getActiveProfiles()));
 	}
 
 }

@@ -27,7 +27,7 @@
                       <div class="form-group" id="formPass">
                         <div class="container-fluid">
                           <input id="password" type="password" name="pass" required="required" class="form-control" placeholder="Contraseña"/>
-                          <p th:if="${loginError}" class="error">Wrong user or password</p>
+                          <p th:if="${param.error}" class="error">Usuario o contraseña inválios</p>
                           <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                         </div>
                       </div>
