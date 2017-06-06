@@ -6,8 +6,8 @@ import es.ucm.fdi.porras.repository.RoleRepository;
 import es.ucm.fdi.porras.repository.UserRepository;
 import es.ucm.fdi.porras.model.RolesConstants;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,18 +20,19 @@ import java.util.Set;
  */
 @Service
 @Transactional
+@Slf4j
 public class UserService {
-
-    private final Logger log = LoggerFactory.getLogger(UserService.class);
 
     private final UserRepository userRepository;
 
-
     private final RoleRepository rolesRepository;
 
-    public UserService(UserRepository userRepository, RoleRepository rolesRepository) {
+    private final PasswordEncoder passwordEncoder;
+
+    public UserService(UserRepository userRepository, RoleRepository rolesRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.rolesRepository = rolesRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
 /*    public Optional<User> activateRegistration(String key) {
@@ -76,7 +77,7 @@ public class UserService {
         User newUser = new User();
         Role role = rolesRepository.findOne(RolesConstants.USER);
         Set<Role> roles = new HashSet<>();
-        //String encryptedPassword = passwordEncoder.encode(password);
+        String encryptedPassword = passwordEncoder.encode(password);
         newUser.setLogin(login);
         // new user gets initially a generated password
         newUser.setPassword(password);

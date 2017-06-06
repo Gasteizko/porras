@@ -4,8 +4,8 @@ package es.ucm.fdi.porras.service;
 import es.ucm.fdi.porras.model.Porra;
 import es.ucm.fdi.porras.repository.PorraRepository;
 import es.ucm.fdi.porras.repository.UserRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,9 +13,8 @@ import java.util.Optional;
 
 @Service
 @Transactional
+@Slf4j
 public class PorraService {
-
-    private final Logger log = LoggerFactory.getLogger(UserService.class);
 
     private final UserRepository userRepository;
 
