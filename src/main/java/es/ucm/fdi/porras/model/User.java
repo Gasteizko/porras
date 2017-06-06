@@ -2,9 +2,7 @@ package es.ucm.fdi.porras.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.validator.constraints.Email;
@@ -27,26 +25,33 @@ import java.time.Instant;
  */
 @Entity
 @Table(name = "user")
-//@Data
-//@Accessors(chain = true)
-//@Access(AccessType.FIELD)
-//@Getter
-//@Setter
+@Access(AccessType.FIELD)
+@Accessors(chain = true)
+@Getter
+@Setter
+@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString(exclude = {"userFriends"})
+@EqualsAndHashCode
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NonNull
     private Long id;
 
     @NotNull
     @Size(min = 1, max = 100)
     @Column(length = 100, unique = true, nullable = false)
+    @NonNull
     private String login;
 
     @Size(max = 50)
     @Column(name = "first_name", length = 50, nullable = false)
+    @NonNull
     private String firstName;
 
     @Size(max = 50)
@@ -56,10 +61,12 @@ public class User implements Serializable {
     @Email
     @Size(min = 5, max = 100)
     @Column(length = 100, unique = true, nullable = false)
+    @NonNull
     private String email;
 
     @JsonIgnore
     @NotNull
+    @NonNull
     @Size(min = 60, max = 255)
     @Column(name = "password_hash",length = 255)
     private String password;
@@ -69,6 +76,7 @@ public class User implements Serializable {
     private String imageUrl;
 
     @NotNull
+    @NonNull
     @Column(nullable = false)
     private boolean activated = false;
 
@@ -111,168 +119,10 @@ public class User implements Serializable {
         joinColumns = {@JoinColumn(name = "id_user", referencedColumnName = "id")},
         inverseJoinColumns = {@JoinColumn(name = "role_name", referencedColumnName = "name")})
     @BatchSize(size = 20)
-    private Set<Role> role = new HashSet<>();
+    @NonNull
+    private Set<Role> roles = new HashSet<>();
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<UserFriend> userFriends;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public boolean getActivated() {
-        return activated;
-    }
-
-    public void setActivated(boolean activated) {
-        this.activated = activated;
-    }
-
-    public Date getLastLoginTime() {
-        return lastLoginTime;
-    }
-
-    public void setLastLoginTime(Date lastloginTime) {
-        this.lastLoginTime = lastloginTime;
-    }
-
-    public String getActivationKey() {
-        return activationKey;
-    }
-
-    public void setActivationKey(String activationKey) {
-        this.activationKey = activationKey;
-    }
-
-    public String getResetKey() {
-        return resetKey;
-    }
-
-    public void setResetKey(String resetKey) {
-        this.resetKey = resetKey;
-    }
-
-    public Instant getResetDate() {
-        return resetDate;
-    }
-
-    public void setResetDate(Instant resetDate) {
-        this.resetDate = resetDate;
-    }
-
-    public Set<Role> getRoles() {
-        return role;
-    }
-
-    public void setRoles(Set<Role> role) {
-        this.role = role;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public String getLastModifiedBy() {
-        return lastModifiedBy;
-    }
-
-    public void setLastModifiedBy(String lastModifiedBy) {
-        this.lastModifiedBy = lastModifiedBy;
-    }
-
-    public Instant getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(Instant lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        User user = (User) o;
-
-        return login.equals(user.login);
-    }
-
-    @Override
-    public int hashCode() {
-        return login.hashCode();
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-            "login='" + login + '\'' +
-            ", name='" + firstName + '\'' +
-            ", surname='" + lastName + '\'' +
-            ", email='" + email + '\'' +
-            ", imageUrl='" + imageUrl + '\'' +
-            ", activated='" + activated + '\'' +
-            ", activationKey='" + activationKey + '\'' +
-            "}";
-    }
 }

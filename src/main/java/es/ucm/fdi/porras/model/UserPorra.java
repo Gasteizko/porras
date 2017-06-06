@@ -1,8 +1,7 @@
 package es.ucm.fdi.porras.model;
 
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
@@ -12,14 +11,20 @@ import java.util.Date;
 
 @Entity
 @Table(name = "user_porra")
-@Data
-@Accessors(chain = true)
 @Access(AccessType.FIELD)
-@EqualsAndHashCode(of = "id")
+@Accessors(chain = true)
+@Getter
+@Setter
+@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class UserPorra implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NonNull
     private Long id;
 
     @Column(length = 255)
@@ -34,12 +39,14 @@ public class UserPorra implements Serializable {
     @Column(name = "paid_time")
     private Date paidTime;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_user", nullable = false, updatable = false)
+    @NonNull
     private User user;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_porra", nullable = false, updatable = false)
+    @NonNull
     private Porra porra;
 
 }

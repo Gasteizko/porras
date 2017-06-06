@@ -29,6 +29,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private CustomUserDetailsService userDetailsService;
 
+	@Autowired
+	private Environment env;
+
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring()
@@ -98,8 +101,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.withUser("juan").password("password").roles("USER", "ADMIN");
 	}*/
 
-	@Autowired
-	private Environment env;
 
 	@Order(2)
 	public class SecurityWebApplicationInitializer extends
