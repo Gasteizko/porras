@@ -12,12 +12,12 @@ spring:
             #suffix: .jsp
         static-path-pattern: /static/**
     resources:
-      static-locations: /WEB-INF/static/
+      static-locations: /static/
     thymeleaf:
         enabled: true
         cache: false
         mode: HTML5
-        prefix: /WEB-INF/templates/
+        prefix: /templates/
         suffix: .html
 security:
     basic:

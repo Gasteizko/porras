@@ -29,16 +29,6 @@ public class RootController {
 	public String dash(){
     	return "dash";
 	}
-
-	@GetMapping("/listaporras")
-	public String listaporras(){
-		return "listaporras";
-	}
-
-	@GetMapping("/porra")
-	public String porra(){
-		return "porra";
-	}
 	
 	@GetMapping("/logout")
 	public String logout() {
@@ -49,4 +39,5 @@ public class RootController {
 	public String upload() {
 		return "upload";
 	}
+
 }

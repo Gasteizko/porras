@@ -10,13 +10,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password_hash` VARCHAR(255) NOT NULL,
   `image_url` VARCHAR(256) NULL,
   `activated` TINYINT NOT NULL,
-  `created_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP(),
+  `created_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `last_login_time` TIMESTAMP NULL,
-  `activation_key` VARCHAR(20) NULL,
-  `reset_key` VARCHAR(20) NULL,
-  `reset_date` TIMESTAMP NULL,
-  `last_modified_by` VARCHAR(50) NULL,
-  `last_modified_date` TIMESTAMP NULL,
   PRIMARY KEY (`id`));
 
 
