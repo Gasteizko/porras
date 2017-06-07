@@ -36,8 +36,6 @@ import java.time.Instant;
 @EqualsAndHashCode
 public class User implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NonNull
@@ -82,35 +80,12 @@ public class User implements Serializable {
 
     @Column(name = "last_login_time", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date lastLoginTime;
+    private Date lastLoginDate;
 
-    @Size(max = 20)
-    @Column(name = "activation_key", length = 20)
-    @JsonIgnore
-    private String activationKey;
-
-    @Size(max = 20)
-    @Column(name = "reset_key", length = 20)
-    @JsonIgnore
-    private String resetKey;
-
-    @Column(name = "reset_date")
-    private Instant resetDate = null;
-
+    @Column(name = "created_time", updatable = false, insertable = false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_date", nullable = false)
-    @JsonIgnore
-    private Date createdDate;
-
-    @LastModifiedBy
-    @Column(name = "last_modified_by", length = 50)
-    @JsonIgnore
-    private String lastModifiedBy;
-
-    @LastModifiedDate
-    @Column(name = "last_modified_date")
-    @JsonIgnore
-    private Instant lastModifiedDate = Instant.now();
+    @CreatedDate
+    private Date createdTime;
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
@@ -118,7 +93,6 @@ public class User implements Serializable {
         name = "user_role",
         joinColumns = {@JoinColumn(name = "id_user", referencedColumnName = "id")},
         inverseJoinColumns = {@JoinColumn(name = "role_name", referencedColumnName = "name")})
-    @BatchSize(size = 20)
     @NonNull
     private Set<Role> roles = new HashSet<>();
 

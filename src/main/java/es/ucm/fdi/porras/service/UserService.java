@@ -12,6 +12,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -43,10 +45,9 @@ public class UserService {
     public void saveUser(User user) {
         user.setPassword( passwordEncoder.encode(user.getPassword()));
         Set<Role> roles = new HashSet<>();
-        user.getRoles().forEach(
-                role -> roles.add(new Role(RolesConstants.USER))
-        );
+        roles.add(new Role(RolesConstants.USER));
         user.setRoles(roles);
+        //user.setCreatedTime(Date.from(Instant.now()));
         userRepository.save(user);
     }
 
