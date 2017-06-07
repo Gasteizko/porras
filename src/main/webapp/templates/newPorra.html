@@ -9,14 +9,14 @@
                 <h1 class="page-header">New Porra!</h1>
             </div><!-- /.col-lg-12 -->
         </div>
-        <form action="/newPorra" method="post">
+        <form th:action="@{/newPorration}" method="POST">
             <div class="form-inline form-group text-center">
                 <div class="col-sm-6">
-                    <label for="porra-email">Título</label>
-                    <input type="email" class="form-control" id="porra-email" name="email" />
+                    <label for="tituloPorra">Título</label>
+                    <input type="email" class="form-control" id="tituloPorra" name="tituloPorra" />
                 </div>
-                <label for="finish-date">Fecha de finalización</label>
-                <input type="datetime" id="finish-date" class="form-control" />
+                <label for="finishTime">Fecha de finalización</label>
+                <input type="datetime" id="finishTime" class="form-control" />
 
             </div>
             <div class="row text-center">
