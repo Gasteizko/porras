@@ -14,3 +14,7 @@
 .container, .container-bg {
   padding-top: 70px;
 }
+
+.error {
+  color: red;
+}

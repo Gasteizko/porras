@@ -21,7 +21,7 @@ import java.util.Set;
 /**
  * Service class for managing users.
  */
-@Service
+@Service("userService")
 @Transactional
 @Slf4j
 public class UserService{

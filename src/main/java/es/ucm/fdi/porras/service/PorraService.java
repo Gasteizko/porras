@@ -20,7 +20,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-@Service
+@Service("porraService")
 @Transactional
 @Slf4j
 public class PorraService {

@@ -10,7 +10,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "user_porra")
+@Table(name = "user_porra", uniqueConstraints={
+        @UniqueConstraint(columnNames = {"id_user", "id_porra"})
+})
 @Access(AccessType.FIELD)
 @Accessors(chain = true)
 @Getter
@@ -30,7 +32,7 @@ public class UserPorra implements Serializable {
     @Column(length = 255)
     private String bet;
 
-    @Column()
+    @Column
     private Boolean winned;
 
     @Column(length = 255)
@@ -39,12 +41,15 @@ public class UserPorra implements Serializable {
     @Column(name = "paid_time")
     private Date paidTime;
 
+    @Column(name="id_possible_bet")
+    private Long idPossibleBet;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_user", nullable = false, updatable = false)
     @NonNull
     private User user;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_porra", nullable = false, updatable = false)
     @NonNull
     private Porra porra;

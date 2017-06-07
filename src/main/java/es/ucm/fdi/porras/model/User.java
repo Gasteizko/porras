@@ -24,7 +24,7 @@ import java.time.Instant;
  * A user.
  */
 @Entity
-@Table(name = "user")
+@Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = {"login"}))
 @Access(AccessType.FIELD)
 @Getter
 @Setter
@@ -95,7 +95,7 @@ public class User implements Serializable {
     @NonNull
     private Set<Role> roles = new HashSet<>();
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "friend", fetch = FetchType.LAZY)
     private List<UserFriend> userFriends;
 
 }

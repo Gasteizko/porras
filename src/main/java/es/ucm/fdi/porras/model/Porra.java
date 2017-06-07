@@ -68,7 +68,7 @@ public class Porra implements Serializable{
     @Column(name = "visits")
     private Long visits;
 
-    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "porra", fetch = FetchType.LAZY)
     private List<PossibleBet> possibleBets;
 
     @ManyToOne(fetch = FetchType.EAGER)
