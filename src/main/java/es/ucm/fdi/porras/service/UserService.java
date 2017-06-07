@@ -2,18 +2,18 @@ package es.ucm.fdi.porras.service;
 
 import es.ucm.fdi.porras.model.Role;
 import es.ucm.fdi.porras.model.User;
+import es.ucm.fdi.porras.model.dto.UserForm;
 import es.ucm.fdi.porras.repository.RoleRepository;
 import es.ucm.fdi.porras.repository.UserRepository;
 import es.ucm.fdi.porras.model.RolesConstants;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import es.ucm.fdi.porras.utils.exceptions.UserAlreadyExistException;
+import org.springframework.beans.factory.annotation.Autowired;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Date;
-import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,31 +24,42 @@ import java.util.Set;
 @Service
 @Transactional
 @Slf4j
-public class UserService {
+public class UserService{
 
-    private final UserRepository userRepository;
+    @Autowired
+    private  UserRepository userRepository;
 
-    private final RoleRepository rolesRepository;
+    @Autowired
+    private  RoleRepository rolesRepository;
 
-    private final PasswordEncoder passwordEncoder;
+    @Autowired
+    private  PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, RoleRepository rolesRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.rolesRepository = rolesRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
 
-    public User findByLogin(String login) {
-        return userRepository.findOneByLogin(login);
-    }
-
-    public void saveUser(User user) {
-        user.setPassword( passwordEncoder.encode(user.getPassword()));
+    public User registerNewUser(UserForm userForm) throws UserAlreadyExistException {
+        if (emailExist(userForm.getEmail()) || loginExist(userForm.getLogin())) {
+            throw new UserAlreadyExistException("There is an account with that email: " + userForm.getEmail()
+                    + " or login: " + userForm.getLogin());
+        }
+        final User user = new User();
+        user.setLogin(userForm.getLogin());
+        user.setEmail(userForm.getEmail());
+        user.setFirstName(userForm.getFirstName());
+        user.setLastName(userForm.getLastName());
+        user.setPassword(passwordEncoder.encode(userForm.getPassword()));
         Set<Role> roles = new HashSet<>();
         roles.add(new Role(RolesConstants.USER));
         user.setRoles(roles);
-        //user.setCreatedTime(Date.from(Instant.now()));
         userRepository.save(user);
+        return user;
+    }
+
+    private boolean emailExist(final String email) {
+        return userRepository.findByEmail(email) != null;
+    }
+
+    private boolean loginExist(final String login) {
+        return userRepository.findByLogin(login) != null;
     }
 
 /*    public Optional<User> activateRegistration(String key) {

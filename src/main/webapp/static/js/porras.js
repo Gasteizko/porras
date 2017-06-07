@@ -11,11 +11,3 @@ function logout (){
     });
 
 }
-
-$(document).ready(function() {
-    $(function() {
-        $('#datetimepicker-new-porra').datetimepicker({
-            language: 'es-ES'
-        });
-    });
-});

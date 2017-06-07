@@ -16,5 +16,5 @@ public interface PorraRepository extends JpaRepository<Porra, Long>{
     @Query("SELECT p FROM Porra p WHERE p.name = :name")
     Optional<Porra> findOneByName(@Param("name") String name);
 
-    List<Porra> findAllByCreatorId(@Param("creator_id") Long creatorId);
+    List<Porra> findAllByCreator(@Param("creator_id") String creatorId);
 }

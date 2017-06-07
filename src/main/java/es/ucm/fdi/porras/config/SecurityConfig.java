@@ -35,14 +35,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring()
-				.antMatchers("/h2-console/**")
-				.antMatchers("/registro");
+				.antMatchers("/h2-console/**");
 	}
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-        		.antMatchers("/static/**", "/logout", "/403").permitAll()
+        		.antMatchers("/static/**", "/logout", "/403", "/registro*", "/registration").permitAll()
 				.mvcMatchers("/admin").hasRole("ADMIN")
         		.antMatchers("/admin/**").hasRole("ADMIN")
 				.anyRequest().authenticated()

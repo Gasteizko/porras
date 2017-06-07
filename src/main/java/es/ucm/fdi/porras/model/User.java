@@ -26,7 +26,6 @@ import java.time.Instant;
 @Entity
 @Table(name = "user")
 @Access(AccessType.FIELD)
-@Accessors(chain = true)
 @Getter
 @Setter
 @RequiredArgsConstructor
