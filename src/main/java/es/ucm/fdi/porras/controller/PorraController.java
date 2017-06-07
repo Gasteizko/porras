@@ -9,6 +9,7 @@ import es.ucm.fdi.porras.service.PorraService;
 import es.ucm.fdi.porras.utils.exceptions.UserAlreadyExistException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,8 +24,11 @@ import javax.validation.Valid;
 @Slf4j
 public class PorraController {
 
-    @Autowired
-    PorraService porraService;
+    private PorraService porraService;
+
+    public PorraController (PorraService porraService) {
+        this.porraService = porraService;
+    }
 
     @GetMapping({"/porra"})
     public String getPorra() {
@@ -61,8 +65,16 @@ public class PorraController {
         return new RedirectView("/dash");
     }
 
-    @GetMapping("/listaporras")
-    public String listaporras(){
+    @GetMapping(value = "/listaporras",
+            params = {"_search", "nd", "rows", "page", "sidx", "sort"})
+    public String listaporras (
+            @RequestParam(value = "_search") String search,
+            @RequestParam(value = "nd") int nd,
+            @RequestParam(value = "rows") int rows,
+            @RequestParam(value = "page") int page,
+            @RequestParam(value = "sidx") int sidx,
+            @RequestParam(value = "sort") Sort sort) {
+
         return "listaporras";
     }
 

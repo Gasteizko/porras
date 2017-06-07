@@ -11,6 +11,7 @@ import java.io.InputStream;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletResponse;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -27,15 +28,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-@Controller	
+@Controller
+@Slf4j
 @RequestMapping("admin")
 public class AdminController {
 
-	private static Logger log = Logger.getLogger(AdminController.class);
-
-	@Autowired
 	private EntityManager entityManager;
 
+	public AdminController (EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
 	@ModelAttribute
 	public void addAttributes(Model model) {
 		model.addAttribute("s", "../static");

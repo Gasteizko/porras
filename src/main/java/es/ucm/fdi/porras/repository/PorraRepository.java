@@ -13,8 +13,7 @@ import java.util.Optional;
 @Repository
 public interface PorraRepository extends JpaRepository<Porra, Long>{
 
-    @Query("SELECT p FROM Porra p WHERE p.name = :name")
-    Optional<Porra> findOneByName(@Param("name") String name);
+    Porra findOneByTitle(String title);
 
     List<Porra> findAllByCreator(@Param("creator_id") String creatorId);
 }

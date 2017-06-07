@@ -25,27 +25,25 @@ import java.util.Set;
 @Slf4j
 public class PorraService {
 
-    @Autowired
-    private final UserRepository userRepository;
+    private UserRepository userRepository;
 
-    @Autowired
-    private final PorraRepository porraRepository;
+    private PorraRepository porraRepository;
 
     public PorraService(UserRepository userRepository, PorraRepository porraRepository) {
         this.userRepository = userRepository;
         this.porraRepository = porraRepository;
     }
 
-    public Optional<Porra> getPorraByName(String name){
-        log.debug("Getting porra by name {}", name);
-        return porraRepository.findOneByName(name);
+    public Porra getPorraByName(String title){
+        log.debug("Getting porra by title {}", title);
+        return porraRepository.findOneByTitle(title);
 
     }
 
     public Porra registerNewPorra(PorraForm porraForm) throws UserAlreadyExistException {
 
         final Porra porra = new Porra();
-        porra.setName(porraForm.getTituloPorra());
+        porra.setTitle(porraForm.getTituloPorra());
         porra.setFinishTime(new Date(1000000));
         porra.setCreator(null);
         porra.setType("MATCH");

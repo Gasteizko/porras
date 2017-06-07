@@ -36,7 +36,7 @@ public class Porra implements Serializable{
 
     @Column(name = "name", nullable = false, length = 255)
     @NonNull
-    private String name;
+    private String title;
 
     @Column(name = "description", length = 1024)
     private String description;

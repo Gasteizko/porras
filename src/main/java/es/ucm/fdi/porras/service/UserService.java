@@ -10,6 +10,7 @@ import es.ucm.fdi.porras.model.RolesConstants;
 import es.ucm.fdi.porras.utils.exceptions.UserAlreadyExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.web.config.SpringDataWebConfiguration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,14 +27,17 @@ import java.util.Set;
 @Slf4j
 public class UserService{
 
-    @Autowired
-    private  UserRepository userRepository;
+    private UserRepository userRepository;
 
-    @Autowired
-    private  RoleRepository rolesRepository;
+    private RoleRepository rolesRepository;
 
-    @Autowired
-    private  PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
+
+    public UserService(UserRepository userRepository, RoleRepository rolesRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.rolesRepository = rolesRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
 
     public User registerNewUser(UserForm userForm) throws UserAlreadyExistException {
@@ -98,7 +102,7 @@ public class UserService{
             });
     }*/
 
-
+/*
     public User createUser(String login, String password, String firstName, String lastName, String email,
         String imageUrl) {
 
@@ -122,7 +126,7 @@ public class UserService{
         userRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
         return newUser;
-    }
+    }*/
 
     /*public User createUser(UserDTO userDTO) {
         User user = new User();

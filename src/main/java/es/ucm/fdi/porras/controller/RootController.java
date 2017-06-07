@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Slf4j
 public class RootController {
 
-	@Autowired
 	PorraRepository porraRepository;
+
+	public RootController (PorraRepository porraRepository) {
+		this.porraRepository = porraRepository;
+	}
 
 	@GetMapping({"/"})
 	public String root(Model model, Principal principal) {
@@ -26,7 +29,8 @@ public class RootController {
 	}
 
 	@GetMapping("/dash")
-	public String dash(){
+	public String dash(Principal principal) {
+		String name = principal.getName();
     	return "dash";
 	}
 	

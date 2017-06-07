@@ -24,8 +24,11 @@ import javax.validation.Valid;
 @Slf4j
 public class UserController {
 
-	@Autowired
 	private UserService userService;
+
+	public UserController (UserService userService) {
+	    this.userService = userService;
+    }
 
     @RequestMapping(value = "/registro", method = RequestMethod.GET)
     public String showRegistrationForm(Model model) {

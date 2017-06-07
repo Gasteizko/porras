@@ -2,6 +2,7 @@ package es.ucm.fdi.porras.service;
 
 import es.ucm.fdi.porras.model.Role;
 import es.ucm.fdi.porras.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,15 +18,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service("customUserDetailsService")
+@Slf4j
 public class CustomUserDetailsService implements UserDetailsService {
 
-	private static Logger log = Logger.getLogger(CustomUserDetailsService.class);
-
-	@Autowired
 	private UserRepository userRepository;
 
-	public CustomUserDetailsService() {
+	public CustomUserDetailsService(UserRepository userRepository) {
 		super();
+		this.userRepository = userRepository;
 	}
 
 	@Override
