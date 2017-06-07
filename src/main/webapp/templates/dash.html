@@ -61,6 +61,36 @@
         </div>
       </div>
       <div class="col-lg-4 col-md-6">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-xs-3">
+                <i class="fa fa-fire fa-4x"></i>
+              </div>
+              <div class="col-xs-9 text-right">
+                <div class="huge">26</div>
+                <div class="panel-title-custom">Porras en las que participo!</div>
+              </div>
+            </div>
+          </div>
+          <div class="panel-body panel-body-custom">
+            <div th:each="porraU: ${porrasUser}" class="list-group">
+              <a href="#" class="list-group-item text-center">
+                <h4 class="list-group-item-heading"><p th:text="${porraU.title}"></p></h4>
+                <!--<p class="list-group-item-text">1045 participantes</p>  -->
+              </a>
+            </div>
+          </div>
+          <a href="#">
+            <div class="panel-footer">
+              <span class="pull-left">Más</span>
+              <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+              <div class="clearfix"></div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
         <div class="panel panel-green">
           <div class="panel-heading">
             <div class="row">
@@ -169,20 +199,15 @@
               </div>
               <div class="col-xs-9 text-right">
                 <div class="huge">2</div>
-                <div class="panel-title-custom">Mis porras!</div>
+                <div class="panel-title-custom">Porras creadas</div>
               </div>
             </div>
           </div>
           <div class="panel-body panel-body-custom">
-            <div class="list-group">
+            <div th:each="porra: ${porrasCreator}" class="list-group">
               <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">Torneo LOL</h4>
-                <p class="list-group-item-text">3€ apostados</p>
-              </a>
-              <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">Torneo FIFA</h4>
-                <p class="list-group-item-text">8€ apostados</p>
-              </a>
+                <h4 class="list-group-item-heading"><p th:text="${porra.title}"></p></h4>
+              </a> 
             </div>
           </div>
           <a href="#">

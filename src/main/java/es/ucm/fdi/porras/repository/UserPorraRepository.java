@@ -1,7 +1,9 @@
 package es.ucm.fdi.porras.repository;
 
-
 import es.ucm.fdi.porras.model.Porra;
+import es.ucm.fdi.porras.model.User;
+import es.ucm.fdi.porras.model.UserPorra;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -11,10 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface PorraRepository extends JpaRepository<Porra, Long>{
+public interface UserPorraRepository extends JpaRepository<UserPorra, Long> {
 
-    Porra findOneByTitle(String title);
-
-    List<Porra> findAllByCreatorId(@Param("creator_id") Long creatorId);
-    //List<Porra> findAllByCreatorId(@Param("creator_id") Long creatorId);
+    List<UserPorra> findAllByUser(@Param("user") User user);
 }
