@@ -29,11 +29,6 @@ public class Porra implements Serializable{
     @NonNull
     private Long id;
 
-    @NotNull
-    @NonNull
-    @Column(name="external_id", length = 255, nullable = false)
-    private String externalId;
-
     @Column(name = "title", nullable = false, length = 255)
     @NonNull
     private String title;

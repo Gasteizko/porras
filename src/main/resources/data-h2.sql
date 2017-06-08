@@ -27,14 +27,14 @@ INSERT INTO user_friend (id, id_user, id_friend, create_time, update_time, activ
 INSERT INTO user_friend (id, id_user, id_friend, create_time, update_time, active) VALUES (3, 5, 8, null, null, 1);
 
 -- PORRAS
-INSERT INTO porra (id, external_id, title, creator_id, type, max_participants, finish_time, created_time) VALUES (1, 'porraca1-estodeberiaserunhash', 'madrid-barsa',                  1, 'MATCH',     20, '2017-06-20 22:19:33.925', '2017-06-04 22:19:33.925');
-INSERT INTO porra (id, external_id, title, creator_id, type, max_participants, finish_time, created_time) VALUES (2, 'porraca2-estodeberiaserunhash', 'Atlético de Madrid - Sevilla',  1, 'MATCH',     20, '2017-06-20 22:19:33.925', '2017-06-2 22:19:33.925');
-INSERT INTO porra (id, external_id, title, creator_id, type, max_participants, finish_time, created_time) VALUES (3, 'porraca3-estodeberiaserunhash', 'Barcelona - Valencia C.F.',     3, 'MATCH',     20, '2017-06-20 22:19:33.925', '2017-06-7 22:19:33.925');
-INSERT INTO porra (id, external_id, title, creator_id, type, max_participants, finish_time, created_time) VALUES (4, 'porraca4-estodeberiaserunhash', 'Deportivo - Celta de Vigo',     2, 'MATCH',     20, '2017-06-20 22:19:33.925', '2017-06-3 22:19:33.925');
-INSERT INTO porra (id, external_id, title, creator_id, type, max_participants, finish_time, created_time) VALUES (5, 'porraca5-estodeberiaserunhash', 'Equipos que descienden',        3, 'POSSIBLES', 20, '2017-06-20 22:19:33.925', '2016-11-8 22:19:33.925');
-INSERT INTO porra (id, external_id, title, creator_id, type, max_participants, finish_time, created_time) VALUES (6, 'porraca6-estodeberiaserunhash', 'Próximo entrenador despedido',  4, 'POSSIBLES', 20, '2017-06-20 22:19:33.925', '2016-06-20 22:19:33.925');
-INSERT INTO porra (id, external_id, title, creator_id, type, max_participants, finish_time, created_time) VALUES (7, 'porraca7-estodeberiaserunhash', '¿Quién gana euromierdón?',      5, 'OPEN',      20, '2017-06-20 22:19:33.925', '2017-06-20 22:19:33.925');
-INSERT INTO porra (id, external_id, title, creator_id, type, max_participants, finish_time, created_time) VALUES (8, 'porraca4-estodeberiaserunhash', '¿Ganará o no el madrid?',       6, 'POSSIBLES', 20, '2017-06-20 22:19:33.925', '2017-06-20 22:19:33.925');
+INSERT INTO porra (id, title, creator_id, type, max_participants, finish_time, created_time) VALUES (1, 'madrid-barsa',                  1, 'MATCH',     20, '2017-06-20 22:19:33.925', '2017-06-04 22:19:33.925');
+INSERT INTO porra (id, title, creator_id, type, max_participants, finish_time, created_time) VALUES (2, 'Atlético de Madrid - Sevilla',  1, 'MATCH',     20, '2017-06-20 22:19:33.925', '2017-06-2 22:19:33.925');
+INSERT INTO porra (id, title, creator_id, type, max_participants, finish_time, created_time) VALUES (3, 'Barcelona - Valencia C.F.',     3, 'MATCH',     20, '2017-06-20 22:19:33.925', '2017-06-7 22:19:33.925');
+INSERT INTO porra (id, title, creator_id, type, max_participants, finish_time, created_time) VALUES (4, 'Deportivo - Celta de Vigo',     2, 'MATCH',     20, '2017-06-20 22:19:33.925', '2017-06-3 22:19:33.925');
+INSERT INTO porra (id, title, creator_id, type, max_participants, finish_time, created_time) VALUES (5, 'Equipos que descienden',        3, 'POSSIBLES', 20, '2017-06-20 22:19:33.925', '2016-11-8 22:19:33.925');
+INSERT INTO porra (id, title, creator_id, type, max_participants, finish_time, created_time) VALUES (6, 'Próximo entrenador despedido',  4, 'POSSIBLES', 20, '2017-06-20 22:19:33.925', '2016-06-20 22:19:33.925');
+INSERT INTO porra (id, title, creator_id, type, max_participants, finish_time, created_time) VALUES (7, '¿Quién gana euromierdón?',      5, 'OPEN',      20, '2017-06-20 22:19:33.925', '2017-06-20 22:19:33.925');
+INSERT INTO porra (id, title, creator_id, type, max_participants, finish_time, created_time) VALUES (8, '¿Ganará o no el madrid?',       6, 'POSSIBLES', 20, '2017-06-20 22:19:33.925', '2017-06-20 22:19:33.925');
 
 -- POSSIBLE_BETS
 INSERT INTO possible_bet (id, id_porra, bet) VALUES (1, 8, 'pierde');

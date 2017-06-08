@@ -49,7 +49,6 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `porrasdb`.`porra` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `external_id` VARCHAR(255) NOT NULL,
   `name` VARCHAR(50) NOT NULL,
   `creator_id` BIGINT NOT NULL,
   `type` VARCHAR(45) NOT NULL DEFAULT 'OPEN',
