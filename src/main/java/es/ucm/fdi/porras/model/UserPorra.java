@@ -44,6 +44,9 @@ public class UserPorra implements Serializable {
     @Column(name="id_possible_bet")
     private Long idPossibleBet;
 
+    @Column(name="bet_amount")
+    private Double betAmount;
+
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_user", nullable = false, updatable = false)
     @NonNull

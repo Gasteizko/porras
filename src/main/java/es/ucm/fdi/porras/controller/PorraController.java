@@ -4,6 +4,7 @@ import es.ucm.fdi.porras.model.Porra;
 import es.ucm.fdi.porras.model.PossibleBet;
 import es.ucm.fdi.porras.model.User;
 import es.ucm.fdi.porras.model.UserPorra;
+import es.ucm.fdi.porras.model.dto.PorraBet;
 import es.ucm.fdi.porras.model.dto.PorraForm;
 import es.ucm.fdi.porras.repository.PorraRepository;
 import es.ucm.fdi.porras.repository.PossibleBetRepository;
@@ -24,10 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.time.Instant;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 @Slf4j
@@ -68,10 +66,21 @@ public class PorraController {
         } else {
             model.addAttribute("porra", p);
         }
-
         List<User> ps = userRepository.findAllParticipantsByPorraId(id);
+
+        List<PorraBet> bp = new ArrayList<PorraBet>();
+        for (int i = 0; i < ps.size(); i++) {
+            PorraBet porraBet = new PorraBet();
+            porraBet.setLogin(ps.get(i).getLogin());
+            UserPorra up = userPorraRepository.findAllByIdPorra(id, ps.get(i).getId());
+            porraBet.setBet(up.getBet());
+            porraBet.setBetAmount(up.getBetAmount());
+            bp.add(porraBet);
+        }
+
         model.addAttribute("p", p);
-        model.addAttribute("ps", ps);
+        model.addAttribute("bp", bp);
+
         return "porra";
     }
 

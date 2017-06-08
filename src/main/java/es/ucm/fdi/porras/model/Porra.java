@@ -68,6 +68,9 @@ public class Porra implements Serializable{
     @Column(name = "visits")
     private Long visits;
 
+    @Column(name = "min_bet")
+    private Double minBet;
+
     @OneToMany(mappedBy = "porra", fetch = FetchType.LAZY)
     private List<UserPorra> userPorras;
 
@@ -78,5 +81,6 @@ public class Porra implements Serializable{
     @JoinColumn(name = "creator_id", nullable = false, updatable = false)
     @NonNull
     private User creator;
+
 
 }
