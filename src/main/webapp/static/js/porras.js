@@ -17,14 +17,17 @@ $(".clickedit").click(function(){
 
     $(".admin").hide();
     switch(type){
-        case "wifi":
-            $("#panelHackeador").show();
+        case "abierta":
+            $("#panelAbierta").show();
+            $('#tipoPorra').attr('value', "OPEN");
             break;
-        case "desaut":
-            $("#panelDesautentificador").show();
+        case "partido":
+            $("#panelPartido").show();
+            $('#tipoPorra').attr('value', "MATCH");
             break;
-        case "hacked":
-            $("#panelHacked").show();
+        case "posibles":
+            $("#panelPosibles").show();
+            $('#tipoPorra').attr('value', "POSSIBLES");
             break;
 
     }

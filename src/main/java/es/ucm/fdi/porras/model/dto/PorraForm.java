@@ -30,7 +30,11 @@ public class PorraForm {
 
     @NotNull
     @NotBlank
-    private String type;
+    private String descripcionPorra;
+
+    @NotNull
+    @NotBlank
+    private String tipoPorra;
 
     @NotNull
     @NotBlank

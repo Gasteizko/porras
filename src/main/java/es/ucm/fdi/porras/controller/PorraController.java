@@ -120,8 +120,9 @@ public class PorraController {
         }
 
         log.info(fecha.toString());
-        createdPorra.setType("MATCH");
+        createdPorra.setType(porraForm.getTipoPorra());
         createdPorra.setFinishTime(fecha);
+        createdPorra.setDescription(porraForm.getDescripcionPorra());
 
         createdPorra = porraRepository.save(createdPorra);
 

@@ -26,12 +26,33 @@
                 </div>
             </div>
             <div class="row text-center panel panel-info">
+                <div class="panel-heading">DESCRIPCION DE LA PORRA</div>
+                <div class="panel-body">
+                    <div>
+                        <input type="text" class="form-control" id="descripcionPorra" name="descripcionPorra" placeholder="Cuentanos mas sobre tu porra..."/>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center panel panel-info">
                 <div class="panel-heading">Tipo de porra</div>
                 <div class="panel-body">
-                    <div class="col-sm-4 col-xs-12 text-center"><button type="button" id="btn-porra-type-open" class="btn btn-primary btn-lg btn-porra-type">Abierta</button></div>
-                    <div class="col-sm-4 col-xs-12 text-center"><button type="button" id="btn-porra-type-match" class="btn btn-primary btn-lg btn-porra-type">Partido</button></div>
-                    <div class="col-sm-4 col-xs-12 text-center"><button type="button" id="btn-porra-type-possibles" class="btn btn-primary btn-lg btn-porra-type">Posibles resultados</button></div>
+                    <div class="col-sm-4 col-xs-12 text-center"><button type="button" id="btn-porra-type-open" class="btn btn-primary btn-lg btn-porra-type clickedit" xtype="abierta">Abierta</button></div>
+                    <div class="col-sm-4 col-xs-12 text-center"><button type="button" id="btn-porra-type-match" class="btn btn-primary btn-lg btn-porra-type clickedit" xtype="partido">Partido</button></div>
+                    <div class="col-sm-4 col-xs-12 text-center"><button type="button" id="btn-porra-type-possibles" class="btn btn-primary btn-lg btn-porra-type clickedit" xtype="posibles">Posibles resultados</button></div>
+                    <div>
+                        <input type="text" class="form-control" style="display: none;" id="tipoPorra" name="tipoPorra"/>
+                    </div>
                 </div>
+            </div>
+
+            <div class="row text-center panel panel-info admin" style="display: none" id="panelAbierta">
+                pene abierta
+            </div>
+            <div class="row text-center panel panel-info admin" style="display: none" id="panelPartido">
+                polla partido
+            </div>
+            <div class="row text-center panel panel-info admin" style="display: none" id="panelPosibles">
+                pene posibles
             </div>
             <div class="row text-center">
                 <button type="submit" class="btn-success btn-lg">Submit</button>
