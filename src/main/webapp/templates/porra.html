@@ -56,11 +56,62 @@
 
     <!-- Botones -->
     <div class="row">
-      <div class="col-md-4 text-center"><button type="button" class="btn btn-success">Apostar</button></div>
-      <div class="col-md-4 text-center"><button type="button" class="btn btn-warning">Compartir</button></div>
-      <div class="col-md-4 text-center"><button type="button" class="btn btn-primary">Editar</button></div>
+      <div class="col-md-4"></div>
+      <div class="col-md-4 text-center">
+        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalHorizontal">Apostar</button>
+      </div>
+      <div class="col-md-4"></div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="myModalHorizontal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <button type="button" class="close"
+                    data-dismiss="modal">
+              <span aria-hidden="true">&times;</span>
+              <span class="sr-only">Close</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+                Realizar una apuesta
+            </h4>
+          </div>
+
+          <!-- Modal Body -->
+          <div class="modal-body">
+
+            <form class="form-horizontal" role="form" th:action="@{${'/betPorra/' + p.id}}" method="post">
+              <div class="input-group">
+                <span class="input-group-addon">Apostar a: </span>
+                <input id="msg" type="text" class="form-control" name="betstring" />
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon">Cantidad a apostar: </span>
+                <input id="msg" type="text" class="form-control" name="betamount" />
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+              </div>
+
+              <!-- Modal Footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">
+                  Salir
+                </button>
+                <button type="submit" class="btn btn-primary">
+                  Apostar
+                </button>
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
     <br /><br />
 
   </div> <!-- Cierra div container -->

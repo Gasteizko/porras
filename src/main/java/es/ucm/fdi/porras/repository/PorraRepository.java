@@ -15,6 +15,7 @@ import java.util.Set;
 public interface PorraRepository extends JpaRepository<Porra, Long>{
 
     Porra findOneByTitle(String title);
+    Porra findOneById(Long id);
 
     List<Porra> findAllByCreatorId(Long creatorId);
 

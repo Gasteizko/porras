@@ -86,6 +86,29 @@ public class PorraController {
         return "porra";
     }
 
+    @RequestMapping(value = "/betPorra/{id}", method = RequestMethod.POST)
+    public RedirectView insertNewPorra(@PathVariable("id") Long id,
+                                      @RequestParam(value="betstring", required=false) String bet,
+                                      @RequestParam(value="betamount", required=false) String amount,
+                                       Model model, Principal principal) {
+
+        if (!bet.isEmpty() && !amount.isEmpty()) {
+            UserPorra up = new UserPorra();
+            up.setBet(bet);
+            up.setBetAmount(Double.parseDouble(amount));
+            Porra porra = porraRepository.findOneById(id);
+            up.setPorra(porra);
+            User user = userRepository.findByLogin(principal.getName());
+            up.setUser(user);
+            userPorraRepository.save(up);
+        } else {
+            log.error("No such porra: {}", id);
+        }
+
+        String url = "/porra/" + id;
+        return new RedirectView(url);
+    }
+
     @RequestMapping(value = "/newPorra", method = RequestMethod.GET)
     public String showNewPorraForm(Model model) {
         PorraForm porraForm = new PorraForm();
