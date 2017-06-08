@@ -72,6 +72,9 @@ public class User implements Serializable {
     @Column(name = "image_url", length = 256)
     private String imageUrl;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<UserPorra> userPorras;
+
     @NotNull
     @NonNull
     @Column(nullable = false)
@@ -89,9 +92,9 @@ public class User implements Serializable {
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-        name = "user_role",
-        joinColumns = {@JoinColumn(name = "id_user", referencedColumnName = "id")},
-        inverseJoinColumns = {@JoinColumn(name = "role_name", referencedColumnName = "name")})
+            name = "user_role",
+            joinColumns = {@JoinColumn(name = "id_user", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_name", referencedColumnName = "name")})
     @NonNull
     private Set<Role> roles = new HashSet<>();
 

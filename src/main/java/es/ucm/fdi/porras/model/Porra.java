@@ -20,7 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = {"possibleBets"})
+@ToString(exclude = {"possibleBets", "participants"})
 @EqualsAndHashCode
 public class Porra implements Serializable{
 
@@ -56,6 +56,11 @@ public class Porra implements Serializable{
     @Column(name = "max_participants")
     private Integer maxParticipantes;
 
+    @Column(name = "created_time", nullable = false, updatable = false, insertable = false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
+    @NonNull
+    private Date createdTime;
+
     @Column(name = "finish_time", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @NonNull
@@ -67,6 +72,9 @@ public class Porra implements Serializable{
 
     @Column(name = "visits")
     private Long visits;
+
+    @OneToMany(mappedBy = "porra", fetch = FetchType.LAZY)
+    private List<UserPorra> participants;
 
     @OneToMany(mappedBy = "porra", fetch = FetchType.LAZY)
     private List<PossibleBet> possibleBets;

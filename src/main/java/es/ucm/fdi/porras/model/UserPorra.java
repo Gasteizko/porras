@@ -44,12 +44,12 @@ public class UserPorra implements Serializable {
     @Column(name="id_possible_bet")
     private Long idPossibleBet;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_user", nullable = false, updatable = false)
     @NonNull
     private User user;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_porra", nullable = false, updatable = false)
     @NonNull
     private Porra porra;

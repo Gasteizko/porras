@@ -2,23 +2,15 @@ package es.ucm.fdi.porras.service;
 
 
 import es.ucm.fdi.porras.model.Porra;
-import es.ucm.fdi.porras.model.Role;
-import es.ucm.fdi.porras.model.RolesConstants;
-import es.ucm.fdi.porras.model.User;
 import es.ucm.fdi.porras.model.dto.PorraForm;
-import es.ucm.fdi.porras.model.dto.UserForm;
 import es.ucm.fdi.porras.repository.PorraRepository;
 import es.ucm.fdi.porras.repository.UserRepository;
 import es.ucm.fdi.porras.utils.exceptions.UserAlreadyExistException;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
 
 @Service("porraService")
 @Transactional
