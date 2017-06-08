@@ -26,7 +26,7 @@ public class PorraForm {
 
     @NotNull
     @NotBlank
-    private Date finishTime;
+    private String finishTime;
 
     @NotNull
     @NotBlank

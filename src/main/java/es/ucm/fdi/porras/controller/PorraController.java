@@ -24,6 +24,8 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.*;
 
@@ -94,16 +96,32 @@ public class PorraController {
     @RequestMapping(value = "/newPorration", method = RequestMethod.POST)
     public RedirectView newPorrita(@ModelAttribute("porraForm") @Valid PorraForm porraForm,
                                    BindingResult result, final Errors errors, Principal principal) {
-        if (result.hasErrors()) {
+        /*if (result.hasErrors()) {
             log.warn("New Porra error:",  errors.getAllErrors().toString());
             return new RedirectView("/newPorra?error");
-        }
+        }*/
         log.info("Registering new porra: {}", porraForm);
-        User currentUser = userRepository.findByLogin(principal.getName());
+        String nameUser = principal.getName();
+        User currentUser = userRepository.findByLogin(nameUser);
         Porra createdPorra = new Porra();
         createdPorra.setTitle(porraForm.getTituloPorra());
         createdPorra.setCreator(currentUser);
-        createdPorra.setType(porraForm.getType());
+        SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
+        String strFecha = porraForm.getFinishTime();
+        Date fecha = null;
+        try {
+
+            fecha = formatoDelTexto.parse(strFecha);
+
+        } catch (ParseException ex) {
+
+            ex.printStackTrace();
+
+        }
+
+        log.info(fecha.toString());
+        createdPorra.setType("MATCH");
+        createdPorra.setFinishTime(fecha);
 
         createdPorra = porraRepository.save(createdPorra);
 
