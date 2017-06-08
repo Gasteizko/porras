@@ -28,6 +28,9 @@
     <div class="table-responsive">
   <table class="table">
     <tbody>
+      <tr th:each="porra : ${porras}">
+        <td th:text="${porra.title}">Title</td>
+      </tr>
       <tr>
         <td>
           <img th:src="@{/static/img/madrid.png}" class="img-responsive center-block" alt="Cinque Terre" width="90" height="70"></img>

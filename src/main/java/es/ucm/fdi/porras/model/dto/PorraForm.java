@@ -25,12 +25,15 @@ public class PorraForm {
     private String tituloPorra;
 
     @NotNull
+    @NotBlank
     private Date finishTime;
 
     @NotNull
+    @NotBlank
     private String type;
 
     @NotNull
+    @NotBlank
     private User creator;
 
 }

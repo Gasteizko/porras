@@ -8,7 +8,7 @@
 
     <!-- Titulo  -->
     <div class="row">
-      <h1 class="text-center"><strong>Real Madrid - Real Sociedad</strong></h1>
+      <h1 th:text="${p.title}" class="text-center"><strong>Real Madrid - Real Sociedad</strong></h1>
     </div>
     <br />
 
@@ -44,8 +44,8 @@
             </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>Pepe</td>
+          <tr th:each="person : ${ps}">
+            <td th:text="${person.login}"></td>
             <td>3-2</td>
             <td>5 €</td>
           </tr>

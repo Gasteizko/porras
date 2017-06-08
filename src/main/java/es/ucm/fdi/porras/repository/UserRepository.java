@@ -22,5 +22,4 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT u FROM User u JOIN FETCH u.userPorras up WHERE up.winned = 1 AND up.porra.id = :porraId")
     List<User> findWinnerByPorraId(@Param("porraId") Long porraId);
 
-    Boolean getActiveByUserID();
 }

@@ -20,9 +20,11 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.time.Instant;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -54,8 +56,22 @@ public class PorraController {
         this.possibleBetRepository = possibleBetRepository;
     }
 
-    @GetMapping({"/porra"})
-    public String getPorra() {
+    @RequestMapping(value = {"/porra/{id}", "/porra"}, method = RequestMethod.GET)
+    public String getPorra(@PathVariable("id") Long id, Principal principal, Model model) {
+        if (id == null ) {
+            log.warn("Null id");
+            return "porra";
+        }
+        Porra p = porraRepository.findOne(id);
+        if (p == null) {
+            log.error("No such porra: {}", id);
+        } else {
+            model.addAttribute("porra", p);
+        }
+
+        List<User> ps = userRepository.findAllParticipantsByPorraId(id);
+        model.addAttribute("p", p);
+        model.addAttribute("ps", ps);
         return "porra";
     }
 
@@ -68,23 +84,19 @@ public class PorraController {
 
     @RequestMapping(value = "/newPorration", method = RequestMethod.POST)
     public RedirectView newPorrita(@ModelAttribute("porraForm") @Valid PorraForm porraForm,
-                                   BindingResult result, final Errors errors) {
-        /*if (result.hasErrors()) {
+                                   BindingResult result, final Errors errors, Principal principal) {
+        if (result.hasErrors()) {
             log.warn("New Porra error:",  errors.getAllErrors().toString());
-            return new RedirectView("/newPorra?newPorraError");
-        }*/
-        //log.info("Registering new porra: {}", porraForm);
-        Porra registered = null;
-        try {
-            registered = porraService.registerNewPorra(porraForm);
-        } catch (UserAlreadyExistException e) {
-            //log.warn("Registration error:",  e);
+            return new RedirectView("/newPorra?error");
         }
-        /*if (registered == null) {
-            return new RedirectView("/newPorra?newPorraError");
-        }*/
+        log.info("Registering new porra: {}", porraForm);
+        User currentUser = userRepository.findByLogin(principal.getName());
+        Porra createdPorra = new Porra();
+        createdPorra.setTitle(porraForm.getTituloPorra());
+        createdPorra.setCreator(currentUser);
+        createdPorra.setType(porraForm.getType());
 
-        //log.info("New Porra registration: {}", porraForm);
+        createdPorra = porraRepository.save(createdPorra);
 
         return new RedirectView("/dash");
     }
@@ -96,30 +108,29 @@ public class PorraController {
             @RequestParam(value = "losses", required = false) Boolean losses,
             @RequestParam(value = "mine", required = false) Boolean mine, Principal principal, Model model) {
 
-        Set<PossibleBet> ps = possibleBetRepository.findAllByPorraIdAndUserId(6L, 3L);
         User currentUser = userRepository.findByLogin(principal.getName());
-        List<User> participants = userRepository.findAllParticipantsByPorraId(5L);
+
+        Collection<Porra> porras = null;
         if (latest != null){
             log.info("Getting latest porras");
-            List<Porra> latestPorras = porraRepository.findAllByOrderByCreatedTimeDesc();
+            porras = porraRepository.findAllByOrderByCreatedTimeDesc();
         }
         else if (winned != null) {
             log.info("Getting winned porras");
-            //List<UserPorra> userPorras = userPorraRepository.findAllByUserIdAndWinned(currentUser.getId(), true);
-            //List<Porra> latestPorras = porraRepository.findAllByOrderByCreatedTimeDesc();
+            porras = porraRepository.findAllByUserIdAndWinned(currentUser.getId(), true);
         }
         else if (losses != null){
             log.info("Getting losses porras");
-            List<Porra> latestPorras = porraRepository.findAllByOrderByCreatedTimeDesc();
+            porras = porraRepository.findAllByUserIdAndWinned(currentUser.getId(), false);
         }
         else if (mine != null) {
-            log.info("Getting mines porras");
-
-            List<Porra> latestPorras = porraRepository.findAllByCreatorId(currentUser.getId());
+            log.info("Getting mine porras");
+            porras = porraRepository.findAllByCreatorId(currentUser.getId());
         }
         else {
-            List<Porra> latestPorras = porraRepository.findAll();
+            porras = porraRepository.findAll();
         }
+        model.addAttribute("porras", porras);
 
         return "listaporras";
     }

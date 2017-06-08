@@ -20,7 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = {"possibleBets", "participants"})
+@ToString(exclude = {"possibleBets", "participants", "creator"})
 @EqualsAndHashCode
 public class Porra implements Serializable{
 
@@ -34,7 +34,7 @@ public class Porra implements Serializable{
     @Column(name="external_id", length = 255, nullable = false)
     private String externalId;
 
-    @Column(name = "name", nullable = false, length = 255)
+    @Column(name = "title", nullable = false, length = 255)
     @NonNull
     private String title;
 
@@ -74,7 +74,7 @@ public class Porra implements Serializable{
     private Long visits;
 
     @OneToMany(mappedBy = "porra", fetch = FetchType.LAZY)
-    private List<UserPorra> participants;
+    private List<UserPorra> userPorras;
 
     @OneToMany(mappedBy = "porra", fetch = FetchType.LAZY)
     private List<PossibleBet> possibleBets;
