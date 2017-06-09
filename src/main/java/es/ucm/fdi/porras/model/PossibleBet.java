@@ -28,7 +28,7 @@ public class PossibleBet implements Serializable {
     private String bet;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_porra", nullable = false)
+    @JoinColumn(name = "porra_id", nullable = false)
     @NonNull
     private Porra porra;
 }

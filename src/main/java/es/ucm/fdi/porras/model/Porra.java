@@ -20,7 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = {"possibleBets", "userPorras", "creator"})
+@ToString(exclude = {"possibleBets", "participants"})
 @EqualsAndHashCode
 public class Porra implements Serializable{
 
@@ -72,7 +72,7 @@ public class Porra implements Serializable{
     private Double minBet;
 
     @OneToMany(mappedBy = "porra", fetch = FetchType.LAZY)
-    private List<UserPorra> userPorras;
+    private List<UserPorra> participants;
 
     @OneToMany(mappedBy = "porra", fetch = FetchType.LAZY)
     private List<PossibleBet> possibleBets;

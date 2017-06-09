@@ -14,7 +14,7 @@ public interface PossibleBetRepository extends JpaRepository<PossibleBet, Long> 
     @Query("SELECT pb FROM PossibleBet pb WHERE pb.porra.id = :porraId")
     Set<PossibleBet> findAllByPorraId( @Param("porraId") Long porraId);
 
-    @Query("SELECT pb FROM PossibleBet pb JOIN pb.porra.userPorras up WHERE up.user.id = :userId AND pb.porra.id = :porraId")
+    @Query("SELECT pb FROM PossibleBet pb JOIN pb.porra.participants ps WHERE ps.user.id = :userId AND pb.porra.id = :porraId")
     Set<PossibleBet> findAllByPorraIdAndUserId( @Param("porraId") Long porraId, @Param("userId") Long userId);
 
 }

@@ -37,27 +37,27 @@ INSERT INTO porra (id, title, creator_id, type, max_participants, finish_time, c
 INSERT INTO porra (id, title, creator_id, type, max_participants, finish_time, created_time, min_bet) VALUES (8, '¿Ganará o no el madrid?',       6, 'POSSIBLES', 20, '2017-06-20 22:19:33.925', '2017-06-20 22:19:33.925',4);
 
 -- POSSIBLE_BETS
-INSERT INTO possible_bet (id, id_porra, bet) VALUES (1, 8, 'pierde');
-INSERT INTO possible_bet (id, id_porra, bet) VALUES (2, 8, 'gana');
-INSERT INTO possible_bet (id, id_porra, bet) VALUES (3, 8, 'empate');
-INSERT INTO possible_bet (id, id_porra, bet) VALUES (4, 5, 'valencia');
-INSERT INTO possible_bet (id, id_porra, bet) VALUES (5, 5, 'sporting gijón');
-INSERT INTO possible_bet (id, id_porra, bet) VALUES (6, 5, 'osasuna');
-INSERT INTO possible_bet (id, id_porra, bet) VALUES (7, 5, 'celta');
-INSERT INTO possible_bet (id, id_porra, bet) VALUES (8, 6, 'simeone');
-INSERT INTO possible_bet (id, id_porra, bet) VALUES (9, 6, 'zidane');
+INSERT INTO possible_bet (id, porra_id, bet) VALUES (1, 8, 'pierde');
+INSERT INTO possible_bet (id, porra_id, bet) VALUES (2, 8, 'gana');
+INSERT INTO possible_bet (id, porra_id, bet) VALUES (3, 8, 'empate');
+INSERT INTO possible_bet (id, porra_id, bet) VALUES (4, 5, 'valencia');
+INSERT INTO possible_bet (id, porra_id, bet) VALUES (5, 5, 'sporting gijón');
+INSERT INTO possible_bet (id, porra_id, bet) VALUES (6, 5, 'osasuna');
+INSERT INTO possible_bet (id, porra_id, bet) VALUES (7, 5, 'celta');
+INSERT INTO possible_bet (id, porra_id, bet) VALUES (8, 6, 'simeone');
+INSERT INTO possible_bet (id, porra_id, bet) VALUES (9, 6, 'zidane');
 
 -- USER_PORRAS
-INSERT INTO user_porra (id, id_user, id_porra, bet, id_possible_bet, winned, paid, paid_time, bet_amount) VALUES (1, 3, 1, 'betString', null, 0, 0, null, 5);
-INSERT INTO user_porra (id, id_user, id_porra, bet, id_possible_bet, winned, paid, paid_time, bet_amount) VALUES (2, 3, 2, 'betString', null, 0, 0, null, 5);
-INSERT INTO user_porra (id, id_user, id_porra, bet, id_possible_bet, winned, paid, paid_time, bet_amount) VALUES (3, 3, 3, 'betString', null, 1, 1, null, 5);
-INSERT INTO user_porra (id, id_user, id_porra, bet, id_possible_bet, winned, paid, paid_time, bet_amount) VALUES (4, 1, 1, 'betString', null, 0, 0, null, 5);
-INSERT INTO user_porra (id, id_user, id_porra, bet, id_possible_bet, winned, paid, paid_time, bet_amount) VALUES (5, 3, 6, null, 8, 0, 0, null, 6);
-INSERT INTO user_porra (id, id_user, id_porra, bet, id_possible_bet, winned, paid, paid_time, bet_amount) VALUES (6, 3, 8, null, 1, 0, 0, null, 6);
-INSERT INTO user_porra (id, id_user, id_porra, bet, id_possible_bet, winned, paid, paid_time, bet_amount) VALUES (7, 3, 4, 'betString', null, 0, 0, null, 8);
-INSERT INTO user_porra (id, id_user, id_porra, bet, id_possible_bet, winned, paid, paid_time, bet_amount) VALUES (8, 3, 5, null, 5, 0, 0, null, 9);
-INSERT INTO user_porra (id, id_user, id_porra, bet, id_possible_bet, winned, paid, paid_time, bet_amount) VALUES (9, 5, 5, null, 5, 0, 0, null, 9);
-INSERT INTO user_porra (id, id_user, id_porra, bet, id_possible_bet, winned, paid, paid_time, bet_amount) VALUES (10, 6, 5, null, 5, 0, 0, null, 6);
-INSERT INTO user_porra (id, id_user, id_porra, bet, id_possible_bet, winned, paid, paid_time, bet_amount) VALUES (11, 7, 5, null, 5, 0, 0, null, 6);
-INSERT INTO user_porra (id, id_user, id_porra, bet, id_possible_bet, winned, paid, paid_time, bet_amount) VALUES (12, 8, 5, null, 5, 0, 0, null, 6);
-INSERT INTO user_porra (id, id_user, id_porra, bet, id_possible_bet, winned, paid, paid_time, bet_amount) VALUES (13, 4, 5, null, 5, 0, 0, null, 6);
+INSERT INTO user_porra (user_id, porra_id, bet, possible_bet_id, winned, paid, paid_time, bet_amount) VALUES (3, 1, 'betString', null, 0, 0, null, 5);
+INSERT INTO user_porra (user_id, porra_id, bet, possible_bet_id, winned, paid, paid_time, bet_amount) VALUES (3, 2, 'betString', null, 0, 0, null, 5);
+INSERT INTO user_porra (user_id, porra_id, bet, possible_bet_id, winned, paid, paid_time, bet_amount) VALUES (3, 3, 'betString', null, 1, 1, null, 5);
+INSERT INTO user_porra (user_id, porra_id, bet, possible_bet_id, winned, paid, paid_time, bet_amount) VALUES (1, 1, 'betString', null, 0, 0, null, 5);
+INSERT INTO user_porra (user_id, porra_id, bet, possible_bet_id, winned, paid, paid_time, bet_amount) VALUES (3, 6, null, 8, 0, 0, null, 6);
+INSERT INTO user_porra (user_id, porra_id, bet, possible_bet_id, winned, paid, paid_time, bet_amount) VALUES (3, 8, null, 1, 0, 0, null, 6);
+INSERT INTO user_porra (user_id, porra_id, bet, possible_bet_id, winned, paid, paid_time, bet_amount) VALUES (3, 4, 'betString', null, 0, 0, null, 8);
+INSERT INTO user_porra (user_id, porra_id, bet, possible_bet_id, winned, paid, paid_time, bet_amount) VALUES (3, 5, null, 5, 0, 0, null, 9);
+INSERT INTO user_porra (user_id, porra_id, bet, possible_bet_id, winned, paid, paid_time, bet_amount) VALUES (5, 5, null, 5, 0, 0, null, 9);
+INSERT INTO user_porra (user_id, porra_id, bet, possible_bet_id, winned, paid, paid_time, bet_amount) VALUES (6, 5, null, 5, 0, 0, null, 6);
+INSERT INTO user_porra (user_id, porra_id, bet, possible_bet_id, winned, paid, paid_time, bet_amount) VALUES (7, 5, null, 5, 0, 0, null, 6);
+INSERT INTO user_porra (user_id, porra_id, bet, possible_bet_id, winned, paid, paid_time, bet_amount) VALUES (8, 5, null, 5, 0, 0, null, 6);
+INSERT INTO user_porra (user_id, porra_id, bet, possible_bet_id, winned, paid, paid_time, bet_amount) VALUES (4, 5, null, 5, 0, 0, null, 6);
