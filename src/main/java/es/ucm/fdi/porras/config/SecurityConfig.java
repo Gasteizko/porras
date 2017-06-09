@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.mvcMatchers("/admin").hasRole("ADMIN")
         		.antMatchers("/admin/**").hasRole("ADMIN")
 				.anyRequest().authenticated()
-				.and().csrf().disable()
+				.and()
 			.formLogin()
 				.permitAll()
 	            .loginPage("/")
