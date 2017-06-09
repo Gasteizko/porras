@@ -20,7 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = {"possibleBets", "participants", "creator"})
+@ToString(exclude = {"possibleBets", "userPorras", "creator"})
 @EqualsAndHashCode
 public class Porra implements Serializable{
 
@@ -29,7 +29,7 @@ public class Porra implements Serializable{
     @NonNull
     private Long id;
 
-    @Column(name = "title", nullable = false, length = 255)
+    @Column(name = "title", nullable = false, length = 255, unique = true)
     @NonNull
     private String title;
 
