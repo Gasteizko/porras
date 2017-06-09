@@ -5,7 +5,6 @@ import es.ucm.fdi.porras.utils.PasswordMatches;
 import es.ucm.fdi.porras.utils.ValidEmail;
 import lombok.*;
 import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -36,7 +35,5 @@ public class PorraForm {
     @NotNull
     @NotBlank
     private String tipoPorra;
-
-    private MultipartFile file;
 
 }
