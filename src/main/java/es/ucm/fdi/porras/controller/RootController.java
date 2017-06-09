@@ -46,19 +46,28 @@ public class RootController {
 		List<Porra> porrasRecent = porraRepository.findAllByOrderByCreatedTimeDesc();
 		List<Porra> pr = new ArrayList<Porra>();
 		model.addAttribute("porrasRecent", porrasRecent);
-		//porras a las que pertenece el usuario 
-		//List<Porra> porrasUser = userporraService.porrasbyUsuario(u);
+		int numporrasRecent = porrasRecent.size();
+		model.addAttribute("numporrasRecent", numporrasRecent);
+		//porras a las que pertenece el usuario
 		List<Porra> porrasUser = new ArrayList<>();
 		model.addAttribute("porrasUser", porrasUser);
+		int numporrasUser = porrasUser.size();
+		model.addAttribute("numporrasUser", numporrasUser);
 		//porras ganas por el usuario
 		Set<Porra> porrasUserWin = porraRepository.findAllByUserIdAndWinned(u.getId(), true);
 		model.addAttribute("porrasUserWin", porrasUserWin);
+		int numporrasUserWin = porrasUserWin.size();
+		model.addAttribute("numporrasUserWin", numporrasUserWin);
 		//porras ganas por el usuario
 		Set<Porra> porrasUserLost = porraRepository.findAllByUserIdAndWinned(u.getId(), false);
 		model.addAttribute("porrasUserLost", porrasUserLost);
+		int numporrasUserLost = porrasUserLost.size();
+		model.addAttribute("numporrasUserLost", numporrasUserLost);
 		//porras creadas por el usuario
 		List<Porra> porrasCreator = porraRepository.findAllByCreatorId(u.getId());
 		model.addAttribute("porrasCreator", porrasCreator);
+		int numporrasCreator = porrasCreator.size();
+		model.addAttribute("numporrasCreator", numporrasCreator);
     	return "dash";
 	}
 	
