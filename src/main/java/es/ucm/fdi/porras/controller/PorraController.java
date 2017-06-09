@@ -8,7 +8,6 @@ import es.ucm.fdi.porras.repository.UserPorraRepository;
 import es.ucm.fdi.porras.repository.UserRepository;
 import es.ucm.fdi.porras.service.PorraService;
 import es.ucm.fdi.porras.service.UserService;
-import es.ucm.fdi.porras.storage.StorageService;
 import es.ucm.fdi.porras.utils.exceptions.UserAlreadyExistException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -40,17 +39,14 @@ public class PorraController {
 
     private UserPorraRepository userPorraRepository;
 
-    private final StorageService storageService;
-
 
     public PorraController(PorraService porraService, UserService userService, UserRepository userRepository,
-                           PorraRepository porraRepository, StorageService storageService, UserPorraRepository userPorraRepository) {
+                           PorraRepository porraRepository, UserPorraRepository userPorraRepository) {
         this.porraService = porraService;
         this.userService = userService;
         this.userRepository = userRepository;
         this.porraRepository = porraRepository;
         this.userPorraRepository = userPorraRepository;
-        this.storageService = storageService;
     }
 
     @RequestMapping(value = {"/porra"}, method = RequestMethod.GET)
@@ -137,7 +133,6 @@ public class PorraController {
         createdPorra.setType(porraForm.getTipoPorra());
         createdPorra.setFinishTime(fecha);
         createdPorra.setDescription(porraForm.getDescripcionPorra());
-        storageService.store(porraForm.getFile(), "pene.jpg");
 
         Porra p = porraRepository.save(createdPorra);
 
