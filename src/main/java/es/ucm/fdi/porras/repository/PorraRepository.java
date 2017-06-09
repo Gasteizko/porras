@@ -19,8 +19,6 @@ public interface PorraRepository extends JpaRepository<Porra, Long>{
 
     List<Porra> findAllByCreatorId(Long creatorId);
 
-    Long countByCreatorId(Long creatorId);
-
     List<Porra> findAllByOrderByCreatedTimeDesc();
 
     @Query("SELECT p FROM Porra p JOIN FETCH p.participants ps WHERE ps.user.id = :userId")
