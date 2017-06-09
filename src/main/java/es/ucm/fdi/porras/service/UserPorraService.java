@@ -5,7 +5,6 @@ import es.ucm.fdi.porras.model.Role;
 import es.ucm.fdi.porras.model.User;
 import es.ucm.fdi.porras.model.UserPorra;
 import es.ucm.fdi.porras.repository.RoleRepository;
-import es.ucm.fdi.porras.repository.UserPorraRepository;
 import es.ucm.fdi.porras.repository.UserRepository;
 import es.ucm.fdi.porras.model.RolesConstants;
 
@@ -31,16 +30,14 @@ public class UserPorraService {
     private final UserRepository userRepository;
 
     private final RoleRepository rolesRepository;
-    
-    private final UserPorraRepository userporraRepository;
+
 
     private final PasswordEncoder passwordEncoder;
 
-    public UserPorraService(UserPorraRepository userporraRepository, UserRepository userRepository, RoleRepository rolesRepository, PasswordEncoder passwordEncoder) {
+    public UserPorraService(UserRepository userRepository, RoleRepository rolesRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.rolesRepository = rolesRepository;
         this.passwordEncoder = passwordEncoder;
-        this.userporraRepository = userporraRepository;
     }
 
 /*    public Optional<User> activateRegistration(String key) {
@@ -103,7 +100,7 @@ public class UserPorraService {
         log.debug("Created Information for User: {}", newUser);
         return newUser;
     }
-
+/*
 	public List<Porra> porrasbyUsuario(User u) {
 		// TODO Auto-generated method stub
 		List<Porra> lp = null;
@@ -115,7 +112,7 @@ public class UserPorraService {
 			lp.add(aux.getPorra());
 		}
 		return lp;
-	}
+	}*/
 
     /*public User createUser(UserDTO userDTO) {
         User user = new User();

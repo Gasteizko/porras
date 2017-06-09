@@ -16,10 +16,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByLogin(final String login);
 
-    @Query("SELECT u FROM User u JOIN FETCH u.userPorras up WHERE up.porra.id = :porraId")
+    @Query("SELECT u FROM User u JOIN FETCH u.porras ps WHERE ps.porra.id = :porraId")
     List<User> findAllParticipantsByPorraId(@Param("porraId") Long porraId);
 
-    @Query("SELECT u FROM User u JOIN FETCH u.userPorras up WHERE up.winned = 1 AND up.porra.id = :porraId")
+    @Query("SELECT u FROM User u JOIN FETCH u.porras ps WHERE ps.winned = 1 AND ps.porra.id = :porraId")
     List<User> findWinnerByPorraId(@Param("porraId") Long porraId);
 
 }

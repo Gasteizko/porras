@@ -31,7 +31,7 @@ import java.time.Instant;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = {"userFriends"})
+@ToString(exclude = {"userFriends", "porras"})
 @EqualsAndHashCode
 public class User implements Serializable {
 
@@ -73,7 +73,7 @@ public class User implements Serializable {
     private String imageUrl;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<UserPorra> userPorras;
+    private List<UserPorra> porras;
 
     @NotNull
     @NonNull

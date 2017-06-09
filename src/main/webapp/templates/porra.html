@@ -8,25 +8,27 @@
 
     <!-- Titulo  -->
     <div class="row">
-      <h1 th:with="items = ${#strings.arraySplit(p.title, '-')}" th:text="${#strings.capitalize(items[0])} + ' - ' + ${#strings.capitalize(items[1])}" class="text-center"></h1>
+      <h1  th:text="${p.title}" class="text-center"></h1>
     </div>
     <br />
 
     <!-- Foto equipos e información -->
     <div class="row">
       <div class="col-md-3">
-        <img th:with="items = ${#strings.arraySplit(p.title, '-')}" th:src="@{${'/static/img/' + items[0] + '.png'}}" class="img-responsive center-block" alt="Club2" width="120" height="120" />
+        <img th:src="@{${'/static/img/'}}" class="img-responsive center-block" alt="Club2" width="120" height="120" />
       </div>
 
       <div class="col-md-6">
         <h4 class="text-center"><strong >Tipo: </strong> <span th:text="${p.type}"> </span></h4>
         <h4 class="text-center"><strong>Apuesta mínima:</strong> <span th:text="${p.minBet}"></span></h4>
-        <h4 class="text-center"><strong>Equipo 1:</strong> <span th:with="items = ${#strings.arraySplit(p.title, '-')}" th:text="${#strings.capitalize(items[0])}"></span> </h4>
-        <h4 class="text-center"><strong>Equipo 2:</strong> <span th:with="items = ${#strings.arraySplit(p.title, '-')}" th:text="${#strings.capitalize(items[1])}"></span></h4>
+        <div th:if="${#strings.equals(p.type, 'MATCH')}">
+          <h4 class="text-center"><strong>Equipo 1:</strong> <span></span> </h4>
+          <h4 class="text-center"><strong>Equipo 2:</strong> <span></span></h4>
+        </div>
       </div>
 
       <div class="col-md-3">
-        <img th:with="items = ${#strings.arraySplit(p.title, '-')}" th:src="@{${'/static/img/' + items[1] + '.png'}}" class="img-responsive center-block" alt="Club2" width="120" height="120" />
+        <img th:src="@{${'/static/'}}" class="img-responsive center-block" alt="Club2" width="120" height="120" />
       </div>
     </div>
 
@@ -44,9 +46,13 @@
             </tr>
           </thead>
           <tbody>
-          <tr th:each="bet: ${bp}">
-            <td th:text="${bet.login}"></td>
-            <td th:text="${bet.bet}"></td>
+          <tr th:if="${not #lists.isEmpty(p.participants)}" th:each="bet: ${p.participants}">
+            <td th:text="${bet.user.login}"></td>
+            <div th:switch="${p.type}">
+              <td th:case="'OPEN'" th:text="${bet.bet}"></td>
+              <td th:case="'MATCH'" th:text="${bet.bet}"></td>
+              <td th:case="'POSSIBLES'" th:text="${bet.possibleBet.bet}"></td>
+            </div>
             <td th:text="${bet.betAmount}"></td>
           </tr>
           </tbody>

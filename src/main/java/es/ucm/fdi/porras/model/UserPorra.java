@@ -10,9 +10,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "user_porra", uniqueConstraints={
-        @UniqueConstraint(columnNames = {"id_user", "id_porra"})
-})
+@Table(name = "user_porra")
 @Access(AccessType.FIELD)
 @Accessors(chain = true)
 @Getter
@@ -24,10 +22,18 @@ import java.util.Date;
 @EqualsAndHashCode
 public class UserPorra implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EmbeddedId
+    private UserPorraId userPorraId;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id", nullable = false, updatable = false, insertable = false)
     @NonNull
-    private Long id;
+    private User user;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "porra_id", nullable = false, updatable = false, insertable = false)
+    @NonNull
+    private Porra porra;
 
     @Column(length = 255)
     private String bet;
@@ -41,20 +47,10 @@ public class UserPorra implements Serializable {
     @Column(name = "paid_time")
     private Date paidTime;
 
-    @Column(name="id_possible_bet")
-    private Long idPossibleBet;
+    @OneToOne
+    private PossibleBet possibleBet;
 
     @Column(name="bet_amount")
     private Double betAmount;
-
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_user", nullable = false, updatable = false)
-    @NonNull
-    private User user;
-
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_porra", nullable = false, updatable = false)
-    @NonNull
-    private Porra porra;
 
 }

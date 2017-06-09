@@ -1,13 +1,9 @@
 package es.ucm.fdi.porras.controller;
 
-import es.ucm.fdi.porras.model.Porra;
-import es.ucm.fdi.porras.model.PossibleBet;
-import es.ucm.fdi.porras.model.User;
-import es.ucm.fdi.porras.model.UserPorra;
+import es.ucm.fdi.porras.model.*;
 import es.ucm.fdi.porras.model.dto.PorraBet;
 import es.ucm.fdi.porras.model.dto.PorraForm;
 import es.ucm.fdi.porras.repository.PorraRepository;
-import es.ucm.fdi.porras.repository.PossibleBetRepository;
 import es.ucm.fdi.porras.repository.UserPorraRepository;
 import es.ucm.fdi.porras.repository.UserRepository;
 import es.ucm.fdi.porras.service.PorraService;
@@ -43,17 +39,14 @@ public class PorraController {
 
     private UserPorraRepository userPorraRepository;
 
-    private PossibleBetRepository possibleBetRepository;
 
     public PorraController(PorraService porraService, UserService userService, UserRepository userRepository,
-                           PorraRepository porraRepository, UserPorraRepository userPorraRepository,
-                           PossibleBetRepository possibleBetRepository) {
+                           PorraRepository porraRepository, UserPorraRepository userPorraRepository) {
         this.porraService = porraService;
         this.userService = userService;
         this.userRepository = userRepository;
         this.porraRepository = porraRepository;
         this.userPorraRepository = userPorraRepository;
-        this.possibleBetRepository = possibleBetRepository;
     }
 
     @RequestMapping(value = {"/porra/{id}", "/porra"}, method = RequestMethod.GET)
@@ -66,23 +59,8 @@ public class PorraController {
         if (p == null) {
             log.error("No such porra: {}", id);
         } else {
-            model.addAttribute("porra", p);
+            model.addAttribute("p", p);
         }
-        List<User> ps = userRepository.findAllParticipantsByPorraId(id);
-
-        List<PorraBet> bp = new ArrayList<PorraBet>();
-        for (int i = 0; i < ps.size(); i++) {
-            PorraBet porraBet = new PorraBet();
-            porraBet.setLogin(ps.get(i).getLogin());
-            UserPorra up = userPorraRepository.findAllByIdPorra(id, ps.get(i).getId());
-            porraBet.setBet(up.getBet());
-            porraBet.setBetAmount(up.getBetAmount());
-            bp.add(porraBet);
-        }
-
-        model.addAttribute("p", p);
-        model.addAttribute("bp", bp);
-
         return "porra";
     }
 
@@ -96,13 +74,15 @@ public class PorraController {
             UserPorra up = new UserPorra();
             up.setBet(bet);
             up.setBetAmount(Double.parseDouble(amount));
-            Porra porra = porraRepository.findOneById(id);
-            up.setPorra(porra);
             User user = userRepository.findByLogin(principal.getName());
             up.setUser(user);
+            Porra porra = porraRepository.findOneById(id);
+            up.setPorra(porra);
+            UserPorraId userPorraId = new UserPorraId(user.getId(), porra.getId());
+            up.setUserPorraId(userPorraId);
             userPorraRepository.save(up);
         } else {
-            log.error("No such porra: {}", id);
+            log.error("No valid data: {}", id);
         }
 
         String url = "/porra/" + id;
@@ -119,10 +99,10 @@ public class PorraController {
     @RequestMapping(value = "/newPorration", method = RequestMethod.POST)
     public RedirectView newPorrita(@ModelAttribute("porraForm") @Valid PorraForm porraForm,
                                    BindingResult result, final Errors errors, Principal principal) {
-        /*if (result.hasErrors()) {
+        if (result.hasErrors()) {
             log.warn("New Porra error:",  errors.getAllErrors().toString());
             return new RedirectView("/newPorra?error");
-        }*/
+        }
         log.info("Registering new porra: {}", porraForm);
         String nameUser = principal.getName();
         User currentUser = userRepository.findByLogin(nameUser);
@@ -147,9 +127,9 @@ public class PorraController {
         createdPorra.setFinishTime(fecha);
         createdPorra.setDescription(porraForm.getDescripcionPorra());
 
-        createdPorra = porraRepository.save(createdPorra);
+        Porra p = porraRepository.save(createdPorra);
 
-        return new RedirectView("/dash");
+        return new RedirectView("/porra/" + p.getId());
     }
 
     @GetMapping(value = "/listaporras")

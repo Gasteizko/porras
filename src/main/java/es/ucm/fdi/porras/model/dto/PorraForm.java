@@ -36,8 +36,4 @@ public class PorraForm {
     @NotBlank
     private String tipoPorra;
 
-    @NotNull
-    @NotBlank
-    private User creator;
-
 }
