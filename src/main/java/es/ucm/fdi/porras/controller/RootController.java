@@ -1,7 +1,9 @@
 package es.ucm.fdi.porras.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import es.ucm.fdi.porras.model.Porra;
 import es.ucm.fdi.porras.model.User;
@@ -43,9 +45,19 @@ public class RootController {
 	public String dash(Model model, Principal principal) {
 		String name = principal.getName();
 		User u = userRepository.findByLogin(name);
+		//porras m�s recientes
+		List<Porra> porrasRecent = porraRepository.findAllByOrderByCreatedTimeDesc();
+		List<Porra> pr = new ArrayList<Porra>();
+		model.addAttribute("porrasRecent", porrasRecent);
 		//porras a las que pertenece el usuario 
 		List<Porra> porrasUser = userporraService.porrasbyUsuario(u);
 		model.addAttribute("porrasUser", porrasUser);
+		//porras ganas por el usuario
+		Set<Porra> porrasUserWin = porraRepository.findAllByUserIdAndWinned(u.getId(), true);
+		model.addAttribute("porrasUserWin", porrasUserWin);
+		//porras ganas por el usuario
+		Set<Porra> porrasUserLost = porraRepository.findAllByUserIdAndWinned(u.getId(), false);
+		model.addAttribute("porrasUserLost", porrasUserLost);
 		//porras creadas por el usuario
 		List<Porra> porrasCreator = porraRepository.findAllByCreatorId(u.getId());
 		model.addAttribute("porrasCreator", porrasCreator);

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:replace="fragments/metaHeader :: metaHead"> Error: Error</div>
-<body>
+<body class="bodyPorra">
   <div th:replace="fragments/navbar :: navbar"> Error: Error</div>
   <div class="container">
     <div class="row">
@@ -10,7 +10,7 @@
       </div><!-- /.col-lg-12 -->
     </div>
     <div class="row">
-      <div class="col-lg-4 col-md-6">
+      <div class="col-lg-4 col-md-4">
         <div class="panel panel-primary">
           <div class="panel-heading">
             <div class="row">
@@ -19,64 +19,14 @@
               </div>
               <div class="col-xs-9 text-right">
                 <div class="huge">26</div>
-                <div class="panel-title-custom">Nuevas porras!</div>
+                <div class="panel-title-custom">Nuevas porras</div>
               </div>
             </div>
           </div>
           <div class="panel-body panel-body-custom">
-            <div class="list-group">
-              <a href="#" class="list-group-item text-center">
-                <h4 class="list-group-item-heading"><img class="pull-left" th:src="@{/static/img/madridt.png}" alt="Club1" height="40px"/> R. Madrid - Barsa <img class="pull-right" th:src="@{/static/img/barsa.png}" alt="Club1" height="40px"/></h4>
-                <p class="list-group-item-text">1045 participantes</p>
-              </a>
-              <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">Equipos que descienden</h4>
-                <p class="list-group-item-text">32 participantes</p>
-              </a>
-              <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">Próximo entrenador despedido</h4>
-                <p class="list-group-item-text">21 participantes</p>
-              </a>
-              <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">Nº expulsados en la jornada</h4>
-                <p class="list-group-item-text">165 participantes</p>
-              </a>
-              <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">Equipos que juegan Champions</h4>
-                <p class="list-group-item-text">34 participantes</p>
-              </a>
-              <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">Leganés - Málaga</h4>
-                <p class="list-group-item-text">76 participantes</p>
-              </a>
-            </div>
-          </div>
-          <a href="#">
-            <div class="panel-footer">
-              <span class="pull-left">Más</span>
-              <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-              <div class="clearfix"></div>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <div class="row">
-              <div class="col-xs-3">
-                <i class="fa fa-fire fa-4x"></i>
-              </div>
-              <div class="col-xs-9 text-right">
-                <div class="huge">26</div>
-                <div class="panel-title-custom">Porras en las que participo!</div>
-              </div>
-            </div>
-          </div>
-          <div class="panel-body panel-body-custom">
-            <div th:each="porraU: ${porrasUser}" class="list-group">
-              <a href="#" class="list-group-item text-center">
-                <h4 class="list-group-item-heading"><p th:text="${porraU.title}"></p></h4>
+            <div th:each="porraR, porraStatR: ${porrasRecent}" class="list-group">
+              <a href="#" class="list-group-item text-center"  th:unless="${porraStatR.index > 10}">
+                <h4 class="list-group-item-heading"><p th:text="${porraR.title}"></p></h4>
                 <!--<p class="list-group-item-text">1045 participantes</p>  -->
               </a>
             </div>
@@ -90,44 +40,24 @@
           </a>
         </div>
       </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="panel panel-green">
+      <div class="col-lg-4 col-md-4">
+        <div class="panel panel-primary">
           <div class="panel-heading">
             <div class="row">
               <div class="col-xs-3">
-                <i class="fa fa-check fa-4x"></i>
+                <i class="fa fa-fire fa-4x"></i>
               </div>
               <div class="col-xs-9 text-right">
-                <div class="huge">3</div>
-                <div class="panel-title-custom">Porras ganadas!</div>
+                <div class="huge">26</div>
+                <div class="panel-title-custom">Porras en las que participo</div>
               </div>
             </div>
           </div>
-          <div class="panel-body panel-body-custom">
-            <div class="list-group">
-              <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">R. Madrid - Muchen</h4>
-                <p class="list-group-item-text">30€ ganados</p>
-              </a>
-              <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">Equipos que descienden</h4>
-                <p class="list-group-item-text">8€ ganados</p>
-              </a>
-              <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">Próximo entrenador despedido</h4>
-                <p class="list-group-item-text">6€ ganados</p>
-              </a>
-              <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">Nº expulsados en la jornada</h4>
-                <p class="list-group-item-text">3€ ganados</p>
-              </a>
-              <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">Equipos que juegan Champions</h4>
-                <p class="list-group-item-text">2€ ganados</p>
-              </a>
-              <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">Leganés - Málaga</h4>
-                <p class="list-group-item-text">9€ ganados</p>
+          <div class="panel-body panel-body-custom" style="min-height: 215px">
+            <div th:each="porraU, porraStatU: ${porrasUser}" class="list-group">
+              <a href="#" class="list-group-item text-center"  th:unless="${porraStatU.index > 2}">
+                <h4 class="list-group-item-heading"><p th:text="${porraU.title}"></p></h4>
+                <!--<p class="list-group-item-text">1045 participantes</p>  -->
               </a>
             </div>
           </div>
@@ -139,59 +69,7 @@
             </div>
           </a>
         </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="panel panel-red">
-          <div class="panel-heading">
-            <div class="row">
-              <div class="col-xs-3">
-                <i class="fa fa-times-circle fa-4x"></i>
-              </div>
-              <div class="col-xs-9 text-right">
-                <div class="huge">5</div>
-                <div class="panel-title-custom">Porras perdidas!</div>
-              </div>
-            </div>
-          </div>
-          <div class="panel-body panel-body-custom">
-            <div class="list-group">
-              <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">R. Madrid - Barsa</h4>
-                <p class="list-group-item-text">1 cerveza perdida</p>
-              </a>
-              <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">Próximo presidente de EEUU</h4>
-                <p class="list-group-item-text">Has ganado 1 colleja</p>
-              </a>
-              <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">Próximo entrenador despedido</h4>
-                <p class="list-group-item-text">8€ perdidos</p>
-              </a>
-              <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">Espanyol - Milán</h4>
-                <p class="list-group-item-text">20€ perdidos</p>
-              </a>
-              <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">Sevilla - Betis</h4>
-                <p class="list-group-item-text">2€ perdidos</p>
-              </a>
-              <a href="#" class="list-group-item">
-                <h4 class="list-group-item-heading">Leganés - Málaga</h4>
-                <p class="list-group-item-text">5€ perdidos</p>
-              </a>
-            </div>
-          </div>
-          <a href="#">
-            <div class="panel-footer">
-              <span class="pull-left">Más</span>
-              <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-              <div class="clearfix"></div>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="panel panel-green">
+        <div class="panel panel-green" style="min-height: 100px">
           <div class="panel-heading">
             <div class="row">
               <div class="col-xs-3">
@@ -203,10 +81,67 @@
               </div>
             </div>
           </div>
-          <div class="panel-body panel-body-custom">
-            <div th:each="porra: ${porrasCreator}" class="list-group">
-              <a href="#" class="list-group-item">
+          <div class="panel-body panel-body-custom" style="min-height: 215px">
+            <div th:each="porra, porraStatC: ${porrasCreator}" class="list-group">
+              <a href="#" class="list-group-item"  th:unless="${porraStatC.index > 2}">
                 <h4 class="list-group-item-heading"><p th:text="${porra.title}"></p></h4>
+              </a> 
+            </div>
+          </div>
+          <a href="#">
+            <div class="panel-footer">
+              <span class="pull-left">Más</span>
+              <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+              <div class="clearfix"></div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4">
+        <div class="panel panel-green">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-xs-3">
+                <i class="fa fa-check fa-4x"></i>
+              </div>
+              <div class="col-xs-9 text-right">
+                <div class="huge">3</div>
+                <div class="panel-title-custom">Porras ganadas</div>
+              </div>
+            </div>
+          </div>
+          <div class="panel-body panel-body-custom" style="min-height: 215px">
+            <div th:each="porraUW, porraStatUW: ${porrasUserLost}" class="list-group">
+              <a href="#" class="list-group-item text-center"  th:unless="${porraStatUW.index > 2}">
+                <h4 class="list-group-item-heading"><p th:text="${porraUW.title}"></p></h4>
+                <!--<p class="list-group-item-text">1045 participantes</p>  -->
+              </a>
+            </div>
+          </div>
+          <a href="#">
+            <div class="panel-footer">
+              <span class="pull-left">Más</span>
+              <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+              <div class="clearfix"></div>
+            </div>
+          </a>
+        </div>
+        <div class="panel panel-red">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-xs-3">
+                <i class="fa fa-times-circle fa-4x"></i>
+              </div>
+              <div class="col-xs-9 text-right">
+                <div class="huge">5</div>
+                <div class="panel-title-custom">Porras perdidas</div>
+              </div>
+            </div>
+          </div>
+          <div class="panel-body panel-body-custom" style="min-height: 215px">
+            <div th:each="porraUL, porraStatUL: ${porrasUserLost}" class="list-group">
+              <a href="#" class="list-group-item"  th:unless="${porraStatUL.index > 2}">
+                <h4 class="list-group-item-heading"><p th:text="${porraUL.title}"></p></h4>
               </a> 
             </div>
           </div>
