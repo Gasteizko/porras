@@ -8,7 +8,7 @@
     <div class="container">
       <div class="row text-center">
         <div class="col-lg-8 col-xs-12 col-lg-offset-2">
-              <div class="col-sm-3 col-xs-6 text-center"><button type="button" id="btn-listaporras-latest" class="btn btn-primary btn-lg btn-listaporras">Últimas</button></div>
+          <div class="col-sm-3 col-xs-6 text-center"><button type="button" id="btn-listaporras-latest" class="btn btn-primary btn-lg btn-listaporras">Últimas</button></div>
           <div class="col-sm-3 col-xs-6 text-center"><button type="button" id="btn-listaporras-mine" class="btn btn-primary btn-lg btn-listaporras">Mías</button></div>
           <div class="col-sm-3 col-xs-6 text-center"><button type="button" id="btn-listaporras-winned" class="btn btn-success btn-lg btn-listaporras">Ganadas</button></div>
           <div class="col-sm-3 col-xs-6 text-center"><button type="button" id="btn-listaporras-losses" class="btn btn-danger btn-lg btn-listaporras">Perdidas</button></div>
@@ -16,10 +16,12 @@
       </div>
 
       <div class="row text-center">
-        <div th:each="porra : ${porras}" class="col-lg-4 col-md-6 col-xs-12 porra-item">
-          <img th:src="@{/static/img/madrid.png}" class="img-responsive img-rounded" alt="Cinque Terre" width="90" height="70" />
-          <h4 th:text="${porra.title}">Title</h4>
-          <span class="badge">14</span>
+        <div th:each="porra : ${porras}" class="col-lg-4 col-md-6 col-xs-12">
+          <div class=" porra-item">
+            <img th:src="@{/static/img/madrid.png}" class="img-responsive img-rounded pull-left" alt="Cinque Terre" width="65" />
+            <h4 th:text="${porra.title}">Title</h4>
+            <span class="badge">14</span>
+          </div>
         </div>
       </div>
     </div>
