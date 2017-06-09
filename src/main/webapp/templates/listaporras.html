@@ -3,103 +3,25 @@
   <head>
     <div th:replace="fragments/metaHeader :: metaHead"> Error: Error</div>
   </head>
-  <body>
+  <body class="bodyPorra">
     <div th:replace="fragments/navbar :: navbar"> Error: Error</div>
     <div class="container">
-    <div class="listaPorritas">
-      <div class="col-xs-4" id="porras1">
-        <label for="col-xs-4">Buscador: </label>
-        <input type="text" class="form-control" id="col-xs-4" placeholder="Titulo de la porra"></input>
+      <div class="row text-center">
+        <div class="col-lg-8 col-xs-12 col-lg-offset-2">
+              <div class="col-sm-3 col-xs-6 text-center"><button type="button" id="btn-listaporras-latest" class="btn btn-primary btn-lg btn-listaporras">Últimas</button></div>
+          <div class="col-sm-3 col-xs-6 text-center"><button type="button" id="btn-listaporras-mine" class="btn btn-primary btn-lg btn-listaporras">Mías</button></div>
+          <div class="col-sm-3 col-xs-6 text-center"><button type="button" id="btn-listaporras-winned" class="btn btn-success btn-lg btn-listaporras">Ganadas</button></div>
+          <div class="col-sm-3 col-xs-6 text-center"><button type="button" id="btn-listaporras-losses" class="btn btn-danger btn-lg btn-listaporras">Perdidas</button></div>
+        </div>
       </div>
 
-      <div class="radio" id="porras2" >
-        <label><input type="radio" name="optradio">Porras públicas</input></label>
+      <div class="row text-center">
+        <div th:each="porra : ${porras}" class="col-lg-4 col-md-6 col-xs-12 porra-item">
+          <img th:src="@{/static/img/madrid.png}" class="img-responsive img-rounded" alt="Cinque Terre" width="90" height="70" />
+          <h4 th:text="${porra.title}">Title</h4>
+          <span class="badge">14</span>
+        </div>
       </div>
-
-      <div class="radio" id="porras3">
-        <label><input type="radio" name="optradio">Porras privadas</input></label>
-      </div>
-
-      <div class="radio" id="porras4">
-        <label><input type="radio" name="optradio">Porras en las que participas</input></label>
-      </div>
-    </div>
-
-    <div class="table-responsive">
-  <table class="table">
-    <tbody>
-      <tr th:each="porra : ${porras}">
-        <td th:text="${porra.title}">Title</td>
-      </tr>
-      <tr>
-        <td>
-          <img th:src="@{/static/img/madrid.png}" class="img-responsive center-block" alt="Cinque Terre" width="90" height="70"></img>
-          <p class="text-center">Partido Madrid</p>
-        </td>
-        <td>
-          <img th:src="@{/static/img/madrid.png}" class="img-responsive center-block" alt="Cinque Terre" width="90" height="70"></img>
-          <p class="text-center">Partido Madrid</p>
-        </td>
-        <td>
-          <img th:src="@{/static/img/madrid.png}" class="img-responsive center-block" alt="Cinque Terre" width="90" height="70"/>
-          <p class="text-center">Partido Madrid</p>
-        </td>
-        <td>
-          <img th:src="@{/static/img/madrid.png}" class="img-responsive center-block" alt="Cinque Terre" width="90" height="70"></img>
-          <p class="text-center">Partido Madrid</p>
-        </td>
-        <td>
-          <img th:src="@{/static/img/madrid.png}" class="img-responsive center-block" alt="Cinque Terre" width="90" height="70"></img>
-          <p class="text-center">Partido Madrid</p>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <img th:src="@{/static/img/madrid.png}" class="img-responsive center-block" alt="Cinque Terre" width="90" height="70"></img>
-          <p class="text-center">Partido Madrid</p>
-        </td>
-        <td>
-          <img th:src="@{/static/img/madrid.png}" class="img-responsive center-block" alt="Cinque Terre" width="90" height="70"></img>
-          <p class="text-center">Partido Madrid</p>
-        </td>
-        <td>
-          <img th:src="@{/static/img/madrid.png}" class="img-responsive center-block" alt="Cinque Terre" width="90" height="70"></img>
-          <p class="text-center">Partido Madrid</p>
-        </td>
-        <td>
-          <img th:src="@{/static/img/madrid.png}" class="img-responsive center-block" alt="Cinque Terre" width="90" height="70"></img>
-          <p class="text-center">Partido Madrid</p>
-        </td>
-        <td>
-          <img th:src="@{/static/img/madrid.png}" class="img-responsive center-block" alt="Cinque Terre" width="90" height="70"></img>
-          <p class="text-center">Partido Madrid</p>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <img th:src="@{/static/img/madrid.png}" class="img-responsive center-block" alt="Cinque Terre" width="90" height="70"></img>
-          <p class="text-center">Partido Madrid</p>
-        </td>
-        <td>
-          <img th:src="@{/static/img/madrid.png}" class="img-responsive center-block" alt="Cinque Terre" width="90" height="70"></img>
-          <p class="text-center">Partido Madrid</p>
-        </td>
-        <td>
-          <img th:src="@{/static/img/madrid.png}" class="img-responsive center-block" alt="Cinque Terre" width="90" height="70"></img>
-          <p class="text-center">Partido Madrid</p>
-        </td>
-        <td>
-          <img th:src="@{/static/img/madrid.png}" class="img-responsive center-block" alt="Cinque Terre" width="90" height="70"></img>
-          <p class="text-center">Partido Madrid</p>
-        </td>
-        <td>
-          <img th:src="@{/static/img/madrid.png}" class="img-responsive center-block" alt="Cinque Terre" width="90" height="70"></img>
-          <p class="text-center">Partido Madrid</p>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  </div>
     </div>
   <div th:replace="fragments/footer :: footer"></div>
   </body>

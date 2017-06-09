@@ -1,12 +1,26 @@
-#porras1 {
-    padding-left: 10%;
+.btn-listaporras {
+    width: 7em;
 }
-#porras2 {
-    padding-left: 70%;
+@media (max-width: 768px) {
+    .btn-listaporras {
+        margin-bottom: 1.2em;
+    }
 }
-#porras3 {
-    padding-left: 70%;
+.listaporras-type {
+    opacity: 0.8;
 }
-#porras4 {
-    padding-left: 70%;
+
+.porra-item {
+    opacity: 0.8;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.porra-item:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+@media (max-width: 768px) {
+    .porra-item {
+
+    }
 }

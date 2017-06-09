@@ -49,8 +49,15 @@ public class PorraController {
         this.userPorraRepository = userPorraRepository;
     }
 
-    @RequestMapping(value = {"/porra/{id}", "/porra"}, method = RequestMethod.GET)
-    public String getPorra(@PathVariable("id") Long id, Principal principal, Model model) {
+    @RequestMapping(value = {"/porra"}, method = RequestMethod.GET)
+    public RedirectView getPorra(Principal principal, Model model) {
+
+        // If try to access /porra without the id redirect to dash
+        return new RedirectView("/dash");
+    }
+
+    @RequestMapping(value = {"/porra/{id}"}, method = RequestMethod.GET)
+    public String getPorraById(@PathVariable("id") Long id, Principal principal, Model model) {
         if (id == null ) {
             log.warn("Null id");
             return "porra";

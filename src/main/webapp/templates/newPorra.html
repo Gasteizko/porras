@@ -2,63 +2,72 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:replace="fragments/metaHeader :: metaHead"> Error: Error</div>
 <body>
-    <div th:replace="fragments/navbar :: navbar"> Error: Error</div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">New Porra!</h1>
-            </div><!-- /.col-lg-12 -->
-        </div>
-        <form th:action="@{/newPorration}" method="POST">
-            <div class="form-inline form-group text-center">
-                <div class="col-sm-6">
-                    <label for="tituloPorra">Título</label>
-                    <input type="text" class="form-control" id="tituloPorra" name="tituloPorra" />
-                </div>
-                <label for="finishTime">Fecha de finalización</label>
-                <input type="date" id="finishTime" class="form-control" name="finishTime" />
-
-            </div>
-            <div class="row text-center">
-                <div class="form-group">
-                    <img th:src="@{/static/img/image_placeholder.png}" alt="place holder image" />
-                    <p class="help-block">Example block-level help text here.</p>
-                </div>
-            </div>
-            <div class="row text-center panel panel-info">
-                <div class="panel-heading">DESCRIPCION DE LA PORRA</div>
-                <div class="panel-body">
-                    <div>
-                        <input type="text" class="form-control" id="descripcionPorra" name="descripcionPorra" placeholder="Cuentanos mas sobre tu porra..."/>
-                    </div>
-                </div>
-            </div>
-            <div class="row text-center panel panel-info">
-                <div class="panel-heading">Tipo de porra</div>
-                <div class="panel-body">
-                    <div class="col-sm-4 col-xs-12 text-center"><button type="button" id="btn-porra-type-open" class="btn btn-primary btn-lg btn-porra-type clickedit" xtype="abierta">Abierta</button></div>
-                    <div class="col-sm-4 col-xs-12 text-center"><button type="button" id="btn-porra-type-match" class="btn btn-primary btn-lg btn-porra-type clickedit" xtype="partido">Partido</button></div>
-                    <div class="col-sm-4 col-xs-12 text-center"><button type="button" id="btn-porra-type-possibles" class="btn btn-primary btn-lg btn-porra-type clickedit" xtype="posibles">Posibles resultados</button></div>
-                    <div>
-                        <input type="text" class="form-control" style="display: none;" id="tipoPorra" name="tipoPorra"/>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row text-center panel panel-info admin" style="display: none" id="panelAbierta">
-                pene abierta
-            </div>
-            <div class="row text-center panel panel-info admin" style="display: none" id="panelPartido">
-                polla partido
-            </div>
-            <div class="row text-center panel panel-info admin" style="display: none" id="panelPosibles">
-                pene posibles
-            </div>
-            <div class="row text-center">
-                <button type="submit" class="btn-success btn-lg">Submit</button>
-            </div>
-        </form>
+  <div th:replace="fragments/navbar :: navbar"> Error: Error</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header">New Porra!</h1>
+      </div><!-- /.col-lg-12 -->
     </div>
-    <div th:replace="fragments/footer :: footer"></div>
+    <form th:action="@{/newPorration}" method="POST">
+      <div class="row form-group text-center">
+        <div class="col-sm-6">
+          <h3>Título</h3>
+          <input type="text" class="form-control input-lg text-center" id="tituloPorra" name="tituloPorra" />
+        </div>
+        <div class="col-sm-6">
+          <h3>Fecha de finalización</h3>
+          <input type="date" id="finishTime" class="form-control input-lg text-center" name="finishTime" />
+        </div>
+      </div>
+      <div class="row text-center form-group">
+        <div class="col-lg-6 col-xs-12 col-lg-offset-3">
+          <div class="panel panel-primary">
+            <div class="panel-heading">Imagen</div>
+            <div class="panel-body">
+              <img th:src="@{/static/img/image_placeholder.png}" alt="place holder image" />
+              <p class="help-block">Añade aquí la foto</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-lg-6 col-xs-12">
+          <div class="panel panel-primary">
+            <div class="panel-heading">Descripción</div>
+            <div class="panel-body">
+              <div>
+                  <textarea type="text" class="form-control" id="descripcionPorra" name="descripcionPorra" placeholder="Cuentanos más sobre tu porra..." />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-xs-12">
+          <div class="panel panel-primary">
+            <div class="panel-heading">Tipo de porra</div>
+            <div class="panel-body">
+                <div class="col-sm-4 col-xs-12 text-center"><button type="button" id="btn-porra-type-open" class="btn btn-primary btn-md btn-porra-type clickedit" xtype="abierta">Abierta</button></div>
+                <div class="col-sm-4 col-xs-12 text-center"><button type="button" id="btn-porra-type-match" class="btn btn-primary btn-md btn-porra-type clickedit" xtype="partido">Partido</button></div>
+                <div class="col-sm-4 col-xs-12 text-center"><button type="button" id="btn-porra-type-possibles" class="btn btn-primary btn-md btn-porra-type clickedit" xtype="posibles">Posibles resultados</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <input type="hidden" class="form-control" id="tipoPorra" name="tipoPorra"/>
+      <div class="row text-center panel panel-info admin" style="display: none" id="panelAbierta">
+          pene abierta
+      </div>
+      <div class="row text-center panel panel-info admin" style="display: none" id="panelPartido">
+          polla partido
+      </div>
+      <div class="row text-center panel panel-info admin" style="display: none" id="panelPosibles">
+          pene posibles
+      </div>
+      <div class="row text-center">
+          <button type="submit" class="btn-success btn-lg">Submit</button>
+      </div>
+    </form>
+  </div>
+  <div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>
