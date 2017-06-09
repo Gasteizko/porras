@@ -46,7 +46,7 @@ public class RootController {
 		List<Porra> porrasRecent = porraRepository.findAllByOrderByCreatedTimeDesc();
 		List<Porra> pr = new ArrayList<Porra>();
 		model.addAttribute("porrasRecent", porrasRecent);
-		//porras a las que pertenece el usuario 
+		//porras a las que pertenece el usuario
 		//List<Porra> porrasUser = userporraService.porrasbyUsuario(u);
 		List<Porra> porrasUser = new ArrayList<>();
 		model.addAttribute("porrasUser", porrasUser);
@@ -60,16 +60,6 @@ public class RootController {
 		List<Porra> porrasCreator = porraRepository.findAllByCreatorId(u.getId());
 		model.addAttribute("porrasCreator", porrasCreator);
     	return "dash";
-	}
-	
-	@GetMapping("/logout")
-	public String logout() {
-		return "logout";
-	}
-
-	@GetMapping("/upload")
-	public String upload() {
-		return "upload";
 	}
 
 }

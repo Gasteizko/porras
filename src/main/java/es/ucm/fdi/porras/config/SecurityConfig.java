@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		web.ignoring()
 				.antMatchers("/h2-console/**");
 	}
-	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.mvcMatchers("/admin").hasRole("ADMIN")
         		.antMatchers("/admin/**").hasRole("ADMIN")
 				.anyRequest().authenticated()
-				.and()
+				.and().csrf().disable()
 			.formLogin()
 				.permitAll()
 	            .loginPage("/")
@@ -87,7 +87,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public CustomUserDetailsService springDataUserDetailsService() {
 		return new CustomUserDetailsService();
 	}*/
-	
+
 	//Si eliminas el "Bean" anterior, esto funciona sin BD ni nada:
 
 	/*@Autowired
@@ -101,7 +101,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.withUser("juan").password("password").roles("USER", "ADMIN");
 	}*/
 
-
+/*
 	@Order(2)
 	public class SecurityWebApplicationInitializer extends
 			AbstractSecurityWebApplicationInitializer {
@@ -119,5 +119,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			resolver.setMaxInMemorySize(10 * 1024 * 1025); // zip-bomb protection
 			return resolver;
 		}
-	}
+	}*/
 }
