@@ -36,6 +36,7 @@
             <div class="panel-body">
               <img th:src="@{/static/img/image_placeholder.png}" alt="place holder image" id="blah"/>
               <input type="file" name="file" id="imgInp"/>
+              <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
             </div>
           </div>
         </div>
