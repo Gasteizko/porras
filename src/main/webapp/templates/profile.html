@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/metaHeader :: metaHead"> Error: Error</div>
+<body class="bodyPorra">
+  <div th:replace="fragments/navbar :: navbar"> Error: Error</div>
+  <div class="container">
+  	<div class="panel panel-primary">
+    	<div class="panel-heading">
+            <div class="row">
+              <div class="col-xs-3">
+                <i class="fa fa-user fa-4x"></i>
+              </div>
+              <div class="col-xs-9 text-right">
+                <div class="panel-title-custom"><h2 th:text="${user.login}"></h2></div>
+              </div>
+            </div>
+         </div>
+         <div class="panel-body panel-body-custom">
+            <div class="list-group">
+              <a class="list-group-item ">
+              	<div class ="row">
+              		<div class="col-md-6 col-xs-6 text-right">
+              			<h4 class="list-group-item-heading"><p>First Name: </p></h4>
+              		</div>
+              		<div class="col-md-6 col-xs-6">
+              			<h4 class="list-group-item-heading"><p th:text="${user.firstName}"></p></h4>
+              		</div>
+              	</div>
+              </a>
+            </div>
+            <div class="list-group">
+              <a class="list-group-item ">
+              	<div class ="row">
+              		<div class="col-md-6 col-xs-6 text-right">
+              			<h4 class="list-group-item-heading"><p>Last Name: </p></h4>
+              		</div>
+              		<div class="col-md-6 col-xs-6">
+              			<h4 class="list-group-item-heading"><p th:text="${user.lastName}"></p></h4>
+              		</div>
+              	</div>
+              </a>
+            </div>
+            <div class="list-group">
+              <a class="list-group-item ">
+              	<div class ="row">
+              		<div class="col-md-6 col-xs-6 text-right">
+              			<h4 class="list-group-item-heading"><p>Email: </p></h4>
+              		</div>
+              		<div class="col-md-6 col-xs-6">
+              			<h4 class="list-group-item-heading"><p th:text="${user.email}"></p></h4>
+              		</div>
+              	</div>
+              </a>
+            </div>
+            <div class="list-group">
+              <a class="list-group-item ">
+              	<div class ="row">
+              		<div class="col-md-6 col-xs-6 text-right">
+              			<h4 class="list-group-item-heading"><p>Fecha de ingreso: </p></h4>
+              		</div>
+              		<div class="col-md-6 col-xs-6">
+              			<h4 class="list-group-item-heading"><p th:text=" ${#strings.substring(user.createdTime,0,10)} "></p></h4>
+              		</div>
+              	</div>
+              </a>
+            </div>
+            <div class="list-group">
+              <a class="list-group-item ">
+              	<div class ="row">
+              		<div class="col-md-6 col-xs-6 text-right">
+              			<h4 class="list-group-item-heading"><p>Tipo de usuario: </p></h4>
+              		</div>
+              		<div class="col-md-6 col-xs-6">
+              			<h4 class="list-group-item-heading"><p th:if="${not #strings.endsWith(user.roles,'ADMIN)]')}" th:text="Usuario"></p></h4>
+              			<h4 class="list-group-item-heading"><p th:if="${#strings.endsWith(user.roles,'ADMIN)]')}" th:text="SuperUsuario"></p></h4>
+              		</div>
+              	</div>
+              </a>
+            </div>
+         </div>
+         <div class="panel-footer">
+           <span class="pull-left"><a th:href="@{/listaporras}">Guardar cambios</a></span>
+           <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+           <div class="clearfix"></div>
+         </div>
+      </div>
+		
+  </div>
+  <div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
