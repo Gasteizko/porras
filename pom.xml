@@ -8,6 +8,10 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
+	<groupId>org.springframework</groupId>
+	<artifactId>gs-uploading-files</artifactId>
+	<version>0.1.0</version>
+
 	<name>porras</name>
 	<description>nPorras platform</description>
 
