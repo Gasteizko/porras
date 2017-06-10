@@ -38,7 +38,7 @@ public class PorraController {
     private PorraRepository porraRepository;
 
     private UserPorraRepository userPorraRepository;
-    
+
     private PossibleBetRepository possibleBetRepository;
 
     private final StorageService storageService;
@@ -56,7 +56,7 @@ public class PorraController {
         this.storageService = storageService;
         this.passwordEncoder = passwordEncoder;
         this.possibleBetRepository = possibleBetRepository;
-        
+
     }
 
     @RequestMapping(value = {"/porra"}, method = RequestMethod.GET)
@@ -73,7 +73,7 @@ public class PorraController {
             return "porra";
         }
         Porra p = porraRepository.findOne(id);
-        
+
         if (p == null) {
             log.error("No such porra: {}", id);
         } else {
@@ -83,7 +83,7 @@ public class PorraController {
         if(p.getPossibleBets().size() > 0){
         	model.addAttribute("possibleBet", p.getPossibleBets());
         }
-        
+
         return "porra";
     }
 
@@ -114,10 +114,12 @@ public class PorraController {
 
     @RequestMapping(value = "/betPorra/{id}", method = RequestMethod.POST)
     public RedirectView insertNewPorra(@PathVariable("id") Long id,
-                                      @RequestParam(value="betstring", required=false) String bet,
-                                      @RequestParam(value="betamount", required=false) String amount,
+                                       @RequestParam(value="betstring",   required=false) String bet,
+                                       @RequestParam(value="betamount",   required=false) String amount,
+                                       @RequestParam(value="possibleBet", required=false) String possible,
                                        Model model, Principal principal) {
 
+        bet = possible;
         if (!bet.isEmpty() && !amount.isEmpty()) {
             UserPorra up = new UserPorra();
             up.setBet(bet);
@@ -126,10 +128,16 @@ public class PorraController {
             up.setUser(user);
             Porra porra = porraRepository.findOneById(id);
             up.setPorra(porra);
+            Set<PossibleBet> pb = possibleBetRepository.findAllByPorraId(id);
+            PossibleBet aux = null;
+            for (Iterator<PossibleBet> it = pb.iterator(); it.hasNext(); ) {
+              aux = it.next();
+            }
+            up.setPossibleBet(aux);
             UserPorraCompId userPorraCompId = new UserPorraCompId(user.getId(), porra.getId());
             up.setUserPorraCompId(userPorraCompId);
             userPorraRepository.save(up);
-        } else {
+        } else  {
             log.error("No valid data: {}", id);
         }
 
@@ -199,7 +207,7 @@ public class PorraController {
         	createdPorra.setPossibleBets(lpb);
         }
         Porra p = porraRepository.save(createdPorra);
-    	possibleBetRepository.save(p.getPossibleBets());
+    	  possibleBetRepository.save(p.getPossibleBets());
         /*for(int i = 0; i < p.getPossibleBets().size(); i++){
         	PossibleBet pb = p.getPossibleBets().get(i);
         	possibleBetRepository.
