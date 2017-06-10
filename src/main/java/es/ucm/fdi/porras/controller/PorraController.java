@@ -80,6 +80,27 @@ public class PorraController {
         return "porra";
     }
 
+    @RequestMapping(value = "/asignarGanador/{id}", method = RequestMethod.POST)
+    public RedirectView insertNewPorra(@PathVariable("id") Long id,
+                                       @RequestParam(value="idUser", required=false) String idUser,
+                                       @RequestParam(value="action", required=false) String action) {
+
+      System.out.println(idUser);
+      System.out.println(action); // asignar o eliminar // Agrega un idUsuario al ganador o Elimina el idUsuario al ganador
+
+      String url = "/porra/" + id;
+      return new RedirectView(url);
+    }
+
+    @RequestMapping(value = "/eliminarPorra/{id}", method = RequestMethod.POST)
+    public RedirectView insertNewPorra(@PathVariable("id") Long id) {
+
+        System.out.println(id);
+        //porraRepository.delete(id);
+
+        return new RedirectView("/dash");
+    }
+
     @RequestMapping(value = "/betPorra/{id}", method = RequestMethod.POST)
     public RedirectView insertNewPorra(@PathVariable("id") Long id,
                                       @RequestParam(value="betstring", required=false) String bet,

@@ -40,53 +40,58 @@
     <!-- ToDo  si es juez que permita seleccionar el ganador y si es admin q permita borrar la porra-->
 
     <!-- Participantes -->
-    <div class="row text-center">
-      <div class="table-responsive">
-        <table class="table table-hover table-bg">
-          <thead>
-            <tr>
-              <th class="text-center">Participante</th>
-              <th class="text-center">Apuesta</th>
-              <th class="text-center">Cantidad</th>
-              <div th:if="${#strings.equals(principal.principal.authorities[0], 'ROLE_ADMIN')}">
-                <th class="text-center">
-                    Asignar Ganador
-                </th>
-              </div>
+        <div class="row text-center">
+          <div class="table-responsive">
+            <table class="table table-hover table-bg">
+              <thead>
+                <tr>
+                  <th class="text-center">Participante</th>
+                  <th class="text-center">Apuesta</th>
+                  <th class="text-center">Cantidad</th>
+                  <div th:if="${#strings.equals(principal.principal.authorities[0], 'ROLE_ADMIN')}">
+                    <th class="text-center">
+                        Asignar Ganador
+                    </th>
+                  </div>
 
-            </tr>
-          </thead>
-          <tbody>
-          <tr th:if="${not #lists.isEmpty(p.participants)}" th:each="bet: ${p.participants}" th:class="${#strings.equals(bet.user.login, p.winerBet)} ? success : default">
-            <td th:text="${bet.user.login}"></td>
-            <div th:switch="${p.type}">
-              <td th:case="'OPEN'" th:text="${bet.bet}"></td>
-              <td th:case="'MATCH'" th:text="${bet.bet}"></td>
-              <td th:case="'POSSIBLES'" th:text="${bet.possibleBet.bet}"></td>
-            </div>
-            <td th:text="${bet.betAmount}"></td>
-            <td th:if="${#strings.equals(principal.principal.authorities[0], 'ROLE_ADMIN')}">
-              <button th:class="${#strings.equals(bet.user.login, p.winerBet)} ? btn-danger: btn-success" th:text="${#strings.equals(bet.user.login, p.winerBet)} ? 'Eliminar' : 'Asignar'"></button>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+                </tr>
+              </thead>
+              <tbody>
+              <tr th:if="${not #lists.isEmpty(p.participants)}" th:each="bet: ${p.participants}" th:class="${#strings.equals(bet.user.login, p.winerBet)} ? success : default">
+                <td th:text="${bet.user.login}"></td>
+                <div th:switch="${p.type}">
+                  <td th:case="'OPEN'" th:text="${bet.bet}"></td>
+                  <td th:case="'MATCH'" th:text="${bet.bet}"></td>
+                  <td th:case="'POSSIBLES'" th:text="${bet.possibleBet.bet}"></td>
+                </div>
+                <td th:text="${bet.betAmount}"></td>
+                <td th:if="${#strings.equals(principal.principal.authorities[0], 'ROLE_ADMIN')}">
+                  <form class="form-horizontal" role="form" th:action="@{${'/asignarGanador/' + p.id}}" method="post">
+                      <input type="hidden" th:value="${bet.user.id}" name="idUser" />
+                      <input type="hidden" th:value="${#strings.equals(bet.user.login, p.winerBet)} ? 'eliminar' : 'asignar'" name="action" />
+                      <button type="submit" th:class="${#strings.equals(bet.user.login, p.winerBet)} ? btn-danger: btn-success" th:text="${#strings.equals(bet.user.login, p.winerBet)} ? 'Eliminar' : 'Asignar'"></button>
+                  </form>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
     <!-- Botones -->
-    <div class="row">
-      <div class="col-md-4"></div>
-      <div class="col-md-4 text-center">
-        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalHorizontal">Apostar</button>
-      </div>
-      <div class="col-md-4 text-center">
-        <div th:if="${#strings.equals(principal.principal.authorities[0], 'ROLE_ADMIN')}">
-          <button class="btn btn-primary btn-lg btn-danger" name="eliminarPorra">Eliminar porra</button>
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-4 text-center">
+            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalHorizontal">Apostar</button>
+          </div>
+          <div class="col-md-4 text-center">
+            <div th:if="${#strings.equals(principal.principal.authorities[0], 'ROLE_ADMIN')}">
+              <form class="form-horizontal" role="form" th:action="@{${'/eliminarPorra/' + p.id}}" method="post">
+                  <button type="submit" class="btn btn-primary btn-lg btn-danger" name="eliminarPorra">Eliminar porra</button>
+              </form>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-
     <!-- Modal -->
     <div class="modal fade" id="myModalHorizontal" tabindex="-1" role="dialog"
          aria-labelledby="myModalLabel" aria-hidden="true">
