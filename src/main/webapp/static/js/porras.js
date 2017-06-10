@@ -79,3 +79,17 @@ function loadListaPorras(element) {
 function loadPorra(id) {
   window.location = '/porra/' + id
 }
+
+function addPosible(){
+  $( "#posibles" ).append( '<br></br><h3>Posible resultado:</h3><input type="text" class="form-control input-lg posibleResul" id="posibleResultado" name="posibleResultado1" placeholder="Escribe el posible resultado"/>' );
+}
+$('#formPorra').submit(function() {
+  var opciones ="";
+  var posibles = $( ".posibleResul" );
+  posibles.each(function( index ) {
+    if($( this ).val() != "")
+      opciones = opciones + $( this ).val() + ";";
+  });
+  $('#posiblesResultados').value(opciones);
+  // return false to cancel form action
+});

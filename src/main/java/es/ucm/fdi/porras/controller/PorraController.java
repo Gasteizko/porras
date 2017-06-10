@@ -171,8 +171,9 @@ public class PorraController {
         //createdPorra.setContrasenya(porraForm.getContrasenya());
         createdPorra.setContrasenya(passwordEncoder.encode(porraForm.getContrasenya()));
         if(porraForm.getFile().isEmpty() == false) {
-            storageService.store(porraForm.getFile(), porraForm.getTituloPorra() + ".png");
-            createdPorra.setImageUrlLocal(porraForm.getTituloPorra() + ".png");
+            storageService.store(porraForm.getFile(), porraForm.getTituloPorra() + ".jpg");
+            createdPorra.setImageUrl(porraForm.getTituloPorra() + ".jpg");
+
         }
 		        /*
         if(porraForm.getTipoPorra() == "POSSIBLES"){

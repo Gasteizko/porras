@@ -2,144 +2,113 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:replace="fragments/metaHeader :: metaHead"> Error: Error</div>
 <body class="bodyPorra">
-  <div th:replace="fragments/navbar :: navbar"> Error: Error</div>
-  <div class="container container-porras">
-    <div class="row">
-      <div class="col-lg-12">
-        <h1 class="page-header">New Porra!</h1>
-      </div><!-- /.col-lg-12 -->
-    </div>
-    <div>
-      <!--<form method="POST" enctype="multipart/form-data" action="/imagenUpload">
-        <table>
-          <tr><td>File to upload:</td><td><input type="file" name="file" id="imgInp" /></td></tr>
-          <tr><td></td><td><input type="submit" value="Upload" /></td></tr>
-          <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-        </table>
-      </form>-->
-    </div>
-    <form th:action="@{/newPorration}" enctype="multipart/form-data" method="POST" id="formPorra">
-      <div class="row form-group text-center">
-        <div class="col-sm-6">
-          <h3>Título</h3>
-          <input type="text" class="form-control input-lg text-center" id="tituloPorra" name="tituloPorra" />
-        </div>
-        <div class="col-sm-6">
-          <h3>Fecha de finalización</h3>
-          <input type="date" id="finishTime" class="form-control input-lg text-center" name="finishTime" />
-        </div>
-      </div>
-      <div class="row text-center form-group">
-        <div class="col-lg-6 col-xs-12 col-lg-offset-3">
-          <div class="panel panel-primary">
-            <div class="panel-heading">Imagen</div>
-            <div class="panel-body">
-              <img th:src="@{/upload-dir/image_placeholder.png}" alt="place holder image" id="blah"/>
-              <input type="file" name="file" id="imgInp"/>
-              <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row text-center">
-        <div class="col-lg-6 col-xs-12">
-          <div class="panel panel-primary">
-            <div class="panel-heading">Descripción</div>
-            <div class="panel-body">
-              <div>
-                  <textarea type="text" class="form-control" id="descripcionPorra" name="descripcionPorra" placeholder="Cuentanos más sobre tu porra..." />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-xs-12">
-          <div class="panel panel-primary">
-            <div class="panel-heading">Tipo de porra</div>
-            <div class="panel-body">
-                <div class="col-sm-4 col-xs-12 text-center"><button type="button" id="btn-porra-type-open" class="btn btn-primary btn-md btn-porra-type clickedit" xtype="abierta">Abierta</button></div>
-                <div class="col-sm-4 col-xs-12 text-center"><button type="button" id="btn-porra-type-match" class="btn btn-primary btn-md btn-porra-type clickedit" xtype="partido">Partido</button></div>
-                <div class="col-sm-4 col-xs-12 text-center"><button type="button" id="btn-porra-type-possibles" class="btn btn-primary btn-md btn-porra-type clickedit" xtype="posibles">Posibles resultados</button></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <input type="hidden" class="form-control" id="tipoPorra" name="tipoPorra"/>
-      <div class="panel panel-primary">
-        <div class="panel-heading admin"  style="display: none" id="panelTodos" >Información adicional</div>
-        <div class="panel-body admin" style="display: none" id="panelAbierta">
-          <div class="col-sm-8">
-            <h3>En que se basa la apuesta</h3>
-            <input type="text" class="form-control input-lg" id="apuestaOpen" name="apuestaOpen" placeholder="Le daran calabazas, llegará primero..."/>
-          </div>
-        </div>
-        <div class="panel-body admin" style="display: none" id="panelPartido">
-          <div class="col-sm-6">
-            <h3>Equipo Local</h3>
-            <input type="text" class="form-control input-lg" id="equipoLocal" name="equipoLocal" placeholder="Nombre equipo local"/>
-          </div>
-          <div class="col-sm-6">
-            <h3>Equipo Visitante</h3>
-            <input type="text" class="form-control input-lg" id="equipoVisitante" name="equipoVisitante" placeholder="Nombre equipo visitante"/>
-          </div>
-        </div>
-        <div class="panel-body admin" style="display: none" id="panelPosibles">
-		    <div class ="row">
-		    	<div class="col-sm-8">
-		    		<div id ="posibles">
-		    		<h3>Posible resultado:</h3>
-		            <input type="text" class="form-control input-lg posibleResul" id="posibleResultado" name="posibleResultado1" placeholder="Escribe el posible resultado"/>
-	        		</div>
-	        	</div>
-	        	<div class="col-sm-4">
-	        		<br></br>
-	        		 <input type="text" class="form-control input-lg" id="posiblesResultados" name="posiblesResultados" style="display:none"/>
-	        	</div>
-        	</div>
-        	<div class ="row">
-	        	<div class="col-sm-12">
-	        		<button type="button" class="btn btn-primary pull-right" onClick="addPosible()">+</button>
-		        </div>
-		    </div>
-        </div>
-      </div>
-
-      <div class="panel panel-primary">
-        <div class="panel-heading">Apuestas</div>
-        <div class="panel-body">
-          <div class="col-sm-6">
-            <h3>Qué vais a apostar?</h3>
-            <input type="text" class="form-control input-lg" id="tipoApuesta" name="tipoApuesta" placeholder="Cerveza, dinero..."/>
-          </div>
-          <div class="col-sm-6">
-            <h3>Mínima apuesta</h3>
-            <input type="text" class="form-control input-lg" id="minBet" name="minBet" placeholder="Mínima apuesta"/>
-          </div>
-          <div class="col-sm-12">
-            <h3>Porra privada</h3>
-            <input type="text" class="form-control input-lg" id="contrasenya" name="contrasenya" placeholder="Si quiere que la porra sea privada ponga una contraseña"/>
-          </div>
-        </div>
-      </div>
-      <div class="row text-center">
-          <button type="submit" class="btn-success btn-lg">Submit</button>
-      </div>
-    </form>
+<div th:replace="fragments/navbar :: navbar"> Error: Error</div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">New Porra!</h1>
+    </div><!-- /.col-lg-12 -->
   </div>
-  <div th:replace="fragments/footer :: footer"></div>
-  <script>
-  	function addPosible(){
-  		$( "#posibles" ).append( '<br></br><h3>Posible resultado:</h3><input type="text" class="form-control input-lg posibleResul" id="posibleResultado" name="posibleResultado1" placeholder="Escribe el posible resultado"/>' );
-  	}
-  	$('#formPorra').submit(function() {
-  		var opciones ="";
-  		var posibles = $( ".posibleResul" );
-  	   posibles.each(function( index ) {
-  		   if($( this ).val() != "")
-  			opciones = opciones + $( this ).val() + ";";
-		});
-  	 $('#posiblesResultados').value(opciones);
-  	    // return false to cancel form action
-  	});
-  </script>
+  <div>
+    <!--<form method="POST" enctype="multipart/form-data" action="/imagenUpload">
+      <table>
+        <tr><td>File to upload:</td><td><input type="file" name="file" id="imgInp" /></td></tr>
+        <tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+      </table>
+    </form>-->
+  </div>
+  <form th:action="@{/newPorration}" enctype="multipart/form-data" method="POST">
+    <div class="row form-group text-center">
+      <div class="col-sm-6">
+        <h3>Título</h3>
+        <input type="text" class="form-control input-lg text-center" id="tituloPorra" name="tituloPorra" />
+      </div>
+      <div class="col-sm-6">
+        <h3>Fecha de finalización</h3>
+        <input type="date" id="finishTime" class="form-control input-lg text-center" name="finishTime" />
+      </div>
+    </div>
+    <div class="row text-center form-group">
+      <div class="col-lg-6 col-xs-12 col-lg-offset-3">
+        <div class="panel panel-primary">
+          <div class="panel-heading">Imagen</div>
+          <div class="panel-body">
+            <img th:src="@{/static/img/image_placeholder.png}" alt="place holder image" id="blah"/>
+            <input type="file" name="file" id="imgInp"/>
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col-lg-6 col-xs-12">
+        <div class="panel panel-primary">
+          <div class="panel-heading">Descripción</div>
+          <div class="panel-body">
+            <div>
+              <textarea type="text" class="form-control" id="descripcionPorra" name="descripcionPorra" placeholder="Cuentanos más sobre tu porra..." />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-xs-12">
+        <div class="panel panel-primary">
+          <div class="panel-heading">Tipo de porra</div>
+          <div class="panel-body">
+            <div class="col-sm-4 col-xs-12 text-center"><button type="button" id="btn-porra-type-open" class="btn btn-primary btn-md btn-porra-type clickedit" xtype="abierta">Abierta</button></div>
+            <div class="col-sm-4 col-xs-12 text-center"><button type="button" id="btn-porra-type-match" class="btn btn-primary btn-md btn-porra-type clickedit" xtype="partido">Partido</button></div>
+            <div class="col-sm-4 col-xs-12 text-center"><button type="button" id="btn-porra-type-possibles" class="btn btn-primary btn-md btn-porra-type clickedit" xtype="posibles">Posibles resultados</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <input type="hidden" class="form-control" id="tipoPorra" name="tipoPorra"/>
+    <div class="panel panel-primary">
+      <div class="panel-heading admin"  style="display: none" id="panelTodos" >Información adicional</div>
+      <div class="panel-body admin" style="display: none" id="panelAbierta">
+        <div class="col-sm-8">
+          <h3>En que se basa la apuesta</h3>
+          <input type="text" class="form-control input-lg" id="apuestaOpen" name="apuestaOpen" placeholder="Le daran calabazas, llegará primero..."/>
+        </div>
+      </div>
+      <div class="panel-body admin" style="display: none" id="panelPartido">
+        <div class="col-sm-6">
+          <h3>Equipo Local</h3>
+          <input type="text" class="form-control input-lg" id="equipoLocal" name="equipoLocal" placeholder="Nombre equipo local"/>
+        </div>
+        <div class="col-sm-6">
+          <h3>Equipo Visitante</h3>
+          <input type="text" class="form-control input-lg" id="equipoVisitante" name="equipoVisitante" placeholder="Nombre equipo visitante"/>
+        </div>
+      </div>
+      <div class="panel-body admin" style="display: none" id="panelPosibles">
+        pene posibles
+      </div>
+    </div>
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">Apuestas</div>
+      <div class="panel-body">
+        <div class="col-sm-6">
+          <h3>Qué vais a apostar?</h3>
+          <input type="text" class="form-control input-lg" id="tipoApuesta" name="tipoApuesta" placeholder="Cerveza, dinero..."/>
+        </div>
+        <div class="col-sm-6">
+          <h3>Mínima apuesta</h3>
+          <input type="text" class="form-control input-lg" id="minBet" name="minBet" placeholder="Mínima apuesta"/>
+        </div>
+        <div class="col-sm-12">
+          <h3>Porra privada</h3>
+          <input type="text" class="form-control input-lg" id="contrasenya" name="contrasenya" placeholder="Si quiere que la porra sea privada ponga una contraseña"/>
+        </div>
+      </div>
+    </div>
+    <div class="row text-center">
+      <button type="submit" class="btn-success btn-lg">Submit</button>
+    </div>
+  </form>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

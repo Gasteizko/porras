@@ -36,11 +36,8 @@ public class Porra implements Serializable{
     @Column(name = "description", length = 1024)
     private String description;
 
-    @Column(name = "image_url_local")
-    private String imageUrlLocal;
-
-    @Column(name = "image_url_visitor")
-    private String imageUrlVisitor;
+    @Column(name = "image_url")
+    private String imageUrl;
 
     @Column(name = "valid")
     private Boolean valid;
