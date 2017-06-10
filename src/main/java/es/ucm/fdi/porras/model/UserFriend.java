@@ -1,7 +1,10 @@
 package es.ucm.fdi.porras.model;
 
+import es.ucm.fdi.porras.model.compID.UserFriendCompId;
+import es.ucm.fdi.porras.model.compID.UserPorraCompId;
 import lombok.*;
 import lombok.experimental.Accessors;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -20,31 +23,30 @@ import java.util.Date;
 @EqualsAndHashCode
 public class UserFriend implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NonNull
-    private Long id;
+  @EmbeddedId
+  private UserFriendCompId userFriendCompId;
 
-    @Column(nullable = false)
-    @NonNull
-    private Boolean active;
+  @Column(nullable = false)
+  @NonNull
+  private Boolean active;
 
-    @Column(name = "create_time")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createTime;
+  @Column(name = "create_time")
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date createTime;
 
-    @Column(name = "update_time")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updateTime;
+  @LastModifiedDate
+  @Column(name = "update_time")
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date updateTime;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_user", nullable = false)
-    @NonNull
-    private User user;
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "user_id", nullable = false, updatable = false, insertable = false)
+  @NonNull
+  private User user;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_friend", nullable = false)
-    @NonNull
-    private User friend;
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "friend_id", nullable = false, updatable = false, insertable = false)
+  @NonNull
+  private User friend;
 
 }

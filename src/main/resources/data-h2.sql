@@ -26,9 +26,9 @@ INSERT INTO user_role (id_user, role_name) VALUES (7, 'ROLE_USER');
 INSERT INTO user_role (id_user, role_name) VALUES (8, 'ROLE_USER');
 
 -- USER_FIENDS
-INSERT INTO user_friend (id, id_user, id_friend, create_time, update_time, active) VALUES (1, 5, 6, null, null, 1);
-INSERT INTO user_friend (id, id_user, id_friend, create_time, update_time, active) VALUES (2, 5, 7, null, null, 1);
-INSERT INTO user_friend (id, id_user, id_friend, create_time, update_time, active) VALUES (3, 5, 8, null, null, 1);
+INSERT INTO user_friend (user_id, friend_id, create_time, update_time, active) VALUES (5, 7, null, null, 1);
+INSERT INTO user_friend (user_id, friend_id, create_time, update_time, active) VALUES (5, 6, null, null, 1);
+INSERT INTO user_friend (user_id, friend_id, create_time, update_time, active) VALUES (5, 8, null, null, 1);
 
 -- PORRAS
 INSERT INTO porra (id, equipo_local, equipo_visitante, image_url, title, creator_id, type, winner_bet, finish_time, created_time, min_bet, description) VALUES (1, 'Madrid', 'Barsa', 'madrid.png', 'madrid-barsa', 1, 'MATCH', 'riesco',                                 '2017-06-20 22:19:33.925', '2017-06-04 22:19:33.925', 5, 'Esto es una prueba de la descripción de una porra..........');
