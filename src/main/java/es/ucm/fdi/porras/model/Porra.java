@@ -83,10 +83,10 @@ public class Porra implements Serializable{
     @Column(name = "contrasenya")
     private String contrasenya;
 
-    @OneToMany(mappedBy = "porra", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "porra", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<UserPorra> participants;
 
-    @OneToMany(mappedBy = "porra", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "porra", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<PossibleBet> possibleBets;
 
     @ManyToOne(fetch = FetchType.EAGER)

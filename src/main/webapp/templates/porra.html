@@ -66,7 +66,7 @@
                 <td th:text="${bet.betAmount}"></td>
                 <td th:if="${#strings.equals(principal.principal.authorities[0], 'ROLE_ADMIN')}">
                   <form class="form-horizontal" role="form" th:action="@{${'/asignarGanador/' + p.id}}" method="post">
-                      <input type="hidden" th:value="${bet.user.id}" name="idUser" />
+                      <input type="hidden" th:value="${bet.user.login}" name="login" />
                       <input type="hidden" th:value="${#strings.equals(bet.user.login, p.winerBet)} ? 'eliminar' : 'asignar'" name="action" />
                       <button type="submit" th:class="${#strings.equals(bet.user.login, p.winerBet)} ? btn-danger: btn-success" th:text="${#strings.equals(bet.user.login, p.winerBet)} ? 'Eliminar' : 'Asignar'"></button>
                   </form>
@@ -114,15 +114,13 @@
           <div class="modal-body">
 
             <form class="form-horizontal" role="form" th:action="@{${'/betPorra/' + p.id}}" method="post">
-              <div class="input-group">
-
-                <input th:if="${#strings.equals(p.type, 'POSSIBLES')}" id="msg" type="text" class="form-control" name="betstring"/>
-                <div th:unless="${#strings.equals(p.type, 'POSSIBLES')}">
-                  <span class="input-group-addon">Apostar a: </span>
-                  <input id="msg" type="text" class="form-control" name="betstring" />
-                </div>
-
-
+              <div th:if="${#strings.equals(p.type, 'POSSIBLES')}" class="input-group">
+                <span class="input-group-addon">Apostar a: </span>
+                <input id="msg" type="text" class="form-control" name="betstring" />
+              </div>
+              <div th:unless="${#strings.equals(p.type, 'POSSIBLES')}" class="input-group">
+                <span class="input-group-addon">Apostar a: </span>
+                <input id="msg" type="text" class="form-control" name="betstring" />
               </div>
               <div class="input-group">
                 <span class="input-group-addon">Cantidad a apostar: </span>

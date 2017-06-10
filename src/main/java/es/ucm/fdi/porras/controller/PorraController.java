@@ -4,6 +4,7 @@ import es.ucm.fdi.porras.model.*;
 import es.ucm.fdi.porras.model.dto.PorraBet;
 import es.ucm.fdi.porras.model.dto.PorraForm;
 import es.ucm.fdi.porras.repository.PorraRepository;
+import es.ucm.fdi.porras.repository.PossibleBetRepository;
 import es.ucm.fdi.porras.repository.UserPorraRepository;
 import es.ucm.fdi.porras.repository.UserRepository;
 import es.ucm.fdi.porras.service.PorraService;
@@ -82,11 +83,16 @@ public class PorraController {
 
     @RequestMapping(value = "/asignarGanador/{id}", method = RequestMethod.POST)
     public RedirectView insertNewPorra(@PathVariable("id") Long id,
-                                       @RequestParam(value="idUser", required=false) String idUser,
-                                       @RequestParam(value="action", required=false) String action) {
+                                       @RequestParam(value="login", required=true) String login,
+                                       @RequestParam(value="action", required=true) String action) {
 
-      System.out.println(idUser);
-      System.out.println(action); // asignar o eliminar // Agrega un idUsuario al ganador o Elimina el idUsuario al ganador
+      Porra p = porraRepository.findOne(id);
+      if (action.equals("asignar")) {
+          p.setWinerBet(login);
+      } else if (action.equals("eliminar")) {
+        p.setWinerBet("null");
+      }
+      porraRepository.save(p);
 
       String url = "/porra/" + id;
       return new RedirectView(url);
@@ -95,8 +101,7 @@ public class PorraController {
     @RequestMapping(value = "/eliminarPorra/{id}", method = RequestMethod.POST)
     public RedirectView insertNewPorra(@PathVariable("id") Long id) {
 
-        System.out.println(id);
-        //porraRepository.delete(id);
+        porraRepository.delete(id);
 
         return new RedirectView("/dash");
     }
