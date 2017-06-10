@@ -29,4 +29,6 @@ public interface PorraRepository extends JpaRepository<Porra, Long>{
     @Query("SELECT p FROM Porra p JOIN FETCH p.participants ps WHERE ps.winned = :winned AND ps.user.id = :userId")
     Set<Porra> findAllByUserIdAndWinned( @Param("userId") Long userId, @Param("winned") Boolean winned);
 
+    List<Porra> findTop10ByOrderByCreatedTimeDesc();
+
 }
