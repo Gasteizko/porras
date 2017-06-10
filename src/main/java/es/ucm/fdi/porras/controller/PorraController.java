@@ -212,22 +212,32 @@ public class PorraController {
         if (latest != null){
             log.info("Getting latest porras");
             porras = porraRepository.findAllByOrderByCreatedTimeDesc();
+            int numporras = porras.size();
+            model.addAttribute("numporras", numporras);
         }
         else if (winned != null) {
             log.info("Getting winned porras");
             porras = porraRepository.findAllByUserIdAndWinned(currentUser.getId(), true);
+            int numporrasW = porras.size();
+            model.addAttribute("numporrasW", numporrasW);
         }
         else if (losses != null){
             log.info("Getting losses porras");
             porras = porraRepository.findAllByUserIdAndWinned(currentUser.getId(), false);
+            int numporrasL = porras.size();
+            model.addAttribute("numporrasL", numporrasL);
         }
         else if (mine != null) {
             log.info("Getting mine porras");
             porras = porraRepository.findAllByCreatorId(currentUser.getId());
+            int numporrasM = porras.size();
+            model.addAttribute("numporrasM", numporrasM);
         }
         else if (playing != null) {
           log.info("Getting playing porras");
           porras = porraRepository.findAllByUserId(currentUser.getId());
+          int numporrasP = porras.size();
+          model.addAttribute("numporrasP", numporrasP);
         }
         else {
             porras = porraRepository.findAll();

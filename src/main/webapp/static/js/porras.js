@@ -72,6 +72,8 @@ function loadListaPorras(element) {
     window.location = '/listaporras?winned=true';
   else if (id === 'btn-listaporras-losses')
     window.location = '/listaporras?losses=true';
+  else if (id === 'btn-listaporras-playing')
+	    window.location = '/listaporras?playing=true';
   else
     window.location = '/listaporras'
 }

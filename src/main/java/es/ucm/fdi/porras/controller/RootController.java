@@ -2,6 +2,7 @@ package es.ucm.fdi.porras.controller;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -51,7 +52,8 @@ public class RootController {
 		int numporrasRecent = porrasRecent.size();
 		model.addAttribute("numporrasRecent", numporrasRecent);
 		//porras a las que pertenece el usuario
-		List<Porra> porrasUser = new ArrayList<>();
+		Collection<Porra> porrasUser = null;
+		porrasUser = porraRepository.findAllByUserId(u.getId());
 		model.addAttribute("porrasUser", porrasUser);
 		int numporrasUser = porrasUser.size();
 		model.addAttribute("numporrasUser", numporrasUser);
