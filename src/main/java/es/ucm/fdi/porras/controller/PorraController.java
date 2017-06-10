@@ -137,7 +137,15 @@ public class PorraController {
         createdPorra.setType(porraForm.getTipoPorra());
         createdPorra.setFinishTime(fecha);
         createdPorra.setDescription(porraForm.getDescripcionPorra());
-        storageService.store(porraForm.getFile(), "pene.jpg");
+        createdPorra.setEquipoLocal(porraForm.getEquipoLocal());
+        createdPorra.setEquipoVisitante(porraForm.getEquipoVisitante());
+        createdPorra.setTipoApuesta(porraForm.getTipoApuesta());
+        createdPorra.setMinBet(porraForm.getMinBet());
+        createdPorra.setApuestaOpen(porraForm.getApuestaOpen());
+        if(porraForm.getFile().isEmpty() == false) {
+            storageService.store(porraForm.getFile(), porraForm.getTituloPorra() + ".jpg");
+            createdPorra.setImageUrl(porraForm.getTituloPorra() + ".jpg");
+        }
 
         Porra p = porraRepository.save(createdPorra);
 

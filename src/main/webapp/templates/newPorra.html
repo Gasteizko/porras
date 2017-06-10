@@ -64,14 +64,41 @@
         </div>
       </div>
       <input type="hidden" class="form-control" id="tipoPorra" name="tipoPorra"/>
-      <div class="row text-center panel panel-info admin" style="display: none" id="panelAbierta">
-          pene abierta
+      <div class="panel panel-primary">
+        <div class="panel-heading admin"  style="display: none" id="panelTodos" >Información adicional</div>
+        <div class="panel-body admin" style="display: none" id="panelAbierta">
+          <div class="col-sm-8">
+            <h3>En que se basa la apuesta</h3>
+            <input type="text" class="form-control input-lg" id="apuestaOpen" name="apuestaOpen" placeholder="Le daran calabazas, llegará primero..."/>
+          </div>
+        </div>
+        <div class="panel-body admin" style="display: none" id="panelPartido">
+          <div class="col-sm-6">
+            <h3>Equipo Local</h3>
+            <input type="text" class="form-control input-lg" id="equipoLocal" name="equipoLocal" placeholder="Nombre equipo local"/>
+          </div>
+          <div class="col-sm-6">
+            <h3>Equipo Visitante</h3>
+            <input type="text" class="form-control input-lg" id="equipoVisitante" name="equipoVisitante" placeholder="Nombre equipo visitante"/>
+          </div>
+        </div>
+        <div class="panel-body admin" style="display: none" id="panelPosibles">
+            pene posibles
+        </div>
       </div>
-      <div class="row text-center panel panel-info admin" style="display: none" id="panelPartido">
-          polla partido
-      </div>
-      <div class="row text-center panel panel-info admin" style="display: none" id="panelPosibles">
-          pene posibles
+
+      <div class="panel panel-primary">
+        <div class="panel-heading">Apuestas</div>
+        <div class="panel-body">
+          <div class="col-sm-6">
+            <h3>Qué vais a apostar?</h3>
+            <input type="text" class="form-control input-lg" id="tipoApuesta" name="tipoApuesta" placeholder="Cerveza, dinero..."/>
+          </div>
+          <div class="col-sm-6">
+            <h3>Mínima apuesta</h3>
+            <input type="text" class="form-control input-lg" id="minBet" name="minBet" placeholder="Mínima apuesta"/>
+          </div>
+        </div>
       </div>
       <div class="row text-center">
           <button type="submit" class="btn-success btn-lg">Submit</button>

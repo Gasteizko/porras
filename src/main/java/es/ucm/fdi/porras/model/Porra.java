@@ -48,9 +48,6 @@ public class Porra implements Serializable{
     @Column(name = "winner_possible_bet")
     private Integer winnerPosisibleBet;
 
-    @Column(name = "max_participants")
-    private Integer maxParticipantes;
-
     @Column(name = "created_time", nullable = false, updatable = false, insertable = false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
     @NonNull
@@ -68,8 +65,20 @@ public class Porra implements Serializable{
     @Column(name = "visits")
     private Long visits;
 
+    @Column(name = "equipoLocal")
+    private String equipoLocal;
+
+    @Column(name = "equipoVisitante")
+    private String equipoVisitante;
+
     @Column(name = "min_bet")
     private Double minBet;
+
+    @Column(name = "tipoApuesta")
+    private String tipoApuesta;
+
+    @Column(name = "apuestaOpen")
+    private String apuestaOpen;
 
     @OneToMany(mappedBy = "porra", fetch = FetchType.LAZY)
     private List<UserPorra> participants;

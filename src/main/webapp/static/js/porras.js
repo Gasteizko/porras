@@ -42,6 +42,7 @@ $(".clickedit").click(function(){
             break;
 
     }
+    $("#panelTodos").show();
 });
 
 function readURL(input) {

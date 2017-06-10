@@ -39,4 +39,14 @@ public class PorraForm {
 
     private MultipartFile file;
 
+    private String equipoLocal;
+
+    private String equipoVisitante;
+
+    private String tipoApuesta;
+
+    private Double minBet;
+
+    private String apuestaOpen;
+
 }
