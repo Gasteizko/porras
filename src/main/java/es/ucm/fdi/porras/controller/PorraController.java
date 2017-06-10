@@ -175,6 +175,7 @@ public class PorraController {
             createdPorra.setImageUrl(porraForm.getTituloPorra() + ".jpg");
 
         }
+
 		        /*
         if(porraForm.getTipoPorra() == "POSSIBLES"){
         	String tosplit = porraForm.getPosiblesResultados();
