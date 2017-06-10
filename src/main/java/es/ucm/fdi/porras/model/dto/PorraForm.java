@@ -49,4 +49,6 @@ public class PorraForm {
 
     private String apuestaOpen;
 
+    private String contrasenya;
+
 }

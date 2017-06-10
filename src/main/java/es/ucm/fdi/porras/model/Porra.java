@@ -80,6 +80,9 @@ public class Porra implements Serializable{
     @Column(name = "apuestaOpen")
     private String apuestaOpen;
 
+    @Column(name = "contrasenya")
+    private String contrasenya;
+
     @OneToMany(mappedBy = "porra", fetch = FetchType.LAZY)
     private List<UserPorra> participants;
 

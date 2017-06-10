@@ -11,6 +11,7 @@ import es.ucm.fdi.porras.service.UserService;
 import es.ucm.fdi.porras.storage.StorageService;
 import es.ucm.fdi.porras.utils.exceptions.UserAlreadyExistException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -42,15 +43,18 @@ public class PorraController {
 
     private final StorageService storageService;
 
+    private PasswordEncoder passwordEncoder;
+
 
     public PorraController(PorraService porraService, UserService userService, UserRepository userRepository,
-                           PorraRepository porraRepository, StorageService storageService, UserPorraRepository userPorraRepository) {
+                           PorraRepository porraRepository, StorageService storageService, UserPorraRepository userPorraRepository, PasswordEncoder passwordEncoder) {
         this.porraService = porraService;
         this.userService = userService;
         this.userRepository = userRepository;
         this.porraRepository = porraRepository;
         this.userPorraRepository = userPorraRepository;
         this.storageService = storageService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @RequestMapping(value = {"/porra"}, method = RequestMethod.GET)
@@ -142,6 +146,8 @@ public class PorraController {
         createdPorra.setTipoApuesta(porraForm.getTipoApuesta());
         createdPorra.setMinBet(porraForm.getMinBet());
         createdPorra.setApuestaOpen(porraForm.getApuestaOpen());
+        //createdPorra.setContrasenya(porraForm.getContrasenya());
+        createdPorra.setContrasenya(passwordEncoder.encode(porraForm.getContrasenya()));
         if(porraForm.getFile().isEmpty() == false) {
             storageService.store(porraForm.getFile(), porraForm.getTituloPorra() + ".jpg");
             createdPorra.setImageUrl(porraForm.getTituloPorra() + ".jpg");
