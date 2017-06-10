@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <div th:replace="fragments/metaHeader :: metaHead"> Error: Error</div>
 <body class="bodyPorra">
   <div th:replace="fragments/navbar :: navbar"> Error: Error</div>
@@ -15,12 +15,11 @@
     <!-- Foto equipos e información -->
     <div class="row">
       <div class="col-md-3">
-        <img th:src="@{'/files/' + ${p.imageUrl}}" class="img-responsive center-block" alt="Club2" width="120" height="120" />
+        <img th:src="@{'/static/img/' + ${p.imageUrlLocal}}" class="img-responsive center-block" alt="Club2" width="120" height="120" />
       </div>
 
       <div class="col-md-6">
         <h4 class="text-center"><strong >Tipo: </strong> <span th:text="${p.type}"> </span></h4>
-        <h4 class="text-center"><strong>Se apuesta: </strong> <span th:text="${p.tipoApuesta}"></span></h4>
         <h4 class="text-center"><strong>Apuesta mínima:</strong> <span th:text="${p.minBet}"></span></h4>
         <div th:if="${#strings.equals(p.type, 'MATCH')}">
           <h4 class="text-center"><strong>Equipo Local:</strong> <span th:text="${p.equipoLocal}"></span> </h4>
@@ -32,11 +31,13 @@
       </div>
 
       <div class="col-md-3">
-        <img th:src="@{'/files/' + ${p.imageUrl}}" class="img-responsive center-block" alt="Club2" width="120" height="120" />
+        <img th:src="@{'/static/img/' + ${p.imageUrlVisitor}}" class="img-responsive center-block" alt="Club2" width="120" height="120" />
       </div>
     </div>
 
     <br />
+
+    <!-- ToDo  si es juez que permita seleccionar el ganador y si es admin q permita borrar la porra-->
 
     <!-- Participantes -->
     <div class="row text-center">
@@ -47,10 +48,16 @@
               <th class="text-center">Participante</th>
               <th class="text-center">Apuesta</th>
               <th class="text-center">Cantidad</th>
+              <div th:if="${#strings.equals(principal.principal.authorities[0], 'ROLE_ADMIN')}">
+                <th class="text-center">
+                    Asignar Ganador
+                </th>
+              </div>
+
             </tr>
           </thead>
           <tbody>
-          <tr th:if="${not #lists.isEmpty(p.participants)}" th:each="bet: ${p.participants}">
+          <tr th:if="${not #lists.isEmpty(p.participants)}" th:each="bet: ${p.participants}" th:class="${#strings.equals(bet.user.login, p.winerBet)} ? success : default">
             <td th:text="${bet.user.login}"></td>
             <div th:switch="${p.type}">
               <td th:case="'OPEN'" th:text="${bet.bet}"></td>
@@ -58,6 +65,9 @@
               <td th:case="'POSSIBLES'" th:text="${bet.possibleBet.bet}"></td>
             </div>
             <td th:text="${bet.betAmount}"></td>
+            <td th:if="${#strings.equals(principal.principal.authorities[0], 'ROLE_ADMIN')}">
+              <button th:class="${#strings.equals(bet.user.login, p.winerBet)} ? btn-success : btn-danger" >Ganador</button>
+            </td>
           </tr>
           </tbody>
         </table>

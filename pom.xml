@@ -8,10 +8,6 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<groupId>org.springframework</groupId>
-	<artifactId>gs-uploading-files</artifactId>
-	<version>0.1.0</version>
-
 	<name>porras</name>
 	<description>nPorras platform</description>
 
@@ -39,7 +35,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-        
+
         <!-- seguridad spring -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -87,7 +83,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
-		
+
 		<!-- from https://github.com/spring-projects/spring-boot/blob/master/spring-boot-samples/spring-boot-sample-web-jsp/pom.xml -->
 		<!--<dependency>
 			<groupId>javax.servlet</groupId>

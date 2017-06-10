@@ -27,14 +27,14 @@ INSERT INTO user_friend (id, id_user, id_friend, create_time, update_time, activ
 INSERT INTO user_friend (id, id_user, id_friend, create_time, update_time, active) VALUES (3, 5, 8, null, null, 1);
 
 -- PORRAS
-INSERT INTO porra (id, title, creator_id, type, finish_time, created_time, min_bet) VALUES (1, 'madrid-barsa',                  1, 'MATCH', '2017-06-20 22:19:33.925', '2017-06-04 22:19:33.925',5);
-INSERT INTO porra (id, title, creator_id, type, finish_time, created_time, min_bet) VALUES (2, 'Atlético de Madrid - Sevilla',  1, 'MATCH', '2017-06-20 22:19:33.925', '2017-06-2 22:19:33.925',5);
-INSERT INTO porra (id, title, creator_id, type, finish_time, created_time, min_bet) VALUES (3, 'Barcelona - Valencia C.F.',     3, 'MATCH', '2017-06-20 22:19:33.925', '2017-06-7 22:19:33.925',5);
-INSERT INTO porra (id, title, creator_id, type, finish_time, created_time, min_bet) VALUES (4, 'Deportivo - Celta de Vigo',     2, 'MATCH', '2017-06-20 22:19:33.925', '2017-06-3 22:19:33.925',5);
-INSERT INTO porra (id, title, creator_id, type, finish_time, created_time, min_bet) VALUES (5, 'Equipos que descienden',        3, 'POSSIBLES', '2017-06-20 22:19:33.925', '2016-11-8 22:19:33.925',5);
-INSERT INTO porra (id, title, creator_id, type, finish_time, created_time, min_bet) VALUES (6, 'Próximo entrenador despedido',  4, 'POSSIBLES', '2017-06-20 22:19:33.925', '2016-06-20 22:19:33.925',4);
-INSERT INTO porra (id, title, creator_id, type, finish_time, created_time, min_bet) VALUES (7, '¿Quién gana euromierdón?',      5, 'OPEN', '2017-06-20 22:19:33.925', '2017-06-20 22:19:33.925',4);
-INSERT INTO porra (id, title, creator_id, type, finish_time, created_time, min_bet) VALUES (8, '¿Ganará o no el madrid?',       6, 'POSSIBLES','2017-06-20 22:19:33.925', '2017-06-20 22:19:33.925',4);
+INSERT INTO porra (id, equipo_local, equipo_visitante, image_url_local, image_url_visitor, title, creator_id, type, winner_bet, finish_time, created_time, min_bet) VALUES (1, 'Madrid', 'Barsa', 'madrid.png', 'barsa.png', 'madrid-barsa', 1, 'MATCH', 'riesco', '2017-06-20 22:19:33.925', '2017-06-04 22:19:33.925',5);
+INSERT INTO porra (id, equipo_local, equipo_visitante, image_url_local, image_url_visitor, title, creator_id, type, winner_bet, finish_time, created_time, min_bet) VALUES (2, 'Atlético de Madrid', 'Sevilla', 'atletico.png', 'sevilla.png', 'Atlético de Madrid - Sevilla', 1, 'MATCH', 'null', '2017-06-20 22:19:33.925', '2017-06-2 22:19:33.925',5);
+INSERT INTO porra (id, equipo_local, equipo_visitante, image_url_local, image_url_visitor, title, creator_id, type, winner_bet, finish_time, created_time, min_bet) VALUES (3, 'Barcelona', 'Valencia', 'barsa.png', 'valencia.png', 'Barcelona - Valencia C.F.',     3, 'MATCH', 'null', '2017-06-20 22:19:33.925', '2017-06-7 22:19:33.925',5);
+INSERT INTO porra (id, equipo_local, equipo_visitante, image_url_local, image_url_visitor, title, creator_id, type, winner_bet, finish_time, created_time, min_bet) VALUES (4, 'Deportivo', 'Celta de Vigo', 'deportivo.png', 'celta.png', 'Deportivo - Celta de Vigo',     2, 'MATCH', 'null', '2017-06-20 22:19:33.925', '2017-06-3 22:19:33.925',5);
+INSERT INTO porra (id, equipo_local, equipo_visitante, image_url_local, image_url_visitor, title, creator_id, type, winner_bet, finish_time, created_time, min_bet) VALUES (5, 'null', 'null', 'beer-icon.png', 'beer-icon.png', 'Equipos que descienden',        3, 'POSSIBLES', 'null', '2017-06-20 22:19:33.925', '2016-11-8 22:19:33.925',5);
+INSERT INTO porra (id, equipo_local, equipo_visitante, image_url_local, image_url_visitor, title, creator_id, type, winner_bet, finish_time, created_time, min_bet) VALUES (6, 'null', 'null', 'beer-icon.png', 'beer-icon.png', 'Próximo entrenador despedido',  4, 'POSSIBLES', 'null', '2017-06-20 22:19:33.925', '2016-06-20 22:19:33.925',4);
+INSERT INTO porra (id, equipo_local, equipo_visitante, image_url_local, image_url_visitor, title, creator_id, type, winner_bet, finish_time, created_time, min_bet) VALUES (7, 'null', 'null', 'beer-icon.png', 'beer-icon.png', '¿Quién gana euromierdón?',      5, 'OPEN', 'null', '2017-06-20 22:19:33.925', '2017-06-20 22:19:33.925',4);
+INSERT INTO porra (id, equipo_local, equipo_visitante, image_url_local, image_url_visitor, title, creator_id, type, winner_bet, finish_time, created_time, min_bet) VALUES (8, 'null', 'null', 'beer-icon.png', 'beer-icon.png', 'Ganará o no el madrid?',       6, 'POSSIBLES', 'null', '2017-06-20 22:19:33.925', '2017-06-20 22:19:33.925',4);
 
 -- POSSIBLE_BETS
 INSERT INTO possible_bet (id, porra_id, bet) VALUES (1, 8, 'pierde');
@@ -49,6 +49,7 @@ INSERT INTO possible_bet (id, porra_id, bet) VALUES (9, 6, 'zidane');
 
 -- USER_PORRAS
 INSERT INTO user_porra (user_id, porra_id, bet, possible_bet_id, winned, paid, paid_time, bet_amount) VALUES (3, 1, 'betString', null, 0, 0, null, 5);
+INSERT INTO user_porra (user_id, porra_id, bet, possible_bet_id, winned, paid, paid_time, bet_amount) VALUES (6, 1, 'betString', null, 0, 1, null, 5);
 INSERT INTO user_porra (user_id, porra_id, bet, possible_bet_id, winned, paid, paid_time, bet_amount) VALUES (3, 2, 'betString', null, 0, 0, null, 5);
 INSERT INTO user_porra (user_id, porra_id, bet, possible_bet_id, winned, paid, paid_time, bet_amount) VALUES (3, 3, 'betString', null, 1, 1, null, 5);
 INSERT INTO user_porra (user_id, porra_id, bet, possible_bet_id, winned, paid, paid_time, bet_amount) VALUES (1, 1, 'betString', null, 0, 0, null, 5);

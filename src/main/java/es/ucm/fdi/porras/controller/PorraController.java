@@ -75,6 +75,7 @@ public class PorraController {
             log.error("No such porra: {}", id);
         } else {
             model.addAttribute("p", p);
+            model.addAttribute("principal", principal);
         }
         return "porra";
     }
@@ -149,8 +150,8 @@ public class PorraController {
         //createdPorra.setContrasenya(porraForm.getContrasenya());
         createdPorra.setContrasenya(passwordEncoder.encode(porraForm.getContrasenya()));
         if(porraForm.getFile().isEmpty() == false) {
-            storageService.store(porraForm.getFile(), porraForm.getTituloPorra() + ".jpg");
-            createdPorra.setImageUrl(porraForm.getTituloPorra() + ".jpg");
+            storageService.store(porraForm.getFile(), porraForm.getTituloPorra() + ".png");
+            createdPorra.setImageUrlLocal(porraForm.getTituloPorra() + ".png");
         }
 
         Porra p = porraRepository.save(createdPorra);
