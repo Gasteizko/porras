@@ -33,7 +33,9 @@ public class RootController {
 
 	@GetMapping({"/"})
 	public String root(Model model, Principal principal) {
-		List<Porra> porrasIndex = porraRepository.findAll();
+	  if (principal != null && ! principal.getName().isEmpty())
+	    return "redirect:/dash";
+		List<Porra> porrasIndex = porraRepository.findTop10ByOrderByCreatedTimeDesc();
 		model.addAttribute("porrasIndex", porrasIndex);
 		return "index";
 	}
@@ -70,7 +72,7 @@ public class RootController {
 		model.addAttribute("numporrasCreator", numporrasCreator);
     	return "dash";
 	}
-	
+
 	@GetMapping("/profile")
 	public String profile(Model model, Principal principal) {
 		String name = principal.getName();
@@ -78,7 +80,7 @@ public class RootController {
 		model.addAttribute("user", user);
 		return "profile";
 	}
-	
+
 	@GetMapping("/logout")
 	public String logout() {
 		return "logout";

@@ -180,6 +180,7 @@ public class PorraController {
             createdPorra.setImageUrl(porraForm.getTituloPorra() + ".jpg");
 
         }
+
 		        /*
         if(porraForm.getTipoPorra() == "POSSIBLES"){
         	String tosplit = porraForm.getPosiblesResultados();
@@ -201,7 +202,9 @@ public class PorraController {
             @RequestParam(value = "latest", required = false) Boolean latest,
             @RequestParam(value = "winned", required = false) Boolean winned,
             @RequestParam(value = "losses", required = false) Boolean losses,
-            @RequestParam(value = "mine", required = false) Boolean mine, Principal principal, Model model) {
+            @RequestParam(value = "mine", required = false) Boolean mine,
+            @RequestParam(value = "playing", required = false) Boolean playing,
+            Principal principal, Model model) {
 
         User currentUser = userRepository.findByLogin(principal.getName());
 
@@ -221,6 +224,10 @@ public class PorraController {
         else if (mine != null) {
             log.info("Getting mine porras");
             porras = porraRepository.findAllByCreatorId(currentUser.getId());
+        }
+        else if (playing != null) {
+          log.info("Getting playing porras");
+          porras = porraRepository.findAllByUserId(currentUser.getId());
         }
         else {
             porras = porraRepository.findAll();
