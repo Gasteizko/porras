@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Calligraffitti');
 
+html, body {
+  height: 100%;
+  min-height: 100%;
+}
+
+.container-index{
+    background: url("/static/img/dice.jpg") no-repeat center fixed;
+    background-size: cover;
+    min-height: 100%;
+}
 #jumboIndex{
   background-color: #161e45;
   color: #fff;
@@ -10,16 +20,7 @@
   padding-top: 0;
   display: block;
   }
-#panelLogin{
-  display: block;
-}
-#panelPorras{
-  margin-top: 50px;
-}
-.bodyLogin{
-  background: url("/static/img/dice.jpg") no-repeat center fixed;
-  background-size: cover;
-}
+
 #lista > li > a{
   color:#42413e;
   font-weight: bold;
@@ -38,37 +39,17 @@
   color: #fff;
   background-color:  #2e2d2b;
   border-color: #2e2d2b;
+  margin-bottom: 1.3em;
 }
 .btn-index:hover{
   color: #fff;
   background-color:  #000;
   border-color: #2e2d2b;
 }
-#navSup{
-  background-color: #2e2d2b;
-  border-color: #2e2d2b;
-  color: #fff;
-  border-radius: 0px !important;
-}
 
-#navSup .navbar-nav>li>a {
-  color: #fff;
-}
-#navSup .navbar-nav>li>a:hover {
-  color: #2e2d2b;
-}
-#navSup .navbar-nav>li:hover{
-  background-color: #fff;
-}
-#navSup .navbar-brand{
-  color: #fff;
-}
-#navSup .navbar-brand:hover {
-  color: #d6d6d6;
-  background-color: transparent;
-}
-
-.navbar-brand {
-  font-family: 'Calligraffitti', bold;
-  font-size: 30px;
+#title {
+    font-family: 'Calligraffitti', bold;
+    font-size: 4em;
+    color: #fff;
+    margin-top: 0.5em;
 }
