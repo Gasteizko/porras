@@ -47,7 +47,7 @@
                   <th class="text-center">Participante</th>
                   <th class="text-center">Apuesta</th>
                   <th class="text-center">Cantidad</th>
-                  <div th:if="${#strings.equals(principal.principal.authorities[0], 'ROLE_ADMIN')}">
+                  <div th:if="${#strings.equals(principal.principal.authorities, '[ROLE_ADMIN]')}">
                     <th class="text-center">
                         Asignar Ganador
                     </th>
@@ -64,7 +64,7 @@
                   <td th:case="'POSSIBLES'" th:text="${bet.possibleBet.bet}"></td>
                 </div>
                 <td th:text="${bet.betAmount}"></td>
-                <td th:if="${#strings.equals(principal.principal.authorities[0], 'ROLE_ADMIN')}">
+                <td th:if="${#strings.equals(principal.principal.authorities, '[ROLE_ADMIN]')}">
                   <form class="form-horizontal" role="form" th:action="@{${'/asignarGanador/' + p.id}}" method="post">
                       <input type="hidden" th:value="${bet.user.login}" name="login" />
                       <input type="hidden" th:value="${#strings.equals(bet.user.login, p.winerBet)} ? 'eliminar' : 'asignar'" name="action" />
@@ -84,7 +84,7 @@
         <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalHorizontal">Apostar</button>
       </div>
       <div class="col-md-4 text-center">
-        <div th:if="${#strings.equals(principal.principal.authorities[0], 'ROLE_ADMIN')}">
+        <div th:if="${#strings.equals(principal.principal.authorities, '[ROLE_ADMIN]')}">
           <form class="form-horizontal" role="form" th:action="@{${'/eliminarPorra/' + p.id}}" method="post">
               <button type="submit" class="btn btn-primary btn-lg btn-danger" name="eliminarPorra">Eliminar porra</button>
           </form>

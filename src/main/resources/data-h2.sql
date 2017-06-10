@@ -20,6 +20,10 @@ INSERT INTO user_role (id_user, role_name) VALUES (1, 'ROLE_ADMIN');
 INSERT INTO user_role (id_user, role_name) VALUES (2, 'ROLE_JUDGE');
 INSERT INTO user_role (id_user, role_name) VALUES (3, 'ROLE_USER');
 INSERT INTO user_role (id_user, role_name) VALUES (4, 'ROLE_ANONYMOUS');
+INSERT INTO user_role (id_user, role_name) VALUES (5, 'ROLE_USER');
+INSERT INTO user_role (id_user, role_name) VALUES (6, 'ROLE_USER');
+INSERT INTO user_role (id_user, role_name) VALUES (7, 'ROLE_USER');
+INSERT INTO user_role (id_user, role_name) VALUES (8, 'ROLE_USER');
 
 -- USER_FIENDS
 INSERT INTO user_friend (id, id_user, id_friend, create_time, update_time, active) VALUES (1, 5, 6, null, null, 1);
