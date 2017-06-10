@@ -66,7 +66,7 @@
             </div>
             <td th:text="${bet.betAmount}"></td>
             <td th:if="${#strings.equals(principal.principal.authorities[0], 'ROLE_ADMIN')}">
-              <button th:class="${#strings.equals(bet.user.login, p.winerBet)} ? btn-success : btn-danger" >Ganador</button>
+              <button th:class="${#strings.equals(bet.user.login, p.winerBet)} ? btn-danger: btn-success" th:text="${#strings.equals(bet.user.login, p.winerBet)} ? 'Eliminar' : 'Asignar'"></button>
             </td>
           </tr>
           </tbody>
@@ -80,7 +80,11 @@
       <div class="col-md-4 text-center">
         <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalHorizontal">Apostar</button>
       </div>
-      <div class="col-md-4"></div>
+      <div class="col-md-4 text-center">
+        <div th:if="${#strings.equals(principal.principal.authorities[0], 'ROLE_ADMIN')}">
+          <button class="btn btn-primary btn-lg btn-danger" name="eliminarPorra">Eliminar porra</button>
+        </div>
+      </div>
     </div>
 
     <!-- Modal -->
