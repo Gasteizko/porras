@@ -1,4 +1,4 @@
-package es.ucm.fdi.porras.model;
+package es.ucm.fdi.porras.model.compID;
 
 import lombok.*;
 
@@ -12,7 +12,7 @@ import java.io.Serializable;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserPorraId implements Serializable{
+public class UserPorraCompId implements Serializable{
 
     @Column(name = "user_id")
     private Long userId;
@@ -27,8 +27,8 @@ public class UserPorraId implements Serializable{
 
     @Override
     public boolean equals(Object object) {
-        if (object instanceof UserPorraId) {
-            UserPorraId otherId = (UserPorraId) object;
+        if (object instanceof UserPorraCompId) {
+            UserPorraCompId otherId = (UserPorraCompId) object;
             return (otherId.userId.equals(this.userId)) && (otherId.porraId.equals(this.porraId));
         }
         return false;

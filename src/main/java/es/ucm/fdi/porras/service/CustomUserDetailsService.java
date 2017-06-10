@@ -23,10 +23,15 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 	private UserRepository userRepository;
 
-	public CustomUserDetailsService(UserRepository userRepository) {
-		super();
-		this.userRepository = userRepository;
-	}
+  @Autowired
+  public CustomUserDetailsService(UserRepository userRepository) {
+    super();
+    this.userRepository = userRepository;
+  }
+
+  public CustomUserDetailsService(){
+    super();
+  }
 
 	@Override
     public UserDetails loadUserByUsername(final String username){

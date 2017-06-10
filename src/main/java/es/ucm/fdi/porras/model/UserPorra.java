@@ -1,6 +1,7 @@
 package es.ucm.fdi.porras.model;
 
 
+import es.ucm.fdi.porras.model.compID.UserPorraCompId;
 import lombok.*;
 import lombok.experimental.Accessors;
 
@@ -23,7 +24,7 @@ import java.util.Date;
 public class UserPorra implements Serializable {
 
     @EmbeddedId
-    private UserPorraId userPorraId;
+    private UserPorraCompId userPorraCompId;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false, updatable = false, insertable = false)

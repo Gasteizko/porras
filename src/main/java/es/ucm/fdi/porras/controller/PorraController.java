@@ -1,7 +1,7 @@
 package es.ucm.fdi.porras.controller;
 
 import es.ucm.fdi.porras.model.*;
-import es.ucm.fdi.porras.model.dto.PorraBet;
+import es.ucm.fdi.porras.model.compID.UserPorraCompId;
 import es.ucm.fdi.porras.model.dto.PorraForm;
 import es.ucm.fdi.porras.repository.PorraRepository;
 import es.ucm.fdi.porras.repository.PossibleBetRepository;
@@ -10,7 +10,6 @@ import es.ucm.fdi.porras.repository.UserRepository;
 import es.ucm.fdi.porras.service.PorraService;
 import es.ucm.fdi.porras.service.UserService;
 import es.ucm.fdi.porras.storage.StorageService;
-import es.ucm.fdi.porras.utils.exceptions.UserAlreadyExistException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -20,12 +19,10 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.util.*;
 
 @Controller
@@ -120,8 +117,8 @@ public class PorraController {
             up.setUser(user);
             Porra porra = porraRepository.findOneById(id);
             up.setPorra(porra);
-            UserPorraId userPorraId = new UserPorraId(user.getId(), porra.getId());
-            up.setUserPorraId(userPorraId);
+            UserPorraCompId userPorraCompId = new UserPorraCompId(user.getId(), porra.getId());
+            up.setUserPorraCompId(userPorraCompId);
             userPorraRepository.save(up);
         } else {
             log.error("No valid data: {}", id);

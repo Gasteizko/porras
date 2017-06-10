@@ -83,10 +83,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder(11);
 	}
 
-	/*@Bean
+	@Bean
 	public CustomUserDetailsService springDataUserDetailsService() {
 		return new CustomUserDetailsService();
-	}*/
+	}
 
 	//Si eliminas el "Bean" anterior, esto funciona sin BD ni nada:
 
