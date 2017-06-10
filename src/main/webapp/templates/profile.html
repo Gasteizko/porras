@@ -32,7 +32,7 @@
                       <h4 class="list-group-item-heading"><p>First Name: </p></h4>
                     </div>
                     <div class="col-md-6 col-xs-6">
-                      <h4 class="list-group-item-heading"><p th:text="${user.firstName}"></p></h4>
+                      <input type="text" class="list-group-item-heading form-control input-md" name="firstName" th:value="${user.firstName}"/>
                     </div>
                   </div>
                 </a>
@@ -42,7 +42,7 @@
                       <h4 class="list-group-item-heading"><p>Last Name: </p></h4>
                     </div>
                     <div class="col-md-6 col-xs-6">
-                      <h4 class="list-group-item-heading"><p th:text="${user.lastName}"></p></h4>
+                      <input type="text" class="list-group-item-heading form-control input-md" name="lastName" th:value="${user.lastName}"/>
                     </div>
                   </div>
                 </a>
@@ -52,10 +52,20 @@
                       <h4 class="list-group-item-heading"><p>Email: </p></h4>
                     </div>
                     <div class="col-md-6 col-xs-6">
-                      <h4 class="list-group-item-heading"><p th:text="${user.email}"></p></h4>
+                      <input type="text" class="list-group-item-heading form-control input-md" name="email" th:value="${user.email}"/>
                     </div>
                   </div>
                 </a>
+                 <a class="list-group-item ">
+                   <div class ="row">
+                     <div class="col-md-6 col-xs-6 text-right">
+                       <h4 class="list-group-item-heading"><p>Password: </p></h4>
+                     </div>
+                     <div class="col-md-6 col-xs-6">
+                       <input type="text" class="list-group-item-heading form-control input-md" name="password"/>
+                     </div>
+                   </div>
+                 </a>
                 <a class="list-group-item ">
                   <div class ="row">
                     <div class="col-md-6 col-xs-6 text-right">
@@ -102,16 +112,18 @@
           <div class="panel-body panel-body-custom">
             <div th:each="friend : ${user.friends}" class="friends-list-row" th:onclick="'loadUser(\'' + ${friend.user.login} + '\');'">
               <div class="col-md-3">
+                <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
                 <img th:if="${friend.user.imageUrl == null}" th:src="@{/static/img/image_placeholder.png}" alt="place holder image" id="blah"/>
                 <img th:if="${friend.user.imageUrl != null}" th:src="'/files/'+${friend.user.imageUrl}" />
               </div>
-              <div class="col-md-9">
+              <div class="col-md-6">
                   <h4 th:text="${friend.user.login}"></h4>
-                  <span>Desde: </span>
-                  <h5 th:text="${friend.createTime}"></h5>
-                  <h5 th:text="${friend.user.firstName}"></h5>
-                  <h5 th:text="${friend.user.lastName}"></h5>
+                  <h5 th:text="${friend.user.firstName} + ' ' + ${friend.user.lastName}"></h5>
                   <h5 th:text="${friend.user.email}"></h5>
+              </div>
+              <div class="col-md-3">
+                <h5>Desde: </h5>
+                <h5 th:text="${friend.createTime}"></h5>
               </div>
             </div>
           </div>

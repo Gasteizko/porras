@@ -6,6 +6,9 @@
 .friends-list-row img {
   max-height: 6em;
 }
+.friends-list-row:hover {
+  background-color: #67b168;
+}
 .profile-img {
   max-width: 25em;
 }

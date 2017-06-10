@@ -100,17 +100,13 @@ La plataforma definitiva para apostar con tus amigos.
     <ul><li>
       vista con una lista o mosaico de porras</li>
       <li>
-        Capacidad de filtrar por diferentes campos; públicas, privadas, en las que está participando el usuario, las caducadas, las creadas, las invitaciones recibidas a participar, etc.</li>
+        Capacidad de filtrar por diferentes campos; públicas, privadas, en las que está participando el usuario, las caducadas, las creadas, etc.</li>
     </ul>
   </li>
   <li>
     <p><strong>Porra</strong>: </p>
     <ul><li>
       vista de una porra en concreto, con toda su información.</li>
-      <li>
-        Si el usuario logueado es el creador podrá modificarla.</li>
-      <li>
-        Posibilidad de compartir la porra mediante un enlace (solo para el creador).</li>
     </ul>
   </li>
 </ul>
@@ -120,13 +116,29 @@ La plataforma definitiva para apostar con tus amigos.
 <p>Hemos decidido usar otro motor de renderizado en el servidor en vez del clásico JSP puesto que este último se está dando por deprecado con el tiempo a favor de el motor español Thymeleaf y pensamos que nos será más útil para el proyecto y futuro aprender a utilizarlo</p>
  <p>El desarrollo lo hemos realizado principalmente con Intellij.</p>
 <p>Para los estilos hemos utilizado el framework boostrap e iconos de font awesome y glyphicons.</p>
+<h2>Lista de usuarios</h2>
+<h3>Para todos la contraseña es <b>123</b></h3>
+<ul>
+  <li>admin</li>
+  <li>judge</li>
+  <li>user</li>
+  <li>porras</li>
+  <li>dani</li>
+  <li>riesco</li>
+  <li>malagon</li>
+  <li>pepe</li>
+</ul>
 
 <h2>Vistas (enlaces)</h2>
 <ul>
   <li><a href="http://localhost:8080/">vista principal</a> - Página index, con posbilidad de login, registro, sobre nosotros, etc
-  <li><a href="http://localhost:8080/dashboard">dashboard</a> - Página para ver información personalizada
+  <li><a href="http://localhost:8080/registro">vista principal</a> - Página de registro
+  <li><a href="http://localhost:8080/dash">dashboard</a> - Página para ver información personalizada
   <li><a href="http://localhost:8080/listaporras">vista porras</a> - Página para ver un conjunto de porras, pudiendo filtrar por diferentes valores
-  <li><a href="http://localhost:8080/porra">vista porra</a> - Página de una porra en concreto, pudiendo apostar, compartir o editar dicha porra
+  <li><a href="http://localhost:8080/porra/1">vista porra</a> - Página de una porra en concreto, pudiendo apostar, compartir o editar dicha porra
+  <li><a href="http://localhost:8080/newPorra">vista newPorra</a> - Página con un formulario para crear una nueva porra
+  <li><a href="http://localhost:8080/profile">vista perfil</a> - Página del perfil del usuario actual con la lista de amistades
+  <li><a href="http://localhost:8080/user/admin">vista usuario</a> - Página con la información de un usuario en concreto
 </ul>
 
 <h2>Recursos</h2>

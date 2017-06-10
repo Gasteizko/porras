@@ -1,7 +1,10 @@
 package es.ucm.fdi.porras.controller;
 
+import es.ucm.fdi.porras.model.UserFriend;
+import es.ucm.fdi.porras.model.compID.UserFriendCompId;
 import es.ucm.fdi.porras.model.dto.PorraForm;
 import es.ucm.fdi.porras.model.dto.UserForm;
+import es.ucm.fdi.porras.repository.UserFriendRepository;
 import es.ucm.fdi.porras.repository.UserRepository;
 import es.ucm.fdi.porras.storage.StorageService;
 import es.ucm.fdi.porras.utils.exceptions.UserAlreadyExistException;
@@ -25,6 +28,7 @@ import javax.validation.Valid;
 import java.math.BigInteger;
 import java.security.Principal;
 import java.security.SecureRandom;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -36,10 +40,14 @@ public class UserController {
 
   private final StorageService storageService;
 
-	public UserController (UserService userService, UserRepository userRepository, StorageService storageService) {
+  private final UserFriendRepository userFriendRepository;
+
+	public UserController (UserService userService, UserRepository userRepository, StorageService storageService,
+                         UserFriendRepository userFriendRepository) {
 	    this.userService = userService;
 	    this.userRepository = userRepository;
 	    this.storageService = storageService;
+	    this.userFriendRepository = userFriendRepository;
     }
 
     @RequestMapping(value = "/registro", method = RequestMethod.GET)
@@ -79,9 +87,19 @@ public class UserController {
   @RequestMapping(value = {"/user/{login}"}, method = RequestMethod.GET)
   public String getUserProfileByUserId(@PathVariable("login") String login, Principal principal, Model model) {
     User u = userRepository.findByLogin(login);
+    User currentUser = userRepository.findByLogin(principal.getName());
+    List<UserFriend> friends = currentUser.getFriends();
+    Boolean friend = false;
+    for (UserFriend f : friends ){
+      if (f.getUser().equals(u)){
+        friend = true;
+        break;
+      }
+    }
     if ( login.isEmpty() || u == null)
       return "redirect:/dash";
 	  model.addAttribute("user", u);
+    model.addAttribute("friend", friend);
 	  return "user";
   }
 
@@ -113,8 +131,24 @@ public class UserController {
   }
 
   @RequestMapping(value = "/friendRequest", method = RequestMethod.POST)
-  public RedirectView friendRequest() {
-    return new RedirectView("/");
+  public RedirectView friendRequest( @RequestParam(value = "login", required = true) String login, Principal principal) {
+    User newFriend = userRepository.findByLogin(login);
+    User currentUser = userRepository.findByLogin(principal.getName());
+    if (newFriend == null || currentUser == null){
+      return new RedirectView("/user/" + login + "?error");
+    }
+    UserFriend newAmistad = new UserFriend();
+    newAmistad.setRequest(true);
+    newAmistad.setActive(false);
+    newAmistad.setUser(currentUser);
+    newAmistad.setFriend(newFriend);
+    newAmistad.setUserFriendCompId(new UserFriendCompId(currentUser.getId(), newFriend.getId()));
+    userFriendRepository.save(newAmistad);
+    List<UserFriend> friends = currentUser.getFriends();
+    friends.add(newAmistad);
+    currentUser.setFriends(friends);
+    userRepository.save(currentUser);
+    return new RedirectView("/user/" + login);
 
   }
 }

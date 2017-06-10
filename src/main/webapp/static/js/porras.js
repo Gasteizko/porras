@@ -101,6 +101,36 @@ function dropPosibles(){
 	var aux = $( this ).val();
 
 }
-function loadUser(login) {
-  window.location = '/user/' + login;
+function loadUser(name) {
+  window.location = '/user/' + name;
+}
+
+function friendRequest(name) {
+  $.ajax({
+    url: '/friendRequest',
+    type: 'post',
+    data: {
+      _csrf: $("input[name*='_csrf']").val(),
+      login: name
+    },
+    success: function (data) {
+      location.reload(true)
+    }
+  });
+
+}
+
+function friendDelete(name) {
+  $.ajax({
+    url: '/friendDelete',
+    type: 'post',
+    data: {
+      _csrf: $("input[name*='_csrf']").val(),
+      login: name
+    },
+    success: function (data) {
+      location.reload(true)
+    }
+  });
+
 }
