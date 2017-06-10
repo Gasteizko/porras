@@ -15,20 +15,24 @@
     <!-- Foto equipos e información -->
     <div class="row">
       <div class="col-md-3">
-        <img th:src="@{${'/static/img/'}}" class="img-responsive center-block" alt="Club2" width="120" height="120" />
+        <img th:src="@{'/files/' + ${p.imageUrl}}" class="img-responsive center-block" alt="Club2" width="120" height="120" />
       </div>
 
       <div class="col-md-6">
         <h4 class="text-center"><strong >Tipo: </strong> <span th:text="${p.type}"> </span></h4>
+        <h4 class="text-center"><strong>Se apuesta: </strong> <span th:text="${p.tipoApuesta}"></span></h4>
         <h4 class="text-center"><strong>Apuesta mínima:</strong> <span th:text="${p.minBet}"></span></h4>
         <div th:if="${#strings.equals(p.type, 'MATCH')}">
-          <h4 class="text-center"><strong>Equipo 1:</strong> <span></span> </h4>
-          <h4 class="text-center"><strong>Equipo 2:</strong> <span></span></h4>
+          <h4 class="text-center"><strong>Equipo Local:</strong> <span th:text="${p.equipoLocal}"></span> </h4>
+          <h4 class="text-center"><strong>Equipo Visitante:</strong> <span th:text="${p.equipoVisitante}"></span></h4>
+        </div>
+        <div th:if="${#strings.equals(p.type, 'OPEN')}">
+          <h4 class="text-center"><strong>Tema apuesta:</strong> <span th:text="${p.apuestaOpen}"></span> </h4>
         </div>
       </div>
 
       <div class="col-md-3">
-        <img th:src="@{${'/static/'}}" class="img-responsive center-block" alt="Club2" width="120" height="120" />
+        <img th:src="@{'/files/' + ${p.imageUrl}}" class="img-responsive center-block" alt="Club2" width="120" height="120" />
       </div>
     </div>
 
