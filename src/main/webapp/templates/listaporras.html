@@ -10,7 +10,7 @@
         <div class="col-lg-12 col-xs-12 col-lg-offset-1">
           <div class="col-sm-2 col-xs-6 text-center"><button type="button" onclick="loadListaPorras(this)" id="btn-listaporras-latest" class="btn btn-primary btn-lg btn-listaporras">Últimas <span th:text="${numporras}" class="badge"><p ></p></span></button></div>
           <div class="col-sm-2 col-xs-6 text-center"><button type="button" onclick="loadListaPorras(this)" id="btn-listaporras-mine" class="btn btn-primary btn-lg btn-listaporras">Mías <span th:text="${numporrasM}" class="badge"></span></button></div>
-          <div class="col-sm-2 col-xs-6 text-center"><button type="button" onclick="loadListaPorras(this)" id="btn-listaporras-playing" class="btn btn-primary btn-lg btn-listaporras">Jugando <span th:text="${numporrasP}" class="badge"></span></button></div>          
+          <div class="col-sm-2 col-xs-6 text-center"><button type="button" onclick="loadListaPorras(this)" id="btn-listaporras-playing" class="btn btn-primary btn-lg btn-listaporras">Jugando <span th:text="${numporrasP}" class="badge"></span></button></div>
           <div class="col-sm-2 col-xs-6 text-center"><button type="button" onclick="loadListaPorras(this)" id="btn-listaporras-winned" class="btn btn-success btn-lg btn-listaporras">Ganadas <span th:text="${numporrasG}" class="badge"></span></button></div>
           <div class="col-sm-2 col-xs-6 text-center"><button type="button" onclick="loadListaPorras(this)" id="btn-listaporras-losses" class="btn btn-danger btn-lg btn-listaporras">Perdidas <span th:text="${numporrasL}" class="badge"></span></button></div>
         </div>
@@ -21,14 +21,14 @@
           <div class="porra-item" th:onclick="'loadPorra(\'' + ${porra.id} + '\');'">
             <div class="row">
               <div class="col-lg-3 col-xs-3">
-                <img th:src="@{/static/img/madrid.png}" class="img-responsive img-rounded porra-img" />
+                <img th:src="@{'/files/' + ${porra.imageUrl}}" class="img-responsive img-rounded porra-img" />
               </div>
               <div class="col-lg-6 col-xs-6">
                 <h4 th:text="${porra.title}">Title</h4>
                 <p th:text="${porra.description}"></p>
               </div>
               <div class="col-lg-3 col-xs-3">
-                <img th:src="@{/static/img/madrid.png}" class="img-responsive img-rounded porra-img" />
+                <img th:src="@{'/files/' + ${porra.imageUrl}}" class="img-responsive img-rounded porra-img" />
               </div>
             </div>
           </div>

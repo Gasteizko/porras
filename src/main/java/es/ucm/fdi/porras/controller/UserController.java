@@ -85,6 +85,14 @@ public class UserController {
 	  return "user";
   }
 
+  @GetMapping("/profile")
+  public String profile(Model model, Principal principal) {
+    String name = principal.getName();
+    User user = userRepository.findByLogin(name);
+    model.addAttribute("user", user);
+    return "profile";
+  }
+
   @RequestMapping(value = "/updateProfile", method = RequestMethod.POST)
   public RedirectView newPorrita(@ModelAttribute("porraForm") UserForm userForm,
                                  BindingResult result, final Errors errors, Principal principal) {
@@ -102,5 +110,11 @@ public class UserController {
       }
     }
     return new RedirectView("/profile");
+  }
+
+  @RequestMapping(value = "/friendRequest", method = RequestMethod.POST)
+  public RedirectView friendRequest() {
+    return new RedirectView("/");
+
   }
 }

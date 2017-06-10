@@ -76,12 +76,4 @@ public class RootController {
     	return "dash";
 	}
 
-	@GetMapping("/profile")
-	public String profile(Model model, Principal principal) {
-		String name = principal.getName();
-		User user = userRepository.findByLogin(name);
-		model.addAttribute("user", user);
-		return "profile";
-	}
-
 }

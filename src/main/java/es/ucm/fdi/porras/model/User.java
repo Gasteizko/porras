@@ -31,7 +31,7 @@ import java.time.Instant;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = {"userFriends", "porras"})
+@ToString(exclude = {"friends", "porras"})
 @EqualsAndHashCode
 public class User implements Serializable {
 

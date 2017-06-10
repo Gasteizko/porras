@@ -34,7 +34,7 @@ public class UserFriend implements Serializable {
   @NonNull
   private Boolean request;
 
-  @Column(name = "create_time")
+  @Column(name = "create_time", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
   @Temporal(TemporalType.TIMESTAMP)
   private Date createTime;
 

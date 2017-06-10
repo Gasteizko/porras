@@ -1,6 +1,10 @@
 .friends-list-row {
-  padding: 3em;
-  box-shadow: 10px 10px 5px #888888;
+  cursor: pointer;
+  display: inline-block;
+  width: 100%;
+}
+.friends-list-row img {
+  max-height: 6em;
 }
 .profile-img {
   max-width: 25em;
