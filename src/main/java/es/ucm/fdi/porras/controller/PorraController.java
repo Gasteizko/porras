@@ -153,7 +153,17 @@ public class PorraController {
             storageService.store(porraForm.getFile(), porraForm.getTituloPorra() + ".png");
             createdPorra.setImageUrlLocal(porraForm.getTituloPorra() + ".png");
         }
-
+		        /*
+        if(porraForm.getTipoPorra() == "POSSIBLES"){
+        	String tosplit = porraForm.getPosiblesResultados();
+        	String[] resultados = tosplit.split(";");
+        	for(int i = 0; i < resultados.length; i++){
+        		PossibleBet = new PossibleBet()
+        	}
+        //split ;
+        //posiblebet for
+        //
+        }*/
         Porra p = porraRepository.save(createdPorra);
 
         return new RedirectView("/porra/" + p.getId());

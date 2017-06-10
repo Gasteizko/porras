@@ -3,7 +3,7 @@
 <div th:replace="fragments/metaHeader :: metaHead"> Error: Error</div>
 <body class="bodyPorra">
   <div th:replace="fragments/navbar :: navbar"> Error: Error</div>
-  <div class="container">
+  <div class="container container-porras">
     <div class="row">
       <div class="col-lg-12">
         <h1 class="page-header">Dashboard</h1>
@@ -85,7 +85,7 @@
             <div th:each="porra, porraStatC: ${porrasCreator}" class="list-group">
               <a th:href="@{/porra/{id}(id=${porra.id})}" class="list-group-item text-center"  th:unless="${porraStatC.index > 2}">
                 <h4 class="list-group-item-heading"><p th:text="${porra.title}"></p></h4>
-              </a> 
+              </a>
             </div>
           </div>
           <a href="#">
@@ -142,7 +142,7 @@
             <div th:each="porraUL, porraStatUL: ${porrasUserLost}" class="list-group">
               <a th:href="@{/porra/{id}(id=${porraUL.id})}" class="list-group-item text-center" th:unless="${porraStatUL.index > 2}">
                 <h4 class="list-group-item-heading"><p th:text="${porraUL.title}"></p></h4>
-              </a> 
+              </a>
             </div>
           </div>
           <a href="#">
