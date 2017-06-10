@@ -61,3 +61,7 @@ html, body {
 .register-form {
   margin-top: 10em;
 }
+
+#login-panel {
+  margin-top: 6em;
+}
