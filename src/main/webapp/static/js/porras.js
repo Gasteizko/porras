@@ -96,3 +96,8 @@ $('#formPorra').submit(function() {
   //return false;
   // return false to cancel form action
 });
+
+function dropPosibles(){
+	var aux = $( this ).val();
+
+}

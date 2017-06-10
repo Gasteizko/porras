@@ -38,6 +38,8 @@ public class PorraController {
     private PorraRepository porraRepository;
 
     private UserPorraRepository userPorraRepository;
+    
+    private PossibleBetRepository possibleBetRepository;
 
     private final StorageService storageService;
 
@@ -45,7 +47,7 @@ public class PorraController {
 
 
     public PorraController(PorraService porraService, UserService userService, UserRepository userRepository,
-                           PorraRepository porraRepository, StorageService storageService, UserPorraRepository userPorraRepository, PasswordEncoder passwordEncoder) {
+                           PorraRepository porraRepository, StorageService storageService, UserPorraRepository userPorraRepository, PasswordEncoder passwordEncoder,  PossibleBetRepository possibleBetRepository) {
         this.porraService = porraService;
         this.userService = userService;
         this.userRepository = userRepository;
@@ -53,6 +55,8 @@ public class PorraController {
         this.userPorraRepository = userPorraRepository;
         this.storageService = storageService;
         this.passwordEncoder = passwordEncoder;
+        this.possibleBetRepository = possibleBetRepository;
+        
     }
 
     @RequestMapping(value = {"/porra"}, method = RequestMethod.GET)
@@ -69,12 +73,17 @@ public class PorraController {
             return "porra";
         }
         Porra p = porraRepository.findOne(id);
+        
         if (p == null) {
             log.error("No such porra: {}", id);
         } else {
             model.addAttribute("p", p);
             model.addAttribute("principal", principal);
         }
+        if(p.getPossibleBets().size() > 0){
+        	model.addAttribute("possibleBet", p.getPossibleBets());
+        }
+        
         return "porra";
     }
 
@@ -190,7 +199,11 @@ public class PorraController {
         	createdPorra.setPossibleBets(lpb);
         }
         Porra p = porraRepository.save(createdPorra);
-
+    	possibleBetRepository.save(p.getPossibleBets());
+        /*for(int i = 0; i < p.getPossibleBets().size(); i++){
+        	PossibleBet pb = p.getPossibleBets().get(i);
+        	possibleBetRepository.
+        }*/
         return new RedirectView("/porra/" + p.getId());
     }
 
