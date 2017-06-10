@@ -24,8 +24,8 @@ spring:
             enabled: true
             max-file-size: 2MB
             max-request-size: 3MB
-            location: /
-            resolve-lazily: false
+            #location: /upload-dir
+            #resolve-lazily: false
 security:
     basic:
         # Disables basic HTTP Authentication
