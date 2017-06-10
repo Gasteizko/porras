@@ -180,18 +180,18 @@ public class PorraController {
             createdPorra.setImageUrl(porraForm.getTituloPorra() + ".jpg");
 
         }
-
-		        /*
-        if(porraForm.getTipoPorra() == "POSSIBLES"){
+        if(porraForm.getTipoPorra().equals("POSSIBLES")){
+        	List<PossibleBet> lpb = new ArrayList<PossibleBet>();
         	String tosplit = porraForm.getPosiblesResultados();
         	String[] resultados = tosplit.split(";");
         	for(int i = 0; i < resultados.length; i++){
-        		PossibleBet = new PossibleBet()
+        		PossibleBet p = new PossibleBet();
+        		p.setBet(resultados[i]);
+        		p.setPorra(createdPorra);
+        		lpb.add(p);
         	}
-        //split ;
-        //posiblebet for
-        //
-        }*/
+        	createdPorra.setPossibleBets(lpb);
+        }
         Porra p = porraRepository.save(createdPorra);
 
         return new RedirectView("/porra/" + p.getId());

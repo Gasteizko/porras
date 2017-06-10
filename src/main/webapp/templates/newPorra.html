@@ -18,7 +18,7 @@
       </table>
     </form>-->
   </div>
-  <form th:action="@{/newPorration}" enctype="multipart/form-data" method="POST">
+  <form th:action="@{/newPorration}" enctype="multipart/form-data" method="POST" id="formPorra">
     <div class="row form-group text-center">
       <div class="col-sm-6">
         <h3>Título</h3>
@@ -126,5 +126,6 @@
   </form>
 </div>
 <div th:replace="fragments/footer :: footer"></div>
+
 </body>
 </html>

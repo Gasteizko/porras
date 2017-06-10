@@ -90,6 +90,7 @@ $('#formPorra').submit(function() {
     if($( this ).val() != "")
       opciones = opciones + $( this ).val() + ";";
   });
-  $('#posiblesResultados').value(opciones);
+  $('#posiblesResultados').val(opciones);
+  //return false;
   // return false to cancel form action
 });
