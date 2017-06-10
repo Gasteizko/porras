@@ -6,7 +6,7 @@ html, body {
 }
 
 .container-index{
-  background: url("/static/img/dice.jpg") no-repeat center fixed;
+  background: url("/upload-dir/dice.jpg") no-repeat center fixed;
   background-size: cover;
   min-height: 100%;
   margin: 0 !important;

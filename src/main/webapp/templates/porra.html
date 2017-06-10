@@ -15,7 +15,7 @@
     <!-- Foto equipos e información -->
     <div class="row">
       <div class="col-md-3">
-        <img th:src="@{'/static/img/' + ${p.imageUrlLocal}}" class="img-responsive center-block" alt="Club2" width="120" height="120" />
+        <img th:src="@{'/files/' + ${p.imageUrlLocal}}" class="img-responsive center-block" alt="Club2" width="120" height="120" />
       </div>
 
       <div class="col-md-6">
@@ -31,13 +31,11 @@
       </div>
 
       <div class="col-md-3">
-        <img th:src="@{'/static/img/' + ${p.imageUrlVisitor}}" class="img-responsive center-block" alt="Club2" width="120" height="120" />
+        <img th:src="@{'/files/' + ${p.imageUrlVisitor}}" class="img-responsive center-block" alt="Club2" width="120" height="120" />
       </div>
     </div>
 
     <br />
-
-    <!-- ToDo  si es juez que permita seleccionar el ganador y si es admin q permita borrar la porra-->
 
     <!-- Participantes -->
         <div class="row text-center">
@@ -79,19 +77,20 @@
         </div>
 
     <!-- Botones -->
-        <div class="row">
-          <div class="col-md-4"></div>
-          <div class="col-md-4 text-center">
-            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalHorizontal">Apostar</button>
-          </div>
-          <div class="col-md-4 text-center">
-            <div th:if="${#strings.equals(principal.principal.authorities[0], 'ROLE_ADMIN')}">
-              <form class="form-horizontal" role="form" th:action="@{${'/eliminarPorra/' + p.id}}" method="post">
-                  <button type="submit" class="btn btn-primary btn-lg btn-danger" name="eliminarPorra">Eliminar porra</button>
-              </form>
-            </div>
-          </div>
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4 text-center">
+        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalHorizontal">Apostar</button>
+      </div>
+      <div class="col-md-4 text-center">
+        <div th:if="${#strings.equals(principal.principal.authorities[0], 'ROLE_ADMIN')}">
+          <form class="form-horizontal" role="form" th:action="@{${'/eliminarPorra/' + p.id}}" method="post">
+              <button type="submit" class="btn btn-primary btn-lg btn-danger" name="eliminarPorra">Eliminar porra</button>
+          </form>
         </div>
+      </div>
+    </div>
+
     <!-- Modal -->
     <div class="modal fade" id="myModalHorizontal" tabindex="-1" role="dialog"
          aria-labelledby="myModalLabel" aria-hidden="true">
@@ -115,8 +114,14 @@
 
             <form class="form-horizontal" role="form" th:action="@{${'/betPorra/' + p.id}}" method="post">
               <div class="input-group">
-                <span class="input-group-addon">Apostar a: </span>
-                <input id="msg" type="text" class="form-control" name="betstring" />
+
+                <input th:if="${#strings.equals(p.type, 'POSSIBLES')}" id="msg" type="text" class="form-control" name="betstring"/>
+                <div th:unless="${#strings.equals(p.type, 'POSSIBLES')}">
+                  <span class="input-group-addon">Apostar a: </span>
+                  <input id="msg" type="text" class="form-control" name="betstring" />
+                </div>
+
+
               </div>
               <div class="input-group">
                 <span class="input-group-addon">Cantidad a apostar: </span>
