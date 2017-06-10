@@ -18,7 +18,7 @@
         </table>
       </form>-->
     </div>
-    <form th:action="@{/newPorration}" enctype="multipart/form-data" method="POST">
+    <form th:action="@{/newPorration}" enctype="multipart/form-data" method="POST" id="formPorra">
       <div class="row form-group text-center">
         <div class="col-sm-6">
           <h3>Título</h3>
@@ -83,7 +83,23 @@
           </div>
         </div>
         <div class="panel-body admin" style="display: none" id="panelPosibles">
-            pene posibles
+		    <div class ="row">
+		    	<div class="col-sm-8">
+		    		<div id ="posibles">
+		    		<h3>Posible resultado:</h3>
+		            <input type="text" class="form-control input-lg posibleResul" id="posibleResultado" name="posibleResultado1" placeholder="Escribe el posible resultado"/>
+	        		</div>
+	        	</div>
+	        	<div class="col-sm-4">
+	        		<br></br>
+	        		 <input type="text" class="form-control input-lg" id="posiblesResultados" name="posiblesResultados" style="display:none"/>
+	        	</div>
+        	</div>
+        	<div class ="row">
+	        	<div class="col-sm-12">
+	        		<button type="button" class="btn btn-primary pull-right" onClick="addPosible()">+</button>
+		        </div>
+		    </div>
         </div>
       </div>
 
@@ -110,5 +126,20 @@
     </form>
   </div>
   <div th:replace="fragments/footer :: footer"></div>
+  <script>
+  	function addPosible(){
+  		$( "#posibles" ).append( '<br></br><h3>Posible resultado:</h3><input type="text" class="form-control input-lg posibleResul" id="posibleResultado" name="posibleResultado1" placeholder="Escribe el posible resultado"/>' );
+  	}
+  	$('#formPorra').submit(function() {
+  		var opciones ="";
+  		var posibles = $( ".posibleResul" );
+  	   posibles.each(function( index ) {
+  		   if($( this ).val() != "")
+  			opciones = opciones + $( this ).val() + ";";
+		});
+  	 $('#posiblesResultados').value(opciones);
+  	    // return false to cancel form action
+  	});
+  </script>
 </body>
 </html>

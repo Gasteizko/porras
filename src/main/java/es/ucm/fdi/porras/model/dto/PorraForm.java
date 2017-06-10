@@ -48,6 +48,8 @@ public class PorraForm {
     private Double minBet;
 
     private String apuestaOpen;
+    
+    private String posiblesResultados;
 
     private String contrasenya;
 
