@@ -99,6 +99,6 @@ public class User implements Serializable {
     private Set<Role> roles = new HashSet<>();
 
     @OneToMany(mappedBy = "friend", fetch = FetchType.LAZY)
-    private List<UserFriend> userFriends;
+    private List<UserFriend> friends;
 
 }

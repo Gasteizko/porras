@@ -30,6 +30,10 @@ public class UserFriend implements Serializable {
   @NonNull
   private Boolean active;
 
+  @Column
+  @NonNull
+  private Boolean request;
+
   @Column(name = "create_time")
   @Temporal(TemporalType.TIMESTAMP)
   private Date createTime;

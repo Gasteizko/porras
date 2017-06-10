@@ -57,7 +57,7 @@
               </thead>
               <tbody>
               <tr th:if="${not #lists.isEmpty(p.participants)}" th:each="bet: ${p.participants}" th:class="${#strings.equals(bet.user.login, p.winerBet)} ? success : default">
-                <td th:text="${bet.user.login}"></td>
+                <td th:text="${bet.user.login}" class="user-participant" th:onclick="'loadUser(\'' + ${bet.user.login} + '\');'"></td>
                 <div th:switch="${p.type}">
                   <td th:case="'OPEN'" th:text="${bet.bet}"></td>
                   <td th:case="'MATCH'" th:text="${bet.bet}"></td>

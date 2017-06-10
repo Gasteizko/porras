@@ -1,6 +1,9 @@
 package es.ucm.fdi.porras.controller;
 
+import es.ucm.fdi.porras.model.dto.PorraForm;
 import es.ucm.fdi.porras.model.dto.UserForm;
+import es.ucm.fdi.porras.repository.UserRepository;
+import es.ucm.fdi.porras.storage.StorageService;
 import es.ucm.fdi.porras.utils.exceptions.UserAlreadyExistException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
+import java.math.BigInteger;
+import java.security.Principal;
+import java.security.SecureRandom;
 
 @Controller
 @Slf4j
@@ -26,8 +32,14 @@ public class UserController {
 
 	private UserService userService;
 
-	public UserController (UserService userService) {
+	private UserRepository userRepository;
+
+  private final StorageService storageService;
+
+	public UserController (UserService userService, UserRepository userRepository, StorageService storageService) {
 	    this.userService = userService;
+	    this.userRepository = userRepository;
+	    this.storageService = storageService;
     }
 
     @RequestMapping(value = "/registro", method = RequestMethod.GET)
@@ -59,4 +71,36 @@ public class UserController {
 
         return new RedirectView("/");
 	}
+  @RequestMapping(value = {"/user"}, method = RequestMethod.GET)
+  public String getUserProfileByUserId(Model model){
+	  return "redirect:/dash";
+  }
+
+  @RequestMapping(value = {"/user/{login}"}, method = RequestMethod.GET)
+  public String getUserProfileByUserId(@PathVariable("login") String login, Principal principal, Model model) {
+    User u = userRepository.findByLogin(login);
+    if ( login.isEmpty() || u == null)
+      return "redirect:/dash";
+	  model.addAttribute("user", u);
+	  return "user";
+  }
+
+  @RequestMapping(value = "/updateProfile", method = RequestMethod.POST)
+  public RedirectView newPorrita(@ModelAttribute("porraForm") UserForm userForm,
+                                 BindingResult result, final Errors errors, Principal principal) {
+    User u = userRepository.findByLogin(principal.getName());
+    if(! userForm.getProfileImage().isEmpty() && u != null) {
+      String mime = userForm.getProfileImage().getContentType();
+      // Only allows upload png and jpg images
+      if (mime.equals("image/png") || mime.equals("image/jpg")){
+        String randString = new BigInteger(130, new SecureRandom()).toString(32);
+        String extension = mime.split("/")[1];
+        String fileName = randString + u.getLogin() + "." + extension;
+        storageService.store(userForm.getProfileImage(), fileName);
+        u.setImageUrl(fileName);
+        userRepository.save(u);
+      }
+    }
+    return new RedirectView("/profile");
+  }
 }

@@ -79,7 +79,7 @@ function loadListaPorras(element) {
 }
 
 function loadPorra(id) {
-  window.location = '/porra/' + id
+  window.location = '/porra/' + id;
 }
 
 function addPosible(){
@@ -100,4 +100,7 @@ $('#formPorra').submit(function() {
 function dropPosibles(){
 	var aux = $( this ).val();
 
+}
+function loadUser(login) {
+  window.location = '/user/' + login;
 }

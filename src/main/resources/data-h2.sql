@@ -1,13 +1,13 @@
 -- TEST DATA
 -- USERS
-INSERT INTO user (id, login, first_name, email, password_hash, activated) VALUES (1, 'admin', 'administrador', 'admin@porras.es', '$2a$11$b8zILFych1k7ge3cCnzrEepHA7LOHNAk.x2iG9zd/8K0vypCJ5ODC', 1);
-INSERT INTO user (id, login, first_name, email, password_hash, activated) VALUES (2, 'judge', 'juez', 'judge@porras.es', '$2a$11$b8zILFych1k7ge3cCnzrEepHA7LOHNAk.x2iG9zd/8K0vypCJ5ODC', 1);
-INSERT INTO user (id, login, first_name, email, password_hash, activated) VALUES (3, 'user', 'ususario', 'user@porras.es', '$2a$11$b8zILFych1k7ge3cCnzrEepHA7LOHNAk.x2iG9zd/8K0vypCJ5ODC', 1);
-INSERT INTO user (id, login, first_name, email, password_hash, activated) VALUES (4, 'porras', 'porrero', 'porra@porras.es', '$2a$11$b8zILFych1k7ge3cCnzrEepHA7LOHNAk.x2iG9zd/8K0vypCJ5ODC', 1);
-INSERT INTO user (id, login, first_name, email, password_hash, activated) VALUES (5, 'dani', 'daniel', 'dani@porras.es', '$2a$11$b8zILFych1k7ge3cCnzrEepHA7LOHNAk.x2iG9zd/8K0vypCJ5ODC', 1);
-INSERT INTO user (id, login, first_name, email, password_hash, activated) VALUES (6, 'riesco', 'hector', 'riesco@porras.es', '$2a$11$b8zILFych1k7ge3cCnzrEepHA7LOHNAk.x2iG9zd/8K0vypCJ5ODC', 1);
-INSERT INTO user (id, login, first_name, email, password_hash, activated) VALUES (7, 'malagon', 'hector', 'malagon@porras.es', '$2a$11$b8zILFych1k7ge3cCnzrEepHA7LOHNAk.x2iG9zd/8K0vypCJ5ODC', 1);
-INSERT INTO user (id, login, first_name, email, password_hash, activated) VALUES (8, 'pepe', 'pepe', 'pepe@porras.es', '$2a$11$b8zILFych1k7ge3cCnzrEepHA7LOHNAk.x2iG9zd/8K0vypCJ5ODC', 1);
+INSERT INTO user (id, login, first_name, email, password_hash, activated, image_url) VALUES (1, 'admin', 'administrador', 'admin@porras.es', '$2a$11$b8zILFych1k7ge3cCnzrEepHA7LOHNAk.x2iG9zd/8K0vypCJ5ODC',  1, 'gilfoyle-small.jpg');
+INSERT INTO user (id, login, first_name, email, password_hash, activated, image_url) VALUES (2, 'judge', 'juez', 'judge@porras.es', '$2a$11$b8zILFych1k7ge3cCnzrEepHA7LOHNAk.x2iG9zd/8K0vypCJ5ODC',           1, '70f0a92752c232df98c2616b1d6b0248.jpg');
+INSERT INTO user (id, login, first_name, email, password_hash, activated, image_url) VALUES (3, 'user', 'ususario', 'user@porras.es', '$2a$11$b8zILFych1k7ge3cCnzrEepHA7LOHNAk.x2iG9zd/8K0vypCJ5ODC',         1, 'dinesh.jpg');
+INSERT INTO user (id, login, first_name, email, password_hash, activated, image_url) VALUES (4, 'porras', 'porrero', 'porra@porras.es', '$2a$11$b8zILFych1k7ge3cCnzrEepHA7LOHNAk.x2iG9zd/8K0vypCJ5ODC',       1, 'gilfoyle-small.jpg');
+INSERT INTO user (id, login, first_name, last_name, email, password_hash, activated, image_url) VALUES (5, 'dani',    'Daniel'    , 'Ortiz', 'dani@porras.es', '$2a$11$b8zILFych1k7ge3cCnzrEepHA7LOHNAk.x2iG9zd/8K0vypCJ5ODC',           1, 'dani.png');
+INSERT INTO user (id, login, first_name, last_name, email, password_hash, activated, image_url) VALUES (6, 'riesco',  'Héctor'    , 'Riesco','riesco@porras.es', '$2a$11$b8zILFych1k7ge3cCnzrEepHA7LOHNAk.x2iG9zd/8K0vypCJ5ODC',       1, 'riesco.png');
+INSERT INTO user (id, login, first_name, last_name, email, password_hash, activated, image_url) VALUES (7, 'malagon', 'Héctor'    , 'Malagon', 'malagon@porras.es', '$2a$11$b8zILFych1k7ge3cCnzrEepHA7LOHNAk.x2iG9zd/8K0vypCJ5ODC',     1, 'malagon.png');
+INSERT INTO user (id, login, first_name, last_name, email, password_hash, activated, image_url) VALUES (8, 'pepe'   , 'Jose Miguel','Maldonado', 'pepe@porras.es', '$2a$11$b8zILFych1k7ge3cCnzrEepHA7LOHNAk.x2iG9zd/8K0vypCJ5ODC',             1, 'pep.png');
 
 -- ROLES
 INSERT INTO role (name) VALUES ('ROLE_ADMIN');
@@ -29,6 +29,7 @@ INSERT INTO user_role (id_user, role_name) VALUES (8, 'ROLE_USER');
 INSERT INTO user_friend (user_id, friend_id, create_time, update_time, active) VALUES (5, 7, null, null, 1);
 INSERT INTO user_friend (user_id, friend_id, create_time, update_time, active) VALUES (5, 6, null, null, 1);
 INSERT INTO user_friend (user_id, friend_id, create_time, update_time, active) VALUES (5, 8, null, null, 1);
+INSERT INTO user_friend (user_id, friend_id, create_time, update_time, active) VALUES (8, 1, null, null, 1);
 
 -- PORRAS
 INSERT INTO porra (id, equipo_local, equipo_visitante, image_url, title, creator_id, type, winner_bet, finish_time, created_time, min_bet, description) VALUES (1, 'Madrid', 'Barsa', 'madrid.png', 'madrid-barsa', 1, 'MATCH', 'riesco',                                 '2017-06-20 22:19:33.925', '2017-06-04 22:19:33.925', 5, 'Esto es una prueba de la descripción de una porra..........');

@@ -34,6 +34,7 @@ public class RootController {
 
 	@GetMapping({"/"})
 	public String root(Model model, Principal principal) {
+	  // Si ya está logueado el usuario se le redirige al dash
 	  if (principal != null && ! principal.getName().isEmpty())
 	    return "redirect:/dash";
 		List<Porra> porrasIndex = porraRepository.findTop10ByOrderByCreatedTimeDesc();
@@ -81,16 +82,6 @@ public class RootController {
 		User user = userRepository.findByLogin(name);
 		model.addAttribute("user", user);
 		return "profile";
-	}
-
-	@GetMapping("/logout")
-	public String logout() {
-		return "logout";
-	}
-
-	@GetMapping("/upload")
-	public String upload() {
-		return "upload";
 	}
 
 }

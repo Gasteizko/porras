@@ -4,6 +4,7 @@ import es.ucm.fdi.porras.utils.PasswordMatches;
 import es.ucm.fdi.porras.utils.ValidEmail;
 import lombok.*;
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -33,7 +34,7 @@ public class UserForm {
     @NotBlank
     @ValidEmail
     private String email;
-     
+
     @NotNull
     @Size(min=3, max=255)
     @NotBlank
@@ -43,5 +44,7 @@ public class UserForm {
     @Size(min=3, max=255)
     @NotBlank
     private String passwordConfirmation;
+
+    private MultipartFile profileImage;
 
 }

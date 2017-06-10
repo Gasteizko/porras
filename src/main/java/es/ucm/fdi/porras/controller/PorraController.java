@@ -181,7 +181,7 @@ public class PorraController {
         createdPorra.setApuestaOpen(porraForm.getApuestaOpen());
         //createdPorra.setContrasenya(porraForm.getContrasenya());
         createdPorra.setContrasenya(passwordEncoder.encode(porraForm.getContrasenya()));
-        if(porraForm.getFile().isEmpty() == false) {
+        if(! porraForm.getFile().isEmpty()) {
             storageService.store(porraForm.getFile(), porraForm.getTituloPorra() + ".jpg");
             createdPorra.setImageUrl(porraForm.getTituloPorra() + ".jpg");
 
