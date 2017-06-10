@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" id="navbar-dashboard" th:fragment="navbar" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<nav class="navbar navbar-inverse navbar-fixed-top" id="navbar-dashboard" th:fragment="navbar" xmlns:th="http://www.thymeleaf.org">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -10,33 +10,15 @@
       </button>
       <img class="pull-left" id="brand-icon" alt="Porras" th:src="@{/static/img/beer-icon.png}"/>
       <a class="navbar-brand" href="/dash">porras</a>
-      <a th:href="@{/newPorra}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Vistas <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="/">Index</a></li>
-            <li><a href="/dash">Dashboard</a></li>
-            <li><a href="/listaporras">Lista porras</a></li>
-            <li><a href="/porra">Porra</a></li>
-            <li><a href="/newPorra">NewPorra</a></li>
-          </ul>
-        </li>
-      </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a th:href="@{/profile}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Perfil - <span th:inline="text">[[${#httpServletRequest.remoteUser}]]</span></a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Ajustes <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Ajustes</a></li>
-            <li role="separator" class="divider"></li>
+        <li><a th:href="@{/profile}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span th:inline="text">[[${#httpServletRequest.remoteUser}]]</span></a></li>
+        <li>
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-            <li><a href="#" onclick="logout()"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Cerrar sesión</a></li>
-          </ul>
+            <li id="btn-logout" onclick="logout()"><a href="#" ><span class="glyphicon glyphicon-off" aria-hidden="true"></span></a></li>
         </li>
       </ul>
       <form class="navbar-form navbar-right">
@@ -44,6 +26,9 @@
           <input type="text" class="form-control" placeholder="Search"/>
         </div>
       </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a th:href="@{/newPorra}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></li>
+      </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

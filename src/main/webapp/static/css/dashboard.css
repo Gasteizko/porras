@@ -6,6 +6,14 @@
 #navbar-dashboard {
   border-radius: 0px !important;
 }
+.navbar-brand {
+  color: #fff !important;
+  font-family: 'Calligraffitti', bold;
+  font-size: 3em;
+}
+#btn-logout {
+  cursor: pointer;
+}
 .panel-green {
   border-color: #5cb85c;
 }

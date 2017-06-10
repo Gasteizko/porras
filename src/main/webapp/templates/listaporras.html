@@ -5,19 +5,19 @@
   </head>
   <body class="bodyPorra">
     <div th:replace="fragments/navbar :: navbar"> Error: Error</div>
-    <div class="container">
+    <div class="container container-porras">
       <div class="row text-center">
         <div class="col-lg-8 col-xs-12 col-lg-offset-2">
-          <div class="col-sm-3 col-xs-6 text-center"><button type="button" id="btn-listaporras-latest" class="btn btn-primary btn-lg btn-listaporras">Últimas <span class="badge">14</span></button></div>
-          <div class="col-sm-3 col-xs-6 text-center"><button type="button" id="btn-listaporras-mine" class="btn btn-primary btn-lg btn-listaporras">Mías <span class="badge">14</span></button></div>
-          <div class="col-sm-3 col-xs-6 text-center"><button type="button" id="btn-listaporras-winned" class="btn btn-success btn-lg btn-listaporras">Ganadas <span class="badge">14</span></button></div>
-          <div class="col-sm-3 col-xs-6 text-center"><button type="button" id="btn-listaporras-losses" class="btn btn-danger btn-lg btn-listaporras">Perdidas <span class="badge">14</span></button></div>
+          <div class="col-sm-3 col-xs-6 text-center"><button type="button" onclick="loadListaPorras(this)" id="btn-listaporras-latest" class="btn btn-primary btn-lg btn-listaporras">Últimas <span class="badge">14</span></button></div>
+          <div class="col-sm-3 col-xs-6 text-center"><button type="button" onclick="loadListaPorras(this)" id="btn-listaporras-mine" class="btn btn-primary btn-lg btn-listaporras">Mías <span class="badge">14</span></button></div>
+          <div class="col-sm-3 col-xs-6 text-center"><button type="button" onclick="loadListaPorras(this)" id="btn-listaporras-winned" class="btn btn-success btn-lg btn-listaporras">Ganadas <span class="badge">14</span></button></div>
+          <div class="col-sm-3 col-xs-6 text-center"><button type="button" onclick="loadListaPorras(this)" id="btn-listaporras-losses" class="btn btn-danger btn-lg btn-listaporras">Perdidas <span class="badge">14</span></button></div>
         </div>
       </div>
 
       <div class="row text-center">
         <div th:each="porra : ${porras}" class="col-lg-4 col-md-6 col-xs-12">
-          <div class="porra-item" onclick="loadPorra()">
+          <div class="porra-item" th:onclick="'loadPorra(\'' + ${porra.id} + '\');'">
             <div class="row">
               <div class="col-lg-3 col-xs-3">
                 <img th:src="@{/static/img/madrid.png}" class="img-responsive img-rounded porra-img" />

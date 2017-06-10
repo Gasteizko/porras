@@ -61,3 +61,21 @@ function readURL(input) {
 $("#imgInp").change(function(){
     readURL(this);
 });
+
+function loadListaPorras(element) {
+  var id = $(element).attr('id');
+  if (id === 'btn-listaporras-latest')
+    window.location = '/listaporras?latest=true';
+  else if (id === 'btn-listaporras-mine')
+    window.location = '/listaporras?mine=true';
+  else if (id === 'btn-listaporras-winned')
+    window.location = '/listaporras?winned=true';
+  else if (id === 'btn-listaporras-losses')
+    window.location = '/listaporras?losses=true';
+  else
+    window.location = '/listaporras'
+}
+
+function loadPorra(id) {
+  window.location = '/porra/' + id
+}
